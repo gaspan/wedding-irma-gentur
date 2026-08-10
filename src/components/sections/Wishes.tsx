@@ -213,22 +213,29 @@ export function Wishes() {
                     transition={{ type: 'spring', stiffness: 260, damping: 24 }}
                     className="rounded-2xl border border-gold/20 bg-white/85 px-5 py-4 shadow-[0_10px_36px_-20px_rgba(13,58,42,.35)] backdrop-blur-sm transition hover:border-gold/50 hover:shadow-[0_16px_44px_-20px_rgba(201,169,97,.5)]"
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <h4 className="font-display text-lg text-ink">{w.name}</h4>
-                      {w.attendance && (
-                        <span
-                          className={`rounded-full px-2.5 py-0.5 text-[0.65rem] font-medium ${BADGE[w.attendance]}`}
-                        >
-                          {BADGE_LABEL[w.attendance]}
-                        </span>
-                      )}
+                    <div className="flex items-start gap-3">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-gold-deep via-gold to-gold-bright font-display text-sm font-semibold text-emerald-night shadow-[0_4px_14px_-4px_rgba(201,169,97,.7)]">
+                        {(w.name.trim()[0] ?? '?').toUpperCase()}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <h4 className="font-display text-lg text-ink">{w.name}</h4>
+                          {w.attendance && (
+                            <span
+                              className={`rounded-full px-2.5 py-0.5 text-[0.65rem] font-medium ${BADGE[w.attendance]}`}
+                            >
+                              {BADGE_LABEL[w.attendance]}
+                            </span>
+                          )}
+                        </div>
+                        <p className="mt-2 text-sm leading-relaxed break-words whitespace-pre-line text-muted">
+                          {w.message}
+                        </p>
+                        <p className="mt-2.5 text-[0.65rem] text-muted/70">
+                          {relativeTime(w.created_at)}
+                        </p>
+                      </div>
                     </div>
-                    <p className="mt-2 text-sm leading-relaxed break-words whitespace-pre-line text-muted">
-                      {w.message}
-                    </p>
-                    <p className="mt-2.5 text-[0.65rem] text-muted/70">
-                      {relativeTime(w.created_at)}
-                    </p>
                   </motion.article>
                 ))}
               </AnimatePresence>

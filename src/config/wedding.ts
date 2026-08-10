@@ -85,3 +85,27 @@ export const hashtag = '#IrmaGenturBersatu' // [GANTI] opsional
 
 export const closingWords =
   'Merupakan suatu kebahagiaan dan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai.'
+
+/** Momen / Love Story — 4 tahap perjalanan. [GANTI] masing-masing */
+export const story: { title: string; date: string; desc: string }[] = [
+  {
+    title: 'Perjumpaan', // [GANTI]
+    date: '2023', // [GANTI]
+    desc: 'Pertama kali kami berkenalan melalui perantaraan kerabat, dan secara perlahan mulai saling mengenal karakter satu sama lain.',
+  },
+  {
+    title: 'Ta’aruf',
+    date: '2024',
+    desc: 'Dengan penuh adab dan ridha keluarga, kami menjalani proses ta’aruf untuk saling memahami tujuan dan komitmen.',
+  },
+  {
+    title: 'Khitbah',
+    date: '2025',
+    desc: 'Keluarga mempelai pria datang melamar untuk meminang dengan penuh keikhlasan dan restu doa dari kedua belah pihak.',
+  },
+  {
+    title: 'Pernikahan',
+    date: 'Juni 2027',
+    desc: 'Ijab kabul di hadapan para saksi dan keluarga, menyempurnakan pernikahan atas nama Allah dengan doa sakinah mawaddah warahmah.',
+  },
+]

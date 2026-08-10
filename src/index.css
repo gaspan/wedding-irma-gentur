@@ -273,6 +273,23 @@
   filter: drop-shadow(0 0 18px rgba(240, 217, 160, 0.45));
 }
 
+/* Kelopak daun berjatuhan + berayun */
+@keyframes petal {
+  0% {
+    transform: translateY(-12vh) translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(50vh) translateX(var(--sway, 24px)) rotate(180deg);
+  }
+  100% {
+    transform: translateY(112vh) translateX(calc(var(--sway, 24px) * -1)) rotate(360deg);
+  }
+}
+
+@utility animate-petal {
+  animation: petal var(--pdur, 16s) linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

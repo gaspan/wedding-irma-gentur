@@ -117,16 +117,23 @@ export function Ticker({ items, className = '' }: { items: string[]; className?:
   )
 }
 
-/** Pembatas gelombang antar section. `top` = warna section di atas, `bottom` = bg section di bawah */
+/** Pembatas antar section. `top` = warna section di atas, `bottom` = bg section di bawah */
 export function WaveSep({
   top,
   bottom,
+  shape = 'wave',
   className = '',
 }: {
   top: string
   bottom: string
+  shape?: 'wave' | 'mountain' | 'tilt'
   className?: string
 }) {
+  const paths = {
+    wave: 'M0 0h1440v26C1140 96 300 96 0 26V0z',
+    mountain: 'M0 0h1440v44L960 8 720 44 480 8 290 44 0 8V0z',
+    tilt: 'M0 0h1440v24L0 60V0z',
+  }
   return (
     <div className={`relative z-[5] ${bottom} ${className}`} aria-hidden>
       <svg
@@ -134,8 +141,65 @@ export function WaveSep({
         preserveAspectRatio="none"
         className={`block h-12 w-full sm:h-20 ${top}`}
       >
-        <path d="M0 0h1440v26C1140 96 300 96 0 26V0z" fill="currentColor" />
+        <path d={paths[shape]} fill="currentColor" />
       </svg>
+    </div>
+  )
+}
+
+/** Kelopak bunga berjatuhan dengan ayunan lembut */
+const LEAF_COLORS = ['#8a9a7b', '#c9a961', '#e0c88d', '#a9b79c']
+
+export function Petals({ className = '', count = 14 }: { className?: string; count?: number }) {
+  const p = useMemo(
+    () =>
+      Array.from({ length: count }, () => ({
+        left: Math.random() * 100,
+        size: 7 + Math.random() * 10,
+        delay: Math.random() * 16,
+        dur: 12 + Math.random() * 12,
+        sway: (Math.random() - 0.5) * 90,
+        op: 0.18 + Math.random() * 0.5,
+        color: LEAF_COLORS[Math.floor(Math.random() * LEAF_COLORS.length)],
+        flip: Math.random() > 0.5 ? -1 : 1,
+      })),
+    [count],
+  )
+
+  return (
+    <div className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`} aria-hidden>
+      {p.map((s, i) => (
+        <span
+          key={i}
+          className="absolute animate-petal"
+          style={
+            {
+              left: `${s.left}%`,
+              top: 0,
+              animationDelay: `${s.delay}s`,
+              animationDuration: `${s.dur}s`,
+              '--sway': `${s.sway}px`,
+              '--pdur': `${s.dur}s`,
+              opacity: s.op,
+            } as CSSProperties
+          }
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width={s.size}
+            height={s.size}
+            style={{ transform: `scaleX(${s.flip})`, color: s.color }}
+            aria-hidden
+          >
+            <path
+              d="M12 2C7 7 4 11 4 15c0 5 4 7 8 7s8-2 8-7c0-4-3-8-8-13z"
+              fill="currentColor"
+              opacity="0.75"
+            />
+            <path d="M12 8v14" stroke="white" strokeWidth="0.8" opacity="0.4" fill="none" />
+          </svg>
+        </span>
+      ))}
     </div>
   )
 }

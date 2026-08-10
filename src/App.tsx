@@ -9,6 +9,7 @@ import { Cover } from './components/sections/Cover'
 import { Hero } from './components/sections/Hero'
 import { QuranVerse } from './components/sections/QuranVerse'
 import { Couple } from './components/sections/Couple'
+import { Story } from './components/sections/Story'
 import { Countdown } from './components/sections/Countdown'
 import { Events } from './components/sections/Events'
 import { Gallery } from './components/sections/Gallery'
@@ -47,15 +48,16 @@ export default function App() {
       <main aria-hidden={!open}>
         <Hero />
         <Ticker items={[`IRMA & GENTUR`, `12 JUNI 2027`, `WALIMATUL ‘URS`, `UNDANGAN PERNIKAHAN`]} />
-        <WaveSep top="text-emerald-deep" bottom="bg-cream" />
+        <WaveSep top="text-emerald-deep" bottom="bg-cream" shape="mountain" />
         <QuranVerse />
         <Couple />
-        <WaveSep top="text-cream" bottom="bg-emerald-deep" />
+        <Story />
+        <WaveSep top="text-cream-deep" bottom="bg-emerald-deep" />
         <Countdown />
-        <WaveSep top="text-emerald-deep" bottom="bg-cream" />
+        <WaveSep top="text-emerald-deep" bottom="bg-cream" shape="mountain" />
         <Events />
         <Gallery />
-        <WaveSep top="text-cream-deep" bottom="bg-emerald-deep" />
+        <WaveSep top="text-cream-deep" bottom="bg-emerald-deep" shape="tilt" />
         <Ticker
           items={[hashtag.toUpperCase(), `IRMA ✦ GENTUR`, `SAKINAH MAWADDAH WARAHMAH`, `JAZAKUMULLAHU KHAIRAN`]}
         />
