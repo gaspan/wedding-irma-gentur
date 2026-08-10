@@ -30,15 +30,17 @@ export function Gallery() {
 
       <div className="relative mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3">
         {galleryArt.map((item, i) => (
-          <Reveal key={item.title} delay={i * 0.06}>
+          <Reveal key={item.title} delay={i * 0.06} className="group">
             <button
               onClick={() => setActive(i)}
-              className="group aspect-square w-full overflow-hidden rounded-xl border border-sage/20 bg-white/70 p-5 shadow-sm backdrop-blur-sm transition hover:border-gold/50 hover:shadow-md active:scale-95"
+              className="group aspect-square w-full overflow-hidden rounded-2xl border border-gold/25 bg-white/80 p-5 shadow-[0_10px_36px_-18px_rgba(13,58,42,.35)] backdrop-blur-sm transition hover:-translate-y-1 hover:border-gold/60 hover:shadow-[0_20px_50px_-18px_rgba(201,169,97,.55)] active:scale-95"
               aria-label={`Lihat ${item.title}`}
             >
-              <item.Art className="h-full w-full text-sage transition-transform duration-500 group-hover:scale-110 group-hover:text-gold" />
+              <item.Art className="h-full w-full text-gold-deep transition-transform duration-500 group-hover:scale-110 group-hover:text-gold" />
             </button>
-            <p className="mt-2.5 text-center font-display text-lg text-ink">{item.title}</p>
+            <p className="mt-2.5 text-center font-display text-lg font-medium text-ink transition group-hover:text-gold-deep">
+              {item.title}
+            </p>
           </Reveal>
         ))}
       </div>
@@ -59,10 +61,10 @@ export function Gallery() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-sm rounded-2xl bg-cream p-9 text-center"
+              className="w-full max-w-sm rounded-3xl border border-gold/30 bg-cream p-9 text-center shadow-[0_0_80px_-20px_rgba(201,169,97,.6)]"
             >
-              <current.Art className="mx-auto h-52 w-52 text-sage" />
-              <h3 className="mt-6 font-display text-3xl font-light text-ink">
+              <current.Art className="mx-auto h-52 w-52 text-gold" />
+              <h3 className="mt-6 font-display text-3xl font-medium text-gold-gradient text-gold-shimmer">
                 {current.title}
               </h3>
               <p className="mt-2 text-sm text-muted">{current.caption}</p>

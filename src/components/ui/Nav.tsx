@@ -68,12 +68,12 @@ export function NavBar({ show }: { show: boolean }) {
       transition={{ delay: 1, duration: 0.6 }}
       className="fixed inset-x-0 bottom-0 z-40 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
     >
-      <div className="mx-auto flex max-w-md items-center justify-around rounded-2xl border border-sage/20 bg-cream/90 px-2 py-2 shadow-lg backdrop-blur-md">
+      <div className="mx-auto flex max-w-md items-center justify-around rounded-3xl border border-gold/30 bg-emerald-night/85 px-2 py-2 shadow-[0_14px_50px_-12px_rgba(8,35,25,.7)] backdrop-blur-xl">
         {ITEMS.map((item) => (
           <button
             key={item.id}
             onClick={() => go(item.id)}
-            className="flex flex-1 flex-col items-center gap-1 rounded-xl px-1 py-1.5 text-muted transition hover:text-gold active:scale-90"
+            className="flex flex-1 flex-col items-center gap-1 rounded-2xl px-1 py-1.5 text-gold-light/80 transition hover:bg-white/5 hover:text-gold-bright active:scale-90"
             aria-label={item.label}
           >
             <svg
@@ -113,7 +113,7 @@ export function MusicToggle({
       transition={{ delay: 1.2 }}
       onClick={onToggle}
       aria-label={playing ? 'Jeda musik' : 'Putar musik'}
-      className="fixed right-4 bottom-24 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-sage/25 bg-cream/90 text-sage-deep shadow-lg backdrop-blur-md transition hover:text-gold active:scale-90"
+      className="fixed right-4 bottom-24 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-linear-to-br from-gold-deep via-gold to-gold-bright text-emerald-night shadow-[0_0_26px_rgba(201,169,97,.55)] transition hover:scale-105 active:scale-90"
     >
       <motion.span
         animate={playing ? { rotate: 360 } : { rotate: 0 }}

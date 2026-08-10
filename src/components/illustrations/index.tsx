@@ -3,19 +3,26 @@
 export function Arch({ className = '' }: { className?: string }) {
   return (
     <svg viewBox="0 0 300 420" fill="none" className={className} aria-hidden>
+      <defs>
+        <linearGradient id="arch-gold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f0d9a0" />
+          <stop offset="0.55" stopColor="#c9a961" />
+          <stop offset="1" stopColor="#a8843c" />
+        </linearGradient>
+      </defs>
       <path
         d="M20 415V150C20 78 78 20 150 20s130 58 130 130v265"
-        stroke="currentColor"
-        strokeWidth="1.2"
+        stroke="url(#arch-gold)"
+        strokeWidth="1.6"
       />
       <path
         d="M36 415V152c0-63 51-114 114-114s114 51 114 114v263"
-        stroke="currentColor"
-        strokeWidth="0.6"
+        stroke="url(#arch-gold)"
+        strokeWidth="0.7"
         opacity="0.55"
       />
-      <path d="M150 20V4M150 4l-6 8M150 4l6 8" stroke="currentColor" strokeWidth="1" />
-      <circle cx="150" cy="150" r="4" fill="currentColor" opacity="0.5" />
+      <path d="M150 20V4M150 4l-6 8M150 4l6 8" stroke="#f0d9a0" strokeWidth="1.2" />
+      <circle cx="150" cy="150" r="4.5" fill="#ecd5a4" opacity="0.7" />
     </svg>
   )
 }
@@ -201,5 +208,59 @@ export function CalendarIllustration({ className = '' }: { className?: string })
       <circle cx="60" cy="78" r="14" stroke="currentColor" strokeWidth="1" />
       <path d="M54 78l4 4 8-8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
     </svg>
+  )
+}
+
+/** Aurora bergerak untuk section gelap */
+const AURORA = [
+  { cls: 'bg-emerald/45', pos: '-top-40 left-1/2 -translate-x-1/2 h-[560px] w-[760px]', anim: 'animate-aurora' },
+  { cls: 'bg-gold/20', pos: '-bottom-24 -left-28 h-[460px] w-[460px]', anim: 'animate-aurora-slow' },
+  { cls: 'bg-emerald-mid/50', pos: 'top-1/4 -right-28 h-[420px] w-[420px]', anim: 'animate-aurora' },
+]
+
+export function Aurora({ className = '' }: { className?: string }) {
+  return (
+    <div className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`} aria-hidden>
+      {AURORA.map((b, i) => (
+        <div
+          key={i}
+          className={`absolute rounded-full blur-[130px] ${b.cls} ${b.pos} ${b.anim}`}
+        />
+      ))}
+    </div>
+  )
+}
+
+/** Sparkles emas berkelip */
+const SPARKS = [
+  { t: '6%', l: '10%', s: 13, d: 0 },
+  { t: '14%', l: '84%', s: 10, d: 0.7 },
+  { t: '24%', l: '18%', s: 8, d: 1.4 },
+  { t: '30%', l: '90%', s: 12, d: 0.3 },
+  { t: '42%', l: '6%', s: 10, d: 1.9 },
+  { t: '48%', l: '80%', s: 7, d: 2.4 },
+  { t: '58%', l: '14%', s: 11, d: 1.1 },
+  { t: '64%', l: '88%', s: 9, d: 0.5 },
+  { t: '74%', l: '8%', s: 8, d: 2.8 },
+  { t: '80%', l: '82%', s: 12, d: 1.6 },
+  { t: '88%', l: '22%', s: 9, d: 2.1 },
+  { t: '92%', l: '70%', s: 10, d: 0.9 },
+]
+
+export function Sparkles({ className = '' }: { className?: string }) {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      {SPARKS.map((p, i) => (
+        <span
+          key={i}
+          className="absolute animate-twinkle"
+          style={{ top: p.t, left: p.l, animationDelay: `${p.d}s` }}
+        >
+          <svg viewBox="0 0 24 24" width={p.s} height={p.s} fill="currentColor" className={className}>
+            <path d="M12 0l2.9 9.1L24 12l-9.1 2.9L12 24l-2.9-9.1L0 12l9.1-2.9z" />
+          </svg>
+        </span>
+      ))}
+    </div>
   )
 }

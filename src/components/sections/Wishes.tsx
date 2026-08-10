@@ -14,9 +14,9 @@ const OPTIONS: { value: Attendance; label: string }[] = [
 ]
 
 const BADGE: Record<Attendance, string> = {
-  hadir: 'bg-sage/15 text-sage-deep',
+  hadir: 'bg-emerald/10 text-emerald',
   tidak_hadir: 'bg-muted/15 text-muted',
-  ragu: 'bg-gold/15 text-gold',
+  ragu: 'bg-gold/15 text-gold-deep',
 }
 
 const BADGE_LABEL: Record<Attendance, string> = {
@@ -57,7 +57,7 @@ export function Wishes() {
   }
 
   const inputClass =
-    'w-full rounded-xl border border-sage/25 bg-white/80 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted/60 focus:border-gold focus:ring-2 focus:ring-gold/20'
+    'w-full rounded-xl border border-gold/25 bg-white/85 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted/50 focus:border-gold focus:ring-2 focus:ring-gold/30'
 
   return (
     <Section id="rsvp" className="bg-cream-deep/50">
@@ -74,7 +74,7 @@ export function Wishes() {
       <Reveal delay={0.08} className="relative">
         <form
           onSubmit={onSubmit}
-          className="mx-auto mt-10 max-w-lg rounded-2xl border border-sage/20 bg-white/70 p-6 shadow-sm backdrop-blur-sm sm:p-8"
+          className="mx-auto mt-10 max-w-lg rounded-3xl border border-gold/30 bg-white/85 p-6 shadow-[0_20px_60px_-26px_rgba(13,58,42,.4)] backdrop-blur-sm sm:p-8"
         >
           {/* honeypot anti-bot */}
           <input
@@ -108,10 +108,10 @@ export function Wishes() {
                 key={o.value}
                 type="button"
                 onClick={() => setAttendance(o.value)}
-                className={`rounded-xl border px-2 py-2.5 text-xs font-medium transition active:scale-95 ${
+                className={`rounded-xl border px-2 py-2.5 text-xs font-semibold transition active:scale-95 ${
                   attendance === o.value
-                    ? 'border-gold bg-gold text-white'
-                    : 'border-sage/25 bg-white/60 text-muted hover:border-gold/50'
+                    ? 'border-gold bg-linear-to-r from-gold-deep via-gold to-gold-bright text-emerald-night shadow-[0_6px_20px_-6px_rgba(201,169,97,.7)]'
+                    : 'border-gold/25 bg-white/60 text-muted hover:border-gold/60'
                 }`}
               >
                 {o.label}
@@ -175,7 +175,7 @@ export function Wishes() {
           <button
             type="submit"
             disabled={submitting}
-            className="mt-5 w-full rounded-xl bg-sage-deep py-3.5 text-sm font-medium text-white transition hover:bg-sage disabled:opacity-50 active:scale-[0.98]"
+            className="mt-5 w-full rounded-xl bg-linear-to-r from-gold-deep via-gold to-gold-bright py-3.5 text-sm font-semibold text-emerald-night shadow-[0_10px_34px_-10px_rgba(201,169,97,.8)] transition hover:brightness-105 active:scale-[0.98] disabled:opacity-50"
           >
             {submitting ? 'Mengirim…' : sent ? 'Terkirim — Jazakallahu khairan' : 'Kirim Ucapan'}
           </button>
@@ -210,7 +210,7 @@ export function Wishes() {
                     layout
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="rounded-xl border border-sage/15 bg-white/70 px-5 py-4 shadow-sm backdrop-blur-sm"
+                    className="rounded-2xl border border-gold/20 bg-white/85 px-5 py-4 shadow-[0_10px_36px_-20px_rgba(13,58,42,.35)] backdrop-blur-sm transition hover:border-gold/50 hover:shadow-[0_16px_44px_-20px_rgba(201,169,97,.5)]"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <h4 className="font-display text-lg text-ink">{w.name}</h4>

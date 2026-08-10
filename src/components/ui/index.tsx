@@ -58,20 +58,34 @@ export function Section({
 export function SectionTitle({
   overline,
   title,
+  dark = false,
   className = '',
 }: {
   overline?: string
   title: string
+  dark?: boolean
   className?: string
 }) {
   return (
     <div className={cn('text-center', className)}>
       {overline && (
-        <p className="mb-3 text-[0.7rem] font-medium tracking-[0.32em] text-sage-deep uppercase">
+        <p
+          className={cn(
+            'mb-3 text-[0.7rem] font-semibold tracking-[0.35em] uppercase',
+            dark ? 'text-gold-bright' : 'text-gold-deep',
+          )}
+        >
           {overline}
         </p>
       )}
-      <h2 className="font-display text-4xl font-light text-ink sm:text-5xl">{title}</h2>
+      <h2
+        className={cn(
+          'font-display text-4xl font-medium sm:text-5xl',
+          dark ? 'text-gold-gradient text-gold-shimmer' : 'text-ink',
+        )}
+      >
+        {title}
+      </h2>
     </div>
   )
 }
