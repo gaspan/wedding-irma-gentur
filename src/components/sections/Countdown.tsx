@@ -3,6 +3,7 @@ import { useCountdown } from '../../hooks/useCountdown'
 import { downloadIcs } from '../../lib/utils'
 import { couple, events } from '../../config/wedding'
 import { Aurora, CalendarIllustration, Divider, Sparkles } from '../illustrations'
+import { FlipDigit } from '../ui/Effects'
 import { Reveal, Section } from '../ui'
 import type { CSSProperties } from 'react'
 
@@ -13,9 +14,10 @@ function Unit({ value, label }: { value: number; label: string }) {
       style={{ '--card-bg': 'rgba(13,58,42,.72)' } as CSSProperties}
     >
       <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent" />
-      <span className="font-display text-4xl font-medium text-gold-gradient text-gold-shimmer tabular-nums sm:text-5xl">
-        {String(value).padStart(2, '0')}
-      </span>
+      <FlipDigit
+        value={value}
+        className="font-display text-4xl font-medium text-gold-gradient text-gold-shimmer tabular-nums sm:text-5xl"
+      />
       <span className="mt-2 text-[0.6rem] font-semibold tracking-[0.2em] text-gold-light/70 uppercase">
         {label}
       </span>

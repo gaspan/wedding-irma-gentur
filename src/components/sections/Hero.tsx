@@ -44,9 +44,9 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
+          initial={{ opacity: 0, scale: 0.96, filter: 'blur(12px)', letterSpacing: '0.35em' }}
+          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: '0.02em' }}
+          transition={{ delay: 0.5, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
           className="mt-10"
         >
           <h1 className="font-display text-7xl leading-none font-medium text-gold-gradient text-gold-shimmer text-glow sm:text-8xl">

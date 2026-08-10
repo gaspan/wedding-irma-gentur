@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import type { CSSProperties } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 
 /** Partikel emas naik perlahan */
 export function Particles({ className = '', count = 16 }: { className?: string; count?: number }) {
@@ -113,5 +114,48 @@ export function Ticker({ items, className = '' }: { items: string[]; className?:
         ))}
       </div>
     </div>
+  )
+}
+
+/** Pembatas gelombang antar section. `top` = warna section di atas, `bottom` = bg section di bawah */
+export function WaveSep({
+  top,
+  bottom,
+  className = '',
+}: {
+  top: string
+  bottom: string
+  className?: string
+}) {
+  return (
+    <div className={`relative z-[5] ${bottom} ${className}`} aria-hidden>
+      <svg
+        viewBox="0 0 1440 90"
+        preserveAspectRatio="none"
+        className={`block h-12 w-full sm:h-20 ${top}`}
+      >
+        <path d="M0 0h1440v26C1140 96 300 96 0 26V0z" fill="currentColor" />
+      </svg>
+    </div>
+  )
+}
+
+/** Angka countdown dengan animasi flip setiap berubah */
+export function FlipDigit({ value, className = '' }: { value: number; className?: string }) {
+  return (
+    <span className="relative inline-flex h-[1.05em] items-center justify-center overflow-hidden">
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          key={value}
+          initial={{ y: '-60%', opacity: 0, filter: 'blur(4px)' }}
+          animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
+          exit={{ y: '60%', opacity: 0, filter: 'blur(4px)' }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className={className}
+        >
+          {String(value).padStart(2, '0')}
+        </motion.span>
+      </AnimatePresence>
+    </span>
   )
 }

@@ -64,7 +64,7 @@ function PersonCard({
 
 export function Couple() {
   return (
-    <Section id="mempelai" className="relative">
+    <Section id="mempelai" className="relative bg-cream">
       <Sprig className="pointer-events-none absolute top-10 -left-8 h-56 text-gold opacity-15" />
       <Sprig className="pointer-events-none absolute -right-8 bottom-10 h-56 -scale-x-100 text-gold opacity-15" />
 

@@ -21,7 +21,7 @@ export function Gallery() {
   const current = active !== null ? galleryArt[active] : null
 
   return (
-    <Section id="galeri" className="bg-cream-deep/50">
+    <Section id="galeri" className="bg-cream-deep">
       <div className="pointer-events-none absolute inset-0 bg-pattern opacity-[0.1]" />
 
       <Reveal className="relative">
@@ -57,9 +57,10 @@ export function Gallery() {
             aria-modal="true"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.82, opacity: 0, y: 26 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.86, opacity: 0, y: 16 }}
+              transition={{ type: 'spring', stiffness: 280, damping: 24 }}
               onClick={(e) => e.stopPropagation()}
               className="w-full max-w-sm rounded-3xl border border-gold/30 bg-cream p-9 text-center shadow-[0_0_80px_-20px_rgba(201,169,97,.6)]"
             >

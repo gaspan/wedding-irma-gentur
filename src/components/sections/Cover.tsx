@@ -12,7 +12,7 @@ export function Cover({ open, onOpen }: { open: boolean; onOpen: () => void }) {
       {!open && (
         <motion.div
           className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-emerald-deep px-6"
-          exit={{ opacity: 0, scale: 1.06 }}
+          exit={{ opacity: 0, scale: 1.1, filter: 'blur(14px)' }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           <Aurora />
@@ -39,9 +39,9 @@ export function Cover({ open, onOpen }: { open: boolean; onOpen: () => void }) {
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45, duration: 0.8 }}
+              initial={{ opacity: 0, y: 24, filter: 'blur(12px)', letterSpacing: '0.45em' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)', letterSpacing: '0.02em' }}
+              transition={{ delay: 0.45, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
               className="mt-6"
             >
               <h1 className="font-display text-[4.2rem] leading-[1.02] font-medium text-gold-gradient text-gold-shimmer text-glow sm:text-8xl">

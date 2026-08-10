@@ -60,7 +60,7 @@ export function Wishes() {
     'w-full rounded-xl border border-gold/25 bg-white/85 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted/50 focus:border-gold focus:ring-2 focus:ring-gold/30'
 
   return (
-    <Section id="rsvp" className="bg-cream-deep/50">
+    <Section id="rsvp" className="bg-cream-deep">
       <div className="pointer-events-none absolute inset-0 bg-pattern opacity-[0.1]" />
 
       <Reveal className="relative">
@@ -208,8 +208,9 @@ export function Wishes() {
                   <motion.article
                     key={w.id}
                     layout
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 260, damping: 24 }}
                     className="rounded-2xl border border-gold/20 bg-white/85 px-5 py-4 shadow-[0_10px_36px_-20px_rgba(13,58,42,.35)] backdrop-blur-sm transition hover:border-gold/50 hover:shadow-[0_16px_44px_-20px_rgba(201,169,97,.5)]"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">

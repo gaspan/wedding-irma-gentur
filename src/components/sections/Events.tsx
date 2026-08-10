@@ -59,7 +59,7 @@ function EventCard({ ev, delay }: { ev: EventDetail; delay: number }) {
 
 export function Events() {
   return (
-    <Section id="acara" className="relative">
+    <Section id="acara" className="relative bg-cream">
       <Sprig className="pointer-events-none absolute top-16 -right-10 h-52 -scale-x-100 text-gold opacity-20" />
 
       <Reveal>

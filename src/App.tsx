@@ -4,7 +4,7 @@ import { hashtag, music } from './config/wedding'
 import { useAudio } from './hooks/useAudio'
 import { asset } from './lib/utils'
 import { MusicToggle, NavBar } from './components/ui/Nav'
-import { Confetti, Ticker } from './components/ui/Effects'
+import { Confetti, Ticker, WaveSep } from './components/ui/Effects'
 import { Cover } from './components/sections/Cover'
 import { Hero } from './components/sections/Hero'
 import { QuranVerse } from './components/sections/QuranVerse'
@@ -15,6 +15,9 @@ import { Gallery } from './components/sections/Gallery'
 import { Gift } from './components/sections/Gift'
 import { Wishes } from './components/sections/Wishes'
 import { Footer } from './components/sections/Footer'
+
+const NOISE =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E\")"
 
 export default function App() {
   const [open, setOpen] = useState(false)
@@ -44,14 +47,22 @@ export default function App() {
       <main aria-hidden={!open}>
         <Hero />
         <Ticker items={[`IRMA & GENTUR`, `12 JUNI 2027`, `WALIMATUL ‘URS`, `UNDANGAN PERNIKAHAN`]} />
+        <WaveSep top="text-emerald-deep" bottom="bg-cream" />
         <QuranVerse />
         <Couple />
+        <WaveSep top="text-cream" bottom="bg-emerald-deep" />
         <Countdown />
+        <WaveSep top="text-emerald-deep" bottom="bg-cream" />
         <Events />
         <Gallery />
-        <Ticker items={[hashtag.toUpperCase(), `IRMA ✦ GENTUR`, `SAKINAH MAWADDAH WARAHMAH`, `JAZAKUMULLAHU KHAIRAN`]} />
+        <WaveSep top="text-cream-deep" bottom="bg-emerald-deep" />
+        <Ticker
+          items={[hashtag.toUpperCase(), `IRMA ✦ GENTUR`, `SAKINAH MAWADDAH WARAHMAH`, `JAZAKUMULLAHU KHAIRAN`]}
+        />
         <Gift />
+        <WaveSep top="text-emerald-deep" bottom="bg-cream-deep" />
         <Wishes />
+        <WaveSep top="text-cream-deep" bottom="bg-emerald-deep" />
         <Footer />
       </main>
 
@@ -62,6 +73,13 @@ export default function App() {
       <motion.div
         className="fixed inset-x-0 top-0 z-[60] h-1 origin-left bg-linear-to-r from-gold-deep via-gold-bright to-gold-deep"
         style={{ scaleX: scrollYProgress }}
+      />
+
+      {/* tekstur grain halus */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-[55] opacity-[0.045] mix-blend-multiply"
+        style={{ backgroundImage: NOISE }}
       />
 
       {confetti && open && <Confetti />}
