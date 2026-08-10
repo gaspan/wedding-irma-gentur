@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-cream: #faf7f2;
+  --color-cream-deep: #f2ece2;
+  --color-sage: #8a9a7b;
+  --color-sage-light: #a9b79c;
+  --color-sage-deep: #5f6d53;
+  --color-gold: #c9a961;
+  --color-gold-light: #e0c88d;
+  --color-ink: #2c2c2c;
+  --color-muted: #6b6b6b;
+
+  --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: 'Amiri', 'Times New Roman', serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  /* Dikunci saat cover belum dibuka */
+  body[data-locked='true'] {
+    overflow: hidden;
+    height: 100dvh;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-light);
+    color: var(--color-ink);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-cream-deep);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-sage-light);
+    border-radius: 999px;
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+/* Latar pattern islami halus */
+@utility bg-pattern {
+  background-image: radial-gradient(var(--color-sage) 0.5px, transparent 0.5px);
+  background-size: 22px 22px;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
