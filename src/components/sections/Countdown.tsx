@@ -4,10 +4,14 @@ import { downloadIcs } from '../../lib/utils'
 import { couple, events } from '../../config/wedding'
 import { Aurora, CalendarIllustration, Divider, Sparkles } from '../illustrations'
 import { Reveal, Section } from '../ui'
+import type { CSSProperties } from 'react'
 
 function Unit({ value, label }: { value: number; label: string }) {
   return (
-    <div className="relative flex min-w-[72px] flex-col items-center rounded-2xl border border-gold/30 bg-white/5 px-3 py-4 backdrop-blur-md sm:min-w-[92px] sm:px-5 sm:py-5">
+    <div
+      className="card-conic relative flex min-w-[72px] flex-col items-center rounded-2xl px-3 py-4 sm:min-w-[92px] sm:px-5 sm:py-5"
+      style={{ '--card-bg': 'rgba(13,58,42,.72)' } as CSSProperties}
+    >
       <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent" />
       <span className="font-display text-4xl font-medium text-gold-gradient text-gold-shimmer tabular-nums sm:text-5xl">
         {String(value).padStart(2, '0')}

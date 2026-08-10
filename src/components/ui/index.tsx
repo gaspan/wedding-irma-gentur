@@ -81,7 +81,7 @@ export function SectionTitle({
       <h2
         className={cn(
           'font-display text-4xl font-medium sm:text-5xl',
-          dark ? 'text-gold-gradient text-gold-shimmer' : 'text-ink',
+          dark ? 'text-gold-gradient text-gold-shimmer text-glow' : 'text-ink',
         )}
       >
         {title}

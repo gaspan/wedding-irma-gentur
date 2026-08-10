@@ -1,6 +1,7 @@
 import { couple } from '../../config/wedding'
 import { BrideIllustration, GroomIllustration, Sprig } from '../illustrations'
 import { Reveal, Section, SectionTitle } from '../ui'
+import type { CSSProperties } from 'react'
 
 type Person = typeof couple.bride | typeof couple.groom
 
@@ -15,7 +16,7 @@ function PersonCard({
 }) {
   return (
     <Reveal delay={delay} className="flex-1">
-      <div className="group relative h-full rounded-3xl border border-gold/25 bg-white/85 p-7 pt-9 text-center shadow-[0_16px_50px_-24px_rgba(13,58,42,.35)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-[0_28px_70px_-24px_rgba(201,169,97,.55)]">
+      <div className="group card-conic relative h-full rounded-3xl p-7 pt-9 text-center shadow-[0_16px_50px_-24px_rgba(13,58,42,.35)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_-24px_rgba(201,169,97,.55)]" style={{ '--card-bg': '#fcfaf5' } as CSSProperties}>
         <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-gold to-transparent" />
         <div className="pointer-events-none absolute inset-x-4 top-2 h-px bg-linear-to-r from-transparent via-gold/50 to-transparent" />
 

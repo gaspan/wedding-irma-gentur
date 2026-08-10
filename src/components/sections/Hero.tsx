@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { couple, events, hashtag } from '../../config/wedding'
-import { Arch, Aurora, CornerFloral, RingsIllustration, Sparkles } from '../illustrations'
+import { Arch, Aurora, CornerFloral, Sparkles } from '../illustrations'
+import { CircularText, Particles } from '../ui/Effects'
 
 export function Hero() {
   return (
@@ -8,9 +9,18 @@ export function Hero() {
       <Aurora />
       <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.13]" />
       <Sparkles className="text-gold-bright" />
+      <Particles count={20} />
       <Arch className="pointer-events-none absolute h-[84vh] w-auto opacity-70" />
       <CornerFloral className="pointer-events-none absolute -top-4 -left-4 w-36 rotate-180 text-gold-bright/40" />
       <CornerFloral className="pointer-events-none absolute -right-4 -bottom-4 w-36 text-gold-bright/40" />
+
+      {/* angka tahun outline raksasa */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[42vw] leading-none font-bold text-stroke-gold opacity-[0.14] sm:text-[26vw]"
+      >
+        2027
+      </span>
 
       <div className="relative z-10 text-center">
         <motion.p
@@ -39,15 +49,24 @@ export function Hero() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="mt-10"
         >
-          <h1 className="font-display text-7xl leading-none font-medium text-gold-gradient text-gold-shimmer sm:text-8xl">
+          <h1 className="font-display text-7xl leading-none font-medium text-gold-gradient text-gold-shimmer text-glow sm:text-8xl">
             {couple.bride.nickname}
           </h1>
-          <div className="my-3 flex items-center justify-center gap-4">
-            <span className="h-px w-14 bg-linear-to-r from-transparent to-gold/70" />
-            <RingsIllustration className="h-10 w-auto animate-glow text-gold" />
-            <span className="h-px w-14 bg-linear-to-l from-transparent to-gold/70" />
+
+          <div className="relative mx-auto my-2 h-28 w-28 sm:h-32 sm:w-32">
+            <CircularText
+              text={`${couple.bride.nickname} & ${couple.groom.nickname} • 12 JUNI 2027 • `}
+              className="absolute inset-0 text-gold-bright"
+            />
+            <span
+              className="absolute inset-0 flex items-center justify-center font-display text-5xl italic text-gold"
+              style={{ textShadow: '0 0 30px rgba(201,169,97,.85)' }}
+            >
+              &amp;
+            </span>
           </div>
-          <h1 className="font-display text-7xl leading-none font-medium text-gold-gradient text-gold-shimmer sm:text-8xl">
+
+          <h1 className="font-display text-7xl leading-none font-medium text-gold-gradient text-gold-shimmer text-glow sm:text-8xl">
             {couple.groom.nickname}
           </h1>
         </motion.div>

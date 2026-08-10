@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { CSSProperties } from 'react'
 import { gift } from '../../config/wedding'
 import { asset } from '../../lib/utils'
 import { Aurora, EnvelopeIllustration, Sparkles } from '../illustrations'
@@ -26,7 +27,10 @@ export function Gift() {
 
       <Reveal delay={0.16} className="relative">
         <div className="mx-auto mt-12 max-w-xs">
-          <div className="rounded-3xl border border-gold/35 bg-white/5 p-7 text-center shadow-[0_0_80px_-24px_rgba(201,169,97,.7)] backdrop-blur-md">
+          <div
+            className="card-conic relative rounded-3xl p-7 text-center shadow-[0_0_80px_-24px_rgba(201,169,97,.7)]"
+            style={{ '--card-bg': 'rgba(13,58,42,.72)' } as CSSProperties}
+          >
             <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-linear-to-r from-transparent via-gold to-transparent" />
 
             <EnvelopeIllustration className="mx-auto h-12 w-auto animate-float text-gold-bright" />

@@ -169,6 +169,110 @@
   background-size: 24px 24px;
 }
 
+/* ============ Ekstra heboh ============ */
+
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-rotate {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+/* Bingkai conic berputar. Isi dalam diatur lewat --card-bg */
+@utility card-conic {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(var(--card-bg, #ffffff), var(--card-bg, #ffffff)) padding-box,
+    conic-gradient(
+        from var(--border-angle),
+        #a8843c,
+        #f8ecc3 18%,
+        #c9a961 34%,
+        #1b6b4a 52%,
+        #f0d9a0 72%,
+        #a8843c
+      )
+      border-box;
+  animation: border-rotate 7s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee 26s linear infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0;
+  }
+  8% {
+    opacity: var(--p-op, 0.8);
+  }
+  100% {
+    transform: translate3d(var(--dx, 20px), -110vh, 0) scale(0.55);
+    opacity: 0;
+  }
+}
+
+@utility animate-rise {
+  animation: rise var(--dur, 9s) linear infinite;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-5vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(115vh) rotate(var(--rot, 360deg));
+    opacity: 0.15;
+  }
+}
+
+@utility animate-confetti {
+  animation: confetti-fall var(--cdur, 3s) ease-in forwards;
+}
+
+@keyframes eq {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@utility animate-eq {
+  transform-origin: bottom;
+  animation: eq 0.65s ease-in-out infinite;
+}
+
+/* Teks outline dekoratif */
+@utility text-stroke-gold {
+  -webkit-text-stroke: 1.5px rgba(201, 169, 97, 0.5);
+  color: transparent;
+}
+
+/* Glow untuk teks gradien */
+@utility text-glow {
+  filter: drop-shadow(0 0 18px rgba(240, 217, 160, 0.45));
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

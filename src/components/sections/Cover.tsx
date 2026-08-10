@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { couple, events } from '../../config/wedding'
 import { useGuestName } from '../../hooks/useGuestName'
 import { Arch, Aurora, CornerFloral, Sparkles } from '../illustrations'
+import { Particles } from '../ui/Effects'
 
 export function Cover({ open, onOpen }: { open: boolean; onOpen: () => void }) {
   const guest = useGuestName()
@@ -17,6 +18,7 @@ export function Cover({ open, onOpen }: { open: boolean; onOpen: () => void }) {
           <Aurora />
           <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.15]" />
           <Sparkles className="text-gold-bright" />
+          <Particles count={18} />
 
           {/* bingkai ganda emas */}
           <div className="pointer-events-none absolute inset-3 rounded-[2rem] border border-gold/35 sm:inset-5" />
@@ -42,7 +44,7 @@ export function Cover({ open, onOpen }: { open: boolean; onOpen: () => void }) {
               transition={{ delay: 0.45, duration: 0.8 }}
               className="mt-6"
             >
-              <h1 className="font-display text-[4.2rem] leading-[1.02] font-medium text-gold-gradient text-gold-shimmer sm:text-8xl">
+              <h1 className="font-display text-[4.2rem] leading-[1.02] font-medium text-gold-gradient text-gold-shimmer text-glow sm:text-8xl">
                 {couple.bride.nickname}
               </h1>
               <span
@@ -51,7 +53,7 @@ export function Cover({ open, onOpen }: { open: boolean; onOpen: () => void }) {
               >
                 &
               </span>
-              <h1 className="font-display text-[4.2rem] leading-[1.02] font-medium text-gold-gradient text-gold-shimmer sm:text-8xl">
+              <h1 className="font-display text-[4.2rem] leading-[1.02] font-medium text-gold-gradient text-gold-shimmer text-glow sm:text-8xl">
                 {couple.groom.nickname}
               </h1>
             </motion.div>

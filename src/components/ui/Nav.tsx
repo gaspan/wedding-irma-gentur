@@ -123,11 +123,15 @@ export function MusicToggle({
         className="flex items-center justify-center"
       >
         {playing ? (
-          <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <circle cx="12" cy="12" r="9" />
-            <circle cx="12" cy="12" r="2.5" fill="currentColor" />
-            <path d="M12 3v5M12 16v5" />
-          </svg>
+          <span className="flex h-4 w-5 items-end justify-center gap-[3px]">
+            {[0, 0.15, 0.3].map((d) => (
+              <span
+                key={d}
+                className="animate-eq w-[3px] rounded-full bg-current"
+                style={{ height: '100%', animationDelay: `${d}s` }}
+              />
+            ))}
+          </span>
         ) : (
           <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
             <path d="M9 18V5l10-2v13" />
