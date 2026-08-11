@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useInView } from 'framer-motion'
 import { couple, gift } from '../../config/wedding'
 import { asset } from '../../lib/utils'
 import { Aurora, EnvelopeIllustration, Sparkles } from '../illustrations'
@@ -10,15 +10,12 @@ const EASE = [0.22, 1, 0.36, 1] as const
 
 export function Gift() {
   const [broken, setBroken] = useState(false)
-  const [open, setOpen] = useState(false)
-  const [pinned, setPinned] = useState(false)
   const qrSrc = asset(gift.qrisImage)
   const initials = `${couple.bride.nickname[0]}${couple.groom.nickname[0]}`.toUpperCase()
 
-  const toggle = () => {
-    setPinned(true)
-    setOpen((o) => !o)
-  }
+  // Amplop terbuka otomatis saat section masuk layar
+  const envRef = useRef<HTMLDivElement>(null)
+  const open = useInView(envRef, { once: true, amount: 0.35 })
 
   return (
     <Section id="gift" className="bg-emerald-night">
@@ -41,12 +38,13 @@ export function Gift() {
       <Reveal delay={0.16} className="relative">
         <div className="mx-auto mt-14 max-w-sm">
           <div
+            ref={envRef}
             className="card-conic relative rounded-[1.75rem] p-5 text-center shadow-[0_0_90px_-26px_rgba(200,167,92,.6)] sm:p-6"
-            style={{ '--card-bg': 'rgba(8,42,31,.92)' } as CSSProperties}
+            style={{ '--card-bg': 'rgba(8,42,31,.92)', perspective: 1400 } as CSSProperties}
           >
             <span className="pointer-events-none absolute inset-x-10 top-0 h-px hairline-gold" />
 
-            {/* Surat: QRIS — muncul saat amplop dibuka */}
+            {/* Surat: QRIS — meluncur keluar saat amplop terbuka */}
             <AnimatePresence initial={false}>
               {open && (
                 <motion.div
@@ -108,20 +106,7 @@ export function Gift() {
             </AnimatePresence>
 
             {/* Amplop */}
-            <button
-              type="button"
-              onClick={toggle}
-              onMouseEnter={() => {
-                if (!pinned) setOpen(true)
-              }}
-              onMouseLeave={() => {
-                if (!pinned) setOpen(false)
-              }}
-              aria-expanded={open}
-              aria-label={open ? 'Tutup amplop wedding gift' : 'Buka amplop wedding gift'}
-              className="group relative block w-full text-center outline-none"
-              style={{ perspective: 1400 }}
-            >
+            <div className="relative block w-full text-center">
               {/* badan amplop */}
               <span className="relative z-10 block overflow-hidden rounded-[1.2rem] border border-gold/35 bg-linear-to-b from-emerald-mid via-emerald-deep to-emerald-void px-6 pt-14 pb-6">
                 <span className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.1]" />
@@ -132,12 +117,9 @@ export function Gift() {
                   <path d="M0 0l150 88M300 0l-150 88" fill="none" stroke="currentColor" strokeWidth="0.6" opacity="0.4" />
                 </svg>
 
-                <EnvelopeIllustration className="relative mx-auto h-10 w-auto text-gold-bright transition-transform duration-500 group-hover:-translate-y-0.5" />
+                <EnvelopeIllustration className="relative mx-auto h-10 w-auto text-gold-bright" />
                 <span className="relative mt-3 block text-[0.7rem] font-semibold tracking-[0.3em] text-gold-light/85 uppercase">
-                  {open ? 'Amplop Terbuka' : gift.qrisLabel}
-                </span>
-                <span className="relative mt-1.5 block text-[0.62rem] tracking-[0.18em] text-gold-light/55 uppercase">
-                  {open ? 'Klik untuk menutup' : 'Klik untuk membuka'}
+                  {gift.qrisLabel}
                 </span>
               </span>
 
@@ -166,7 +148,7 @@ export function Gift() {
                   </span>
                 </span>
               </motion.span>
-            </button>
+            </div>
           </div>
 
           <p className="mt-7 text-center font-display text-base text-gold-light/60 italic">
