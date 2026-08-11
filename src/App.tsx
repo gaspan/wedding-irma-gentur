@@ -48,23 +48,22 @@ export default function App() {
       <main aria-hidden={!open}>
         <Hero />
         <Ticker items={[`IRMA & GENTUR`, `12 JUNI 2027`, `WALIMATUL ‘URS`, `UNDANGAN PERNIKAHAN`]} />
-        <WaveSep top="text-emerald-deep" bottom="bg-cream" shape="mountain" />
+        <WaveSep top="text-emerald-void" bottom="bg-cream" shape="mountain" />
         <QuranVerse />
         <Couple />
         <Story />
-        <WaveSep top="text-cream-deep" bottom="bg-emerald-deep" />
+        <WaveSep top="text-cream-deep" bottom="bg-emerald-night" />
         <Countdown />
-        <WaveSep top="text-emerald-deep" bottom="bg-cream" shape="mountain" />
+        <WaveSep top="text-emerald-night" bottom="bg-cream" shape="mountain" />
         <Events />
         <Gallery />
-        <WaveSep top="text-cream-deep" bottom="bg-emerald-deep" shape="tilt" />
+        <WaveSep top="text-cream-deep" bottom="bg-emerald-void" shape="tilt" />
         <Ticker
           items={[hashtag.toUpperCase(), `IRMA ✦ GENTUR`, `SAKINAH MAWADDAH WARAHMAH`, `JAZAKUMULLAHU KHAIRAN`]}
         />
         <Gift />
-        <WaveSep top="text-emerald-deep" bottom="bg-cream-deep" />
-        <Wishes />
-        <WaveSep top="text-cream-deep" bottom="bg-emerald-deep" />
+        <WaveSep top="text-emerald-night" bottom="bg-cream-deep" />        <Wishes />
+        <WaveSep top="text-cream-deep" bottom="bg-emerald-night" />
         <Footer />
       </main>
 
@@ -73,7 +72,7 @@ export default function App() {
 
       {/* progress bar emas */}
       <motion.div
-        className="fixed inset-x-0 top-0 z-[60] h-1 origin-left bg-linear-to-r from-gold-deep via-gold-bright to-gold-deep"
+        className="fixed inset-x-0 top-0 z-[60] h-[3px] origin-left bg-linear-to-r from-gold-deep via-gold-light to-gold-deep shadow-[0_0_12px_rgba(200,167,92,.55)]"
         style={{ scaleX: scrollYProgress }}
       />
 

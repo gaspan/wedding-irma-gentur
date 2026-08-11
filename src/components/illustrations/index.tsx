@@ -5,24 +5,51 @@ export function Arch({ className = '' }: { className?: string }) {
     <svg viewBox="0 0 300 420" fill="none" className={className} aria-hidden>
       <defs>
         <linearGradient id="arch-gold" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#f0d9a0" />
-          <stop offset="0.55" stopColor="#c9a961" />
-          <stop offset="1" stopColor="#a8843c" />
+          <stop offset="0" stopColor="#f6e5b8" />
+          <stop offset="0.35" stopColor="#e3cd96" />
+          <stop offset="0.7" stopColor="#c8a75c" />
+          <stop offset="1" stopColor="#7d5f24" stopOpacity="0.35" />
         </linearGradient>
       </defs>
+
+      {/* lengkung utama */}
       <path
         d="M20 415V150C20 78 78 20 150 20s130 58 130 130v265"
         stroke="url(#arch-gold)"
         strokeWidth="1.6"
       />
+      {/* lengkung kedua */}
       <path
         d="M36 415V152c0-63 51-114 114-114s114 51 114 114v263"
         stroke="url(#arch-gold)"
-        strokeWidth="0.7"
-        opacity="0.55"
+        strokeWidth="0.6"
+        opacity="0.5"
       />
-      <path d="M150 20V4M150 4l-6 8M150 4l6 8" stroke="#f0d9a0" strokeWidth="1.2" />
-      <circle cx="150" cy="150" r="4.5" fill="#ecd5a4" opacity="0.7" />
+      {/* lengkung ketiga, hairline */}
+      <path
+        d="M50 415V154c0-55 45-100 100-100s100 45 100 100v261"
+        stroke="url(#arch-gold)"
+        strokeWidth="0.4"
+        opacity="0.3"
+      />
+
+      {/* mahkota puncak */}
+      <path d="M150 20V2" stroke="#f6e5b8" strokeWidth="1.2" strokeLinecap="round" />
+      <path
+        d="M150 2c-4 5-6 8-6 11 0 3.5 2.7 6 6 6s6-2.5 6-6c0-3-2-6-6-11z"
+        stroke="#f6e5b8"
+        strokeWidth="0.9"
+      />
+      {/* sulur simetris di bawah mahkota */}
+      <path
+        d="M150 30c-14 4-24 12-30 22M150 30c14 4 24 12 30 22"
+        stroke="url(#arch-gold)"
+        strokeWidth="0.7"
+        opacity="0.7"
+        strokeLinecap="round"
+      />
+      <circle cx="150" cy="150" r="3.5" fill="#f6e5b8" opacity="0.55" />
+      <circle cx="150" cy="150" r="9" stroke="#e3cd96" strokeWidth="0.4" opacity="0.4" />
     </svg>
   )
 }

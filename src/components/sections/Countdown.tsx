@@ -10,15 +10,16 @@ import type { CSSProperties } from 'react'
 function Unit({ value, label }: { value: number; label: string }) {
   return (
     <div
-      className="card-conic relative flex min-w-[72px] flex-col items-center rounded-2xl px-3 py-4 sm:min-w-[92px] sm:px-5 sm:py-5"
-      style={{ '--card-bg': 'rgba(13,58,42,.72)' } as CSSProperties}
+      className="card-conic relative flex min-w-[74px] flex-col items-center rounded-2xl px-3.5 py-5 sm:min-w-[98px] sm:px-6 sm:py-6"
+      style={{ '--card-bg': 'rgba(8,42,31,.82)' } as CSSProperties}
     >
-      <span className="pointer-events-none absolute inset-x-6 top-0 h-px bg-linear-to-r from-transparent via-gold/70 to-transparent" />
+      <span className="pointer-events-none absolute inset-x-6 top-0 h-px hairline-gold" />
+      <span className="pointer-events-none absolute inset-x-9 bottom-0 h-px hairline-gold opacity-40" />
       <FlipDigit
         value={value}
-        className="font-display text-4xl font-medium text-gold-gradient text-gold-shimmer tabular-nums sm:text-5xl"
+        className="font-display text-[2.4rem] leading-none font-light text-gold-gradient text-gold-shimmer tabular-nums sm:text-[3.4rem]"
       />
-      <span className="mt-2 text-[0.6rem] font-semibold tracking-[0.2em] text-gold-light/70 uppercase">
+      <span className="mt-3 text-[0.55rem] font-semibold tracking-[0.32em] text-gold-light/60 uppercase">
         {label}
       </span>
     </div>
@@ -38,22 +39,27 @@ export function Countdown() {
     })
 
   return (
-    <Section className="bg-emerald-deep">
+    <Section className="bg-emerald-night">
       <Aurora />
-      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-10" />
+      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.09]" />
       <Sparkles className="text-gold-bright" />
+      <div className="pointer-events-none absolute inset-0 vignette" />
 
       <Reveal className="relative text-center">
         <CalendarIllustration className="mx-auto h-14 w-14 animate-float text-gold-bright" />
 
-        <h2 className="mt-5 font-display text-4xl font-medium text-gold-gradient text-gold-shimmer sm:text-5xl">
+        <p className="mt-6 text-[0.6rem] font-semibold tracking-[0.45em] text-gold-light/60 uppercase">
+          Save the Date
+        </p>
+
+        <h2 className="mt-4 font-display text-[2.6rem] leading-[1.08] font-light text-gold-gradient text-gold-shimmer text-glow sm:text-6xl">
           {done ? 'Alhamdulillah, Hari Bahagia Telah Tiba' : 'Menuju Hari Bahagia'}
         </h2>
 
-        <Divider className="mx-auto mt-5 w-36 text-gold" />
+        <Divider className="mx-auto mt-7 w-40 text-gold" />
 
         {!done && (
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-5">
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-5">
             <Unit value={days} label="Hari" />
             <Unit value={hours} label="Jam" />
             <Unit value={minutes} label="Menit" />
@@ -63,13 +69,14 @@ export function Countdown() {
 
         <button
           onClick={save}
-          className="animate-glow mt-12 inline-flex items-center gap-2 rounded-full bg-linear-to-r from-gold-deep via-gold to-gold-bright px-8 py-3.5 text-sm font-semibold text-emerald-night transition hover:scale-105 active:scale-95"
+          className="animate-glow relative mt-14 inline-flex items-center gap-2 overflow-hidden rounded-full bg-linear-to-r from-gold-deep via-gold-light to-gold-deep px-8 py-3.5 text-[0.78rem] font-semibold tracking-[0.12em] text-emerald-night uppercase transition duration-300 hover:scale-105 active:scale-95"
         >
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+          <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 animate-sheen bg-white/35 blur-md" />
+          <svg viewBox="0 0 24 24" className="relative h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6">
             <rect x="3" y="5" width="18" height="16" rx="2" />
             <path d="M3 10h18M8 3v4M16 3v4" strokeLinecap="round" />
           </svg>
-          Simpan Tanggal
+          <span className="relative">Simpan Tanggal</span>
         </button>
       </Reveal>
     </Section>

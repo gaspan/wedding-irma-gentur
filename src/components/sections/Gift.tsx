@@ -10,36 +10,37 @@ export function Gift() {
   const qrSrc = asset(gift.qrisImage)
 
   return (
-    <Section id="gift" className="bg-emerald-deep">
+    <Section id="gift" className="bg-emerald-night">
       <Aurora />
-      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-10" />
+      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.09]" />
       <Sparkles className="text-gold-bright" />
+      <div className="pointer-events-none absolute inset-0 vignette" />
 
       <Reveal className="relative">
         <SectionTitle overline="Tanda Kasih" title="Wedding Gift" dark />
       </Reveal>
 
       <Reveal delay={0.08} className="relative">
-        <p className="mx-auto mt-6 max-w-md text-center text-sm leading-relaxed text-balance text-gold-light/85">
+        <p className="mx-auto mt-7 max-w-md text-center text-[0.82rem] leading-loose text-balance text-gold-light/75">
           {gift.note}
         </p>
       </Reveal>
 
       <Reveal delay={0.16} className="relative">
-        <div className="mx-auto mt-12 max-w-xs">
+        <div className="mx-auto mt-14 max-w-xs">
           <div
-            className="card-conic relative rounded-3xl p-7 text-center shadow-[0_0_80px_-24px_rgba(201,169,97,.7)]"
-            style={{ '--card-bg': 'rgba(13,58,42,.72)' } as CSSProperties}
+            className="card-conic relative rounded-[1.75rem] p-8 text-center shadow-[0_0_90px_-26px_rgba(200,167,92,.6)]"
+            style={{ '--card-bg': 'rgba(8,42,31,.85)' } as CSSProperties}
           >
-            <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-linear-to-r from-transparent via-gold to-transparent" />
+            <span className="pointer-events-none absolute inset-x-10 top-0 h-px hairline-gold" />
 
             <EnvelopeIllustration className="mx-auto h-12 w-auto animate-float text-gold-bright" />
 
-            <p className="mt-4 text-sm font-semibold tracking-wide text-gold-light">
+            <p className="mt-5 text-[0.72rem] font-semibold tracking-[0.25em] text-gold-light/85 uppercase">
               {gift.qrisLabel}
             </p>
 
-            <div className="mt-5 rounded-2xl border border-gold/40 bg-white p-3 shadow-[inset_0_0_30px_rgba(201,169,97,.15)]">
+            <div className="mt-5 rounded-[1.25rem] border border-gold/40 bg-white p-3.5 shadow-[inset_0_0_34px_rgba(200,167,92,.18)]">
               {broken ? (
                 <div className="flex aspect-square w-full flex-col items-center justify-center gap-2 text-center">
                   <svg viewBox="0 0 24 24" className="h-9 w-9 text-gold/60" fill="none" stroke="currentColor" strokeWidth="1.4">
@@ -67,7 +68,7 @@ export function Gift() {
               )}
             </div>
 
-            <p className="mt-4 text-xs leading-relaxed text-gold-light/70">
+            <p className="mt-5 text-[0.7rem] leading-loose text-gold-light/60">
               Pindai menggunakan aplikasi bank atau e-wallet apa pun yang mendukung QRIS.
             </p>
 
@@ -75,17 +76,18 @@ export function Gift() {
               <a
                 href={qrSrc}
                 download
-                className="animate-glow mt-5 inline-flex items-center gap-2 rounded-full bg-linear-to-r from-gold-deep via-gold to-gold-bright px-6 py-3 text-sm font-semibold text-emerald-night transition hover:scale-105 active:scale-95"
+                className="animate-glow relative mt-6 inline-flex items-center gap-2 overflow-hidden rounded-full bg-linear-to-r from-gold-deep via-gold-light to-gold-deep px-6 py-3 text-[0.75rem] font-semibold tracking-[0.1em] text-emerald-night uppercase transition duration-300 hover:scale-105 active:scale-95"
               >
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 animate-sheen bg-white/35 blur-md" />
+                <svg viewBox="0 0 24 24" className="relative h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6">
                   <path d="M12 3v12M7 11l5 5 5-5M4 21h16" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                Unduh QRIS
+                <span className="relative">Unduh QRIS</span>
               </a>
             )}
           </div>
 
-          <p className="mt-6 text-center text-xs text-gold-light/60 italic">
+          <p className="mt-7 text-center font-display text-base text-gold-light/60 italic">
             Jazakumullahu khairan katsiran atas doa dan tanda kasih Anda.
           </p>
         </div>

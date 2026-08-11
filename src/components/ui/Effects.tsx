@@ -40,7 +40,7 @@ export function Particles({ className = '', count = 16 }: { className?: string; 
   )
 }
 
-const CONFETTI_COLORS = ['#c9a961', '#f0d9a0', '#f8ecc3', '#1b6b4a', '#e0c88d', '#ffffff']
+const CONFETTI_COLORS = ['#c8a75c', '#f6e5b8', '#efdcb4', '#176243', '#e3cd96', '#ffffff']
 
 /** Confetti jatuh, dipakai sesaat setelah undangan dibuka */
 export function Confetti() {
@@ -101,13 +101,13 @@ export function CircularText({ text, className = '' }: { text: string; className
 export function Ticker({ items, className = '' }: { items: string[]; className?: string }) {
   const row = items.join('  ✦  ')
   return (
-    <div className={`relative overflow-hidden border-y border-gold/30 bg-emerald-deep py-3.5 ${className}`}>
-      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-10" />
+    <div className={`relative overflow-hidden border-y border-gold/20 bg-emerald-void py-4 ${className}`}>
+      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.08]" />
       <div className="flex animate-marquee whitespace-nowrap">
         {[0, 1].map((k) => (
           <span
             key={k}
-            className="inline-block shrink-0 pr-10 font-display text-xl tracking-[0.25em] text-gold-gradient text-gold-shimmer"
+            className="inline-block shrink-0 pr-10 font-display text-[1.1rem] font-light tracking-[0.3em] text-gold-gradient text-gold-shimmer"
           >
             {row} ✦
           </span>
@@ -148,7 +148,7 @@ export function WaveSep({
 }
 
 /** Kelopak bunga berjatuhan dengan ayunan lembut */
-const LEAF_COLORS = ['#8a9a7b', '#c9a961', '#e0c88d', '#a9b79c']
+const LEAF_COLORS = ['#8a9a7b', '#c8a75c', '#e3cd96', '#a9b79c']
 
 export function Petals({ className = '', count = 14 }: { className?: string; count?: number }) {
   const p = useMemo(

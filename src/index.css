@@ -1,35 +1,47 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-cream: #faf7f2;
-  --color-cream-deep: #f0e9dc;
+  /* Ivory hangat, sedikit lebih halus dari cream lama */
+  --color-cream: #fbf9f4;
+  --color-cream-deep: #f2ece0;
   --color-sage: #8a9a7b;
   --color-sage-light: #a9b79c;
   --color-sage-deep: #5f6d53;
-  --color-gold: #c9a961;
-  --color-gold-light: #e0c88d;
-  --color-gold-bright: #f0d9a0;
-  --color-gold-deep: #a8843c;
-  --color-emerald: #1b6b4a;
-  --color-emerald-mid: #14503a;
-  --color-emerald-deep: #0d3a2a;
-  --color-emerald-night: #082319;
-  --color-ink: #10231a;
-  --color-muted: #5c6b63;
+
+  /* Gold foil: lebih kaya, ada champagne & antique */
+  --color-gold: #c8a75c;
+  --color-gold-light: #e3cd96;
+  --color-gold-bright: #f6e5b8;
+  --color-gold-deep: #9d7a33;
+  --color-gold-antique: #7d5f24;
+  --color-champagne: #efdcb4;
+
+  /* Emerald lebih dalam & pekat, kesan velvet */
+  --color-emerald: #176243;
+  --color-emerald-mid: #0f4732;
+  --color-emerald-deep: #0a3125;
+  --color-emerald-night: #051a13;
+  --color-emerald-void: #02100b;
+  --color-ink: #0c1c15;
+  --color-muted: #59685f;
 
   --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+  --font-script: 'Pinyon Script', 'Cormorant Garamond', cursive;
   --font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
   --font-arabic: 'Amiri', 'Times New Roman', serif;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out infinite;
   --animate-shimmer: shimmer 5s linear infinite;
+  --animate-shimmer-slow: shimmer 8s linear infinite;
   --animate-aurora: aurora 16s ease-in-out infinite;
   --animate-aurora-slow: aurora 24s ease-in-out infinite;
   --animate-twinkle: twinkle 3s ease-in-out infinite;
   --animate-glow: glow 2.6s ease-in-out infinite;
+  --animate-glow-soft: glow-soft 4s ease-in-out infinite;
   --animate-spin-slow: spin 16s linear infinite;
   --animate-bounce-soft: bounce-soft 2.2s ease-in-out infinite;
+  --animate-sheen: sheen 6s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -79,10 +91,35 @@
 @keyframes glow {
   0%,
   100% {
-    box-shadow: 0 0 26px rgba(201, 169, 97, 0.4);
+    box-shadow:
+      0 0 0 1px rgba(246, 229, 184, 0.25),
+      0 10px 30px -8px rgba(157, 122, 51, 0.5);
   }
   50% {
-    box-shadow: 0 0 52px rgba(240, 217, 160, 0.8);
+    box-shadow:
+      0 0 0 1px rgba(246, 229, 184, 0.5),
+      0 16px 46px -8px rgba(246, 229, 184, 0.6);
+  }
+}
+
+@keyframes glow-soft {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes sheen {
+  0%,
+  100% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  55%,
+  100% {
+    transform: translateX(220%) skewX(-18deg);
   }
 }
 
@@ -103,11 +140,22 @@
   }
 
   body {
-    background-image: linear-gradient(180deg, #faf7f2, #f3ecdf);
+    background-color: #fbf9f4;
+    background-image:
+      radial-gradient(120% 60% at 50% 0%, rgba(200, 167, 92, 0.1), transparent 60%),
+      linear-gradient(180deg, #fbf9f4, #f2ece0);
     background-attachment: fixed;
     color: var(--color-ink);
     font-family: var(--font-body);
+    font-feature-settings: 'ss01', 'cv01';
     overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures discretionary-ligatures;
   }
 
   /* Dikunci saat cover belum dibuka */
@@ -128,7 +176,7 @@
     background: var(--color-cream-deep);
   }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--color-gold), var(--color-emerald));
+    background: linear-gradient(180deg, var(--color-gold-light), var(--color-gold-deep));
     border-radius: 999px;
   }
 }
@@ -137,18 +185,20 @@
   text-wrap: balance;
 }
 
-/* Teks gradien emas menyala */
+/* Teks gradien emas foil — lebih kaya & kompleks */
 @utility text-gold-gradient {
   background-image: linear-gradient(
-    115deg,
-    #a8843c,
-    #e8c77e 22%,
-    #f8ecc3 38%,
-    #c9a961 52%,
-    #e8c77e 66%,
-    #a8843c
+    135deg,
+    #7d5f24 0%,
+    #c8a75c 18%,
+    #f6e5b8 33%,
+    #e3cd96 44%,
+    #9d7a33 56%,
+    #f6e5b8 72%,
+    #c8a75c 88%,
+    #7d5f24
   );
-  background-size: 220% auto;
+  background-size: 260% auto;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -158,19 +208,21 @@
   animation: shimmer 5s linear infinite;
 }
 
-/* Pattern islami halus */
+/* Pattern damask emas — lebih elegan dari dot polos */
 @utility bg-pattern {
   background-image: radial-gradient(var(--color-sage) 0.5px, transparent 0.5px);
   background-size: 22px 22px;
 }
 
 @utility bg-pattern-gold {
-  background-image: radial-gradient(rgba(201, 169, 97, 0.45) 0.6px, transparent 0.6px);
-  background-size: 24px 24px;
+  background-image:
+    radial-gradient(rgba(200, 167, 92, 0.35) 0.5px, transparent 0.5px),
+    radial-gradient(rgba(200, 167, 92, 0.15) 0.8px, transparent 0.8px);
+  background-size: 24px 24px, 36px 36px;
+  background-position: 0 0, 12px 12px;
 }
 
-/* ============ Ekstra heboh ============ */
-
+/* Frame bingkai foil — conic berputar yang lebih halus & mewah */
 @property --border-angle {
   syntax: '<angle>';
   initial-value: 0deg;
@@ -183,22 +235,45 @@
   }
 }
 
-/* Bingkai conic berputar. Isi dalam diatur lewat --card-bg */
 @utility card-conic {
-  border: 1.5px solid transparent;
+  border: 1px solid transparent;
   background:
     linear-gradient(var(--card-bg, #ffffff), var(--card-bg, #ffffff)) padding-box,
     conic-gradient(
         from var(--border-angle),
-        #a8843c,
-        #f8ecc3 18%,
-        #c9a961 34%,
-        #1b6b4a 52%,
-        #f0d9a0 72%,
-        #a8843c
+        #9d7a33,
+        #f6e5b8 15%,
+        #c8a75c 30%,
+        #0a3125 50%,
+        #e3cd96 70%,
+        #9d7a33 85%,
+        #9d7a33
       )
       border-box;
-  animation: border-rotate 7s linear infinite;
+  animation: border-rotate 10s linear infinite;
+}
+
+/* Frame foil statis — lebih elegan, tidak berputar */
+@utility card-foil {
+  border: 1px solid rgba(200, 167, 92, 0.3);
+  background: linear-gradient(
+    135deg,
+    rgba(246, 229, 184, 0.1),
+    rgba(255, 255, 255, 0.95),
+    rgba(200, 167, 92, 0.08)
+  );
+  box-shadow:
+    0 1px 0 0 rgba(200, 167, 92, 0.3),
+    0 20px 50px -16px rgba(10, 49, 37, 0.35);
+}
+
+/* Sheen — efek kilau emas bergerak */
+@utility animate-sheen {
+  animation: sheen 6s ease-in-out infinite;
+}
+
+@utility animate-glow-soft {
+  animation: glow-soft 4s ease-in-out infinite;
 }
 
 @keyframes marquee {
@@ -286,7 +361,24 @@ section.nav-jump > * {
 
 /* Glow untuk teks gradien */
 @utility text-glow {
-  filter: drop-shadow(0 0 18px rgba(240, 217, 160, 0.45));
+  filter: drop-shadow(0 0 18px rgba(246, 229, 184, 0.4));
+}
+
+/* Hairline emas — pemisah tipis presisi */
+@utility hairline-gold {
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    rgba(200, 167, 92, 0.7) 25%,
+    rgba(246, 229, 184, 0.9) 50%,
+    rgba(200, 167, 92, 0.7) 75%,
+    transparent
+  );
+}
+
+/* Vignette untuk section gelap — fokus ke tengah */
+@utility vignette {
+  background: radial-gradient(120% 80% at 50% 40%, transparent 35%, rgba(2, 16, 11, 0.75) 100%);
 }
 
 /* Kelopak daun berjatuhan + berayun */

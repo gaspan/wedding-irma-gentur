@@ -6,24 +6,34 @@ import { Reveal, Section, SectionTitle } from '../ui'
 function EventCard({ ev, delay }: { ev: EventDetail; delay: number }) {
   return (
     <Reveal delay={delay} className="h-full">
-      <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-gold/25 bg-white/85 shadow-[0_16px_50px_-24px_rgba(13,58,42,.35)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-[0_28px_70px_-24px_rgba(201,169,97,.55)]">
-        <div className="relative overflow-hidden bg-emerald-deep px-7 py-8 text-center">
-          <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-10" />
-          <div className="pointer-events-none absolute -top-16 left-1/2 h-40 w-72 -translate-x-1/2 rounded-full bg-gold/20 blur-[70px]" />
+      <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-gold/25 bg-white/90 shadow-[0_20px_60px_-28px_rgba(10,49,37,.35)] backdrop-blur transition duration-500 hover:-translate-y-1.5 hover:border-gold/55 hover:shadow-[0_32px_80px_-28px_rgba(157,122,51,.45)]">
+        <div className="relative overflow-hidden bg-emerald-night px-7 py-9 text-center">
+          <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.09]" />
+          <div className="pointer-events-none absolute -top-16 left-1/2 h-40 w-72 -translate-x-1/2 rounded-full bg-gold/15 blur-[70px]" />
+          <span className="pointer-events-none absolute inset-x-8 top-4 h-px hairline-gold opacity-60" />
 
           <MosqueIllustration className="relative mx-auto h-14 w-auto text-gold-bright" />
-          <h3 className="relative mt-4 font-display text-3xl font-medium text-gold-gradient text-gold-shimmer">
+          <h3 className="relative mt-5 font-display text-3xl leading-tight font-light text-gold-gradient text-gold-shimmer sm:text-4xl">
             {ev.label}
           </h3>
-          <p className="relative mt-2 text-sm tracking-wide text-gold-light/90">{ev.date}</p>
-          <span className="relative mt-3 inline-block rounded-full border border-gold/40 bg-gold/10 px-4 py-1 text-xs font-semibold tracking-wider text-gold-bright">
+
+          <span className="relative mx-auto mt-4 flex items-center justify-center gap-2.5">
+            <span className="h-px w-8 hairline-gold opacity-70" />
+            <span className="h-1 w-1 rotate-45 bg-gold-bright" />
+            <span className="h-px w-8 hairline-gold opacity-70" />
+          </span>
+
+          <p className="relative mt-4 text-[0.8rem] tracking-[0.12em] text-gold-light/85">
+            {ev.date}
+          </p>
+          <span className="relative mt-3.5 inline-block rounded-full border border-gold/30 bg-gold/[0.08] px-4 py-1.5 text-[0.7rem] font-semibold tracking-[0.14em] text-gold-bright">
             {ev.timeStart} – {ev.timeEnd} WIB
           </span>
         </div>
 
-        <div className="flex flex-1 flex-col items-center px-7 py-7 text-center">
-          <p className="text-base font-semibold text-ink">{ev.venue}</p>
-          <p className="mx-auto mt-1.5 max-w-xs text-sm leading-relaxed text-balance text-muted">
+        <div className="flex flex-1 flex-col items-center px-7 py-8 text-center">
+          <p className="font-display text-xl font-normal text-ink">{ev.venue}</p>
+          <p className="mx-auto mt-2.5 max-w-xs text-[0.8rem] leading-loose text-balance text-muted/85">
             {ev.address}
           </p>
 
@@ -31,9 +41,9 @@ function EventCard({ ev, delay }: { ev: EventDetail; delay: number }) {
             href={ev.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-auto inline-flex items-center gap-2 rounded-full bg-linear-to-r from-gold-deep via-gold to-gold-bright px-6 py-2.5 text-sm font-semibold text-emerald-night transition hover:scale-105 active:scale-95"
+            className="mt-auto inline-flex items-center gap-2 rounded-full bg-linear-to-r from-gold-deep via-gold-light to-gold-deep px-6 py-2.5 text-[0.75rem] font-semibold tracking-[0.1em] text-emerald-night uppercase transition duration-300 hover:scale-105 active:scale-95"
           >
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6">
               <path d="M12 21s-7-6.3-7-11a7 7 0 1114 0c0 4.7-7 11-7 11z" />
               <circle cx="12" cy="10" r="2.6" />
             </svg>
@@ -47,7 +57,7 @@ function EventCard({ ev, delay }: { ev: EventDetail; delay: number }) {
             title={`Peta ${ev.venue}`}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="h-full w-full grayscale-[35%] transition duration-500 hover:grayscale-0"
+            className="h-full w-full grayscale-[45%] transition duration-700 hover:grayscale-0"
             style={{ border: 0 }}
             allowFullScreen
           />

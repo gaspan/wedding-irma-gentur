@@ -49,7 +49,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn('relative overflow-hidden px-5 py-20 sm:px-8 sm:py-28', className)}
+      className={cn('relative overflow-hidden px-5 py-24 sm:px-8 sm:py-36', className)}
     >
       <div className={cn('mx-auto w-full max-w-3xl', containerClass)}>{children}</div>
     </section>
@@ -72,8 +72,8 @@ export function SectionTitle({
       {overline && (
         <p
           className={cn(
-            'mb-3 text-[0.7rem] font-semibold tracking-[0.35em] uppercase',
-            dark ? 'text-gold-bright' : 'text-gold-deep',
+            'mb-4 text-[0.6rem] font-semibold tracking-[0.45em] uppercase',
+            dark ? 'text-gold-light/70' : 'text-gold-deep/80',
           )}
         >
           {overline}
@@ -81,12 +81,18 @@ export function SectionTitle({
       )}
       <h2
         className={cn(
-          'font-display text-4xl font-medium sm:text-5xl',
+          'font-display text-[2.6rem] leading-[1.08] font-light sm:text-6xl',
           dark ? 'text-gold-gradient text-gold-shimmer text-glow' : 'text-ink',
         )}
       >
         {title}
       </h2>
+      {/* ornamen hairline di bawah judul */}
+      <span className="mx-auto mt-6 flex items-center justify-center gap-3">
+        <span className={cn('h-px w-12 hairline-gold', dark ? 'opacity-80' : 'opacity-60')} />
+        <span className={cn('h-1 w-1 rotate-45', dark ? 'bg-gold-bright' : 'bg-gold')} />
+        <span className={cn('h-px w-12 hairline-gold', dark ? 'opacity-80' : 'opacity-60')} />
+      </span>
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import { couple } from '../../config/wedding'
 import { BrideIllustration, GroomIllustration, Sprig } from '../illustrations'
 import { Reveal, Section, SectionTitle } from '../ui'
-import type { CSSProperties } from 'react'
 
 type Person = typeof couple.bride | typeof couple.groom
 
@@ -16,27 +15,39 @@ function PersonCard({
 }) {
   return (
     <Reveal delay={delay} className="flex-1">
-      <div className="group card-conic relative h-full rounded-3xl p-7 pt-9 text-center shadow-[0_16px_50px_-24px_rgba(13,58,42,.35)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_-24px_rgba(201,169,97,.55)]" style={{ '--card-bg': '#fcfaf5' } as CSSProperties}>
-        <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-gold to-transparent" />
-        <div className="pointer-events-none absolute inset-x-4 top-2 h-px bg-linear-to-r from-transparent via-gold/50 to-transparent" />
+      <div className="group relative h-full overflow-hidden rounded-[1.75rem] border border-gold/25 bg-linear-to-b from-white to-cream p-8 pt-10 text-center shadow-[0_20px_60px_-28px_rgba(10,49,37,.35)] transition duration-500 hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[0_32px_80px_-28px_rgba(157,122,51,.45)]">
+        {/* hairline atas berlapis */}
+        <span className="pointer-events-none absolute inset-x-10 top-0 h-px hairline-gold" />
+        <span className="pointer-events-none absolute inset-x-16 top-[3px] h-px hairline-gold opacity-40" />
 
-        <div className="relative mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-linear-to-br from-emerald/10 via-emerald-mid/10 to-gold/15">
-          <Art className="h-24 w-24 text-gold-deep transition-transform duration-500 group-hover:scale-110" />
-          <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-gold/30" />
+        {/* sudut ornamen */}
+        <span className="pointer-events-none absolute top-4 left-4 h-5 w-5 border-t border-l border-gold/35" />
+        <span className="pointer-events-none absolute top-4 right-4 h-5 w-5 border-t border-r border-gold/35" />
+        <span className="pointer-events-none absolute bottom-4 left-4 h-5 w-5 border-b border-l border-gold/35" />
+        <span className="pointer-events-none absolute right-4 bottom-4 h-5 w-5 border-r border-b border-gold/35" />
+
+        {/* medali ilustrasi */}
+        <div className="relative mx-auto flex h-32 w-32 items-center justify-center">
+          <span className="absolute inset-0 rounded-full bg-linear-to-br from-gold/15 via-transparent to-emerald/10" />
+          <span className="absolute inset-0 rounded-full border border-gold/30" />
+          <span className="absolute inset-[0.35rem] rounded-full border border-gold/15" />
+          <Art className="relative h-[5.5rem] w-[5.5rem] text-gold-deep transition-transform duration-700 group-hover:scale-110" />
         </div>
 
-        <h3 className="mt-6 font-display text-3xl leading-tight font-medium text-ink">
+        <h3 className="mt-7 font-display text-[1.9rem] leading-tight font-normal text-ink sm:text-4xl">
           {person.name}
         </h3>
 
-        <div className="mx-auto my-4 flex items-center gap-2">
-          <span className="h-px w-10 bg-gold/40" />
-          <span className="h-1.5 w-1.5 rotate-45 bg-gold" />
-          <span className="h-px w-10 bg-gold/40" />
+        <div className="mx-auto my-5 flex items-center justify-center gap-2.5">
+          <span className="h-px w-10 hairline-gold opacity-70" />
+          <span className="h-1 w-1 rotate-45 bg-gold" />
+          <span className="h-px w-10 hairline-gold opacity-70" />
         </div>
 
-        <p className="text-sm text-muted">{person.order} dari</p>
-        <p className="mt-1 text-sm leading-relaxed text-ink">
+        <p className="text-[0.7rem] tracking-[0.2em] text-muted/70 uppercase">
+          {person.order} dari
+        </p>
+        <p className="mt-2 font-display text-lg leading-relaxed text-ink/85">
           {person.father}
           <br />
           &amp; {person.mother}
@@ -47,9 +58,15 @@ function PersonCard({
             href={`https://instagram.com/${person.instagram}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-gold/40 px-4 py-1.5 text-xs font-medium text-gold-deep transition hover:bg-gold hover:text-white"
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-gold/35 px-5 py-2 text-[0.7rem] font-medium tracking-wide text-gold-deep transition duration-300 hover:border-gold hover:bg-gold hover:text-white"
           >
-            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <svg
+              viewBox="0 0 24 24"
+              className="h-3.5 w-3.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
               <rect x="3" y="3" width="18" height="18" rx="5" />
               <circle cx="12" cy="12" r="4" />
               <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
@@ -65,20 +82,21 @@ function PersonCard({
 export function Couple() {
   return (
     <Section id="mempelai" className="relative bg-cream">
-      <Sprig className="pointer-events-none absolute top-10 -left-8 h-56 text-gold opacity-15" />
-      <Sprig className="pointer-events-none absolute -right-8 bottom-10 h-56 -scale-x-100 text-gold opacity-15" />
+      <div className="pointer-events-none absolute inset-0 bg-pattern opacity-[0.08]" />
+      <Sprig className="pointer-events-none absolute top-10 -left-10 h-60 text-gold opacity-[0.12]" />
+      <Sprig className="pointer-events-none absolute -right-10 bottom-10 h-60 -scale-x-100 text-gold opacity-[0.12]" />
 
-      <Reveal>
-        <SectionTitle overline="Bismillah" title="Kedua Mempelai" />
+      <Reveal className="relative">
+        <SectionTitle overline="Bismillahirrahmanirrahim" title="Kedua Mempelai" />
       </Reveal>
 
-      <div className="mt-14 flex flex-col items-stretch gap-6 sm:flex-row sm:gap-5">
+      <div className="relative mt-16 flex flex-col items-stretch gap-7 sm:flex-row sm:gap-5">
         <PersonCard person={couple.bride} Art={BrideIllustration} delay={0.05} />
 
-        <div className="flex items-center justify-center sm:px-1">
+        <div className="flex items-center justify-center sm:px-2">
           <span
-            className="font-display text-5xl text-gold italic"
-            style={{ textShadow: '0 0 24px rgba(201,169,97,.6)' }}
+            className="font-script text-5xl text-gold sm:text-6xl"
+            style={{ textShadow: '0 0 26px rgba(200,167,92,.45)' }}
           >
             &amp;
           </span>

@@ -57,7 +57,10 @@ export function Wishes() {
   }
 
   const inputClass =
-    'w-full rounded-xl border border-gold/25 bg-white/85 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted/50 focus:border-gold focus:ring-2 focus:ring-gold/30'
+    'w-full rounded-[0.9rem] border border-gold/25 bg-white/90 px-4 py-3 text-sm text-ink outline-none transition duration-300 placeholder:text-muted/45 focus:border-gold focus:ring-2 focus:ring-gold/25'
+
+  const labelClass =
+    'mb-2 block text-[0.68rem] font-semibold tracking-[0.2em] text-gold-deep uppercase'
 
   return (
     <Section id="rsvp" className="bg-cream-deep">
@@ -65,7 +68,7 @@ export function Wishes() {
 
       <Reveal className="relative">
         <SectionTitle overline="RSVP" title="Ucapan & Doa" />
-        <p className="mx-auto mt-5 max-w-md text-center text-sm leading-relaxed text-balance text-muted">
+        <p className="mx-auto mt-6 max-w-md text-center text-[0.82rem] leading-loose text-balance text-muted/85">
           Sampaikan ucapan dan konfirmasi kehadiran Anda. Doa restu Anda sangat berarti
           bagi kami.
         </p>
@@ -74,8 +77,9 @@ export function Wishes() {
       <Reveal delay={0.08} className="relative">
         <form
           onSubmit={onSubmit}
-          className="mx-auto mt-10 max-w-lg rounded-3xl border border-gold/30 bg-white/85 p-6 shadow-[0_20px_60px_-26px_rgba(13,58,42,.4)] backdrop-blur-sm sm:p-8"
+          className="relative mx-auto mt-12 max-w-lg overflow-hidden rounded-[1.75rem] border border-gold/25 bg-white/92 p-7 shadow-[0_26px_70px_-30px_rgba(10,49,37,.45)] backdrop-blur-sm sm:p-9"
         >
+          <span className="pointer-events-none absolute inset-x-12 top-0 h-px hairline-gold" />
           {/* honeypot anti-bot */}
           <input
             type="text"
@@ -87,9 +91,7 @@ export function Wishes() {
             aria-hidden
           />
 
-          <label className="mb-1.5 block text-xs font-medium tracking-wide text-sage-deep">
-            Nama
-          </label>
+          <label className={labelClass}>Nama</label>
           <input
             required
             maxLength={60}
@@ -99,19 +101,17 @@ export function Wishes() {
             className={inputClass}
           />
 
-          <label className="mt-5 mb-1.5 block text-xs font-medium tracking-wide text-sage-deep">
-            Konfirmasi Kehadiran
-          </label>
+          <label className={`mt-6 ${labelClass}`}>Konfirmasi Kehadiran</label>
           <div className="grid grid-cols-3 gap-2">
             {OPTIONS.map((o) => (
               <button
                 key={o.value}
                 type="button"
                 onClick={() => setAttendance(o.value)}
-                className={`rounded-xl border px-2 py-2.5 text-xs font-semibold transition active:scale-95 ${
+                className={`rounded-xl border px-2 py-2.5 text-xs font-semibold transition duration-300 active:scale-95 ${
                   attendance === o.value
-                    ? 'border-gold bg-linear-to-r from-gold-deep via-gold to-gold-bright text-emerald-night shadow-[0_6px_20px_-6px_rgba(201,169,97,.7)]'
-                    : 'border-gold/25 bg-white/60 text-muted hover:border-gold/60'
+                    ? 'border-gold bg-linear-to-r from-gold-deep via-gold-light to-gold-deep text-emerald-night shadow-[0_6px_22px_-6px_rgba(200,167,92,.7)]'
+                    : 'border-gold/25 bg-white/70 text-muted hover:border-gold/55'
                 }`}
               >
                 {o.label}
@@ -127,14 +127,12 @@ export function Wishes() {
                 exit={{ opacity: 0, height: 0 }}
                 className="overflow-hidden"
               >
-                <label className="mt-5 mb-1.5 block text-xs font-medium tracking-wide text-sage-deep">
-                  Jumlah Tamu
-                </label>
+                <label className={`mt-6 ${labelClass}`}>Jumlah Tamu</label>
                 <div className="flex items-center gap-3">
                   <button
                     type="button"
                     onClick={() => setGuestCount((c) => Math.max(1, c - 1))}
-                    className="h-10 w-10 rounded-xl border border-sage/25 text-lg text-muted transition hover:border-gold hover:text-gold active:scale-95"
+                    className="h-10 w-10 rounded-xl border border-gold/25 text-lg text-muted transition duration-300 hover:border-gold hover:text-gold-deep active:scale-95"
                     aria-label="Kurangi"
                   >
                     −
@@ -145,7 +143,7 @@ export function Wishes() {
                   <button
                     type="button"
                     onClick={() => setGuestCount((c) => Math.min(10, c + 1))}
-                    className="h-10 w-10 rounded-xl border border-sage/25 text-lg text-muted transition hover:border-gold hover:text-gold active:scale-95"
+                    className="h-10 w-10 rounded-xl border border-gold/25 text-lg text-muted transition duration-300 hover:border-gold hover:text-gold-deep active:scale-95"
                     aria-label="Tambah"
                   >
                     +
@@ -156,9 +154,7 @@ export function Wishes() {
             )}
           </AnimatePresence>
 
-          <label className="mt-5 mb-1.5 block text-xs font-medium tracking-wide text-sage-deep">
-            Ucapan & Doa
-          </label>
+          <label className={`mt-6 ${labelClass}`}>Ucapan &amp; Doa</label>
           <textarea
             required
             rows={4}
@@ -175,9 +171,12 @@ export function Wishes() {
           <button
             type="submit"
             disabled={submitting}
-            className="mt-5 w-full rounded-xl bg-linear-to-r from-gold-deep via-gold to-gold-bright py-3.5 text-sm font-semibold text-emerald-night shadow-[0_10px_34px_-10px_rgba(201,169,97,.8)] transition hover:brightness-105 active:scale-[0.98] disabled:opacity-50"
+            className="relative mt-6 w-full overflow-hidden rounded-[0.9rem] bg-linear-to-r from-gold-deep via-gold-light to-gold-deep py-3.5 text-[0.78rem] font-semibold tracking-[0.14em] text-emerald-night uppercase shadow-[0_12px_36px_-10px_rgba(200,167,92,.75)] transition duration-300 hover:brightness-[1.06] active:scale-[0.98] disabled:opacity-50"
           >
-            {submitting ? 'Mengirim…' : sent ? 'Terkirim — Jazakallahu khairan' : 'Kirim Ucapan'}
+            <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 animate-sheen bg-white/30 blur-md" />
+            <span className="relative">
+              {submitting ? 'Mengirim…' : sent ? 'Terkirim — Jazakallahu khairan' : 'Kirim Ucapan'}
+            </span>
           </button>
 
           {!isSupabaseReady && (
@@ -198,7 +197,7 @@ export function Wishes() {
           </p>
         ) : (
           <>
-            <p className="mb-5 text-center text-xs tracking-[0.2em] text-sage-deep uppercase">
+            <p className="mb-6 text-center text-[0.68rem] font-semibold tracking-[0.28em] text-gold-deep uppercase">
               {wishes.length} Ucapan
             </p>
 
@@ -211,15 +210,15 @@ export function Wishes() {
                     initial={{ opacity: 0, y: 20, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ type: 'spring', stiffness: 260, damping: 24 }}
-                    className="rounded-2xl border border-gold/20 bg-white/85 px-5 py-4 shadow-[0_10px_36px_-20px_rgba(13,58,42,.35)] backdrop-blur-sm transition hover:border-gold/50 hover:shadow-[0_16px_44px_-20px_rgba(201,169,97,.5)]"
+                    className="rounded-[1.25rem] border border-gold/20 bg-white/92 px-6 py-5 shadow-[0_14px_44px_-24px_rgba(10,49,37,.4)] backdrop-blur-sm transition duration-500 hover:border-gold/45 hover:shadow-[0_20px_54px_-24px_rgba(157,122,51,.45)]"
                   >
-                    <div className="flex items-start gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-gold-deep via-gold to-gold-bright font-display text-sm font-semibold text-emerald-night shadow-[0_4px_14px_-4px_rgba(201,169,97,.7)]">
+                    <div className="flex items-start gap-3.5">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-gold-deep via-gold-light to-gold-deep font-display text-base font-medium text-emerald-night shadow-[0_5px_16px_-4px_rgba(200,167,92,.7)]">
                         {(w.name.trim()[0] ?? '?').toUpperCase()}
                       </span>
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center justify-between gap-2">
-                          <h4 className="font-display text-lg text-ink">{w.name}</h4>
+                          <h4 className="font-display text-xl font-normal text-ink">{w.name}</h4>
                           {w.attendance && (
                             <span
                               className={`rounded-full px-2.5 py-0.5 text-[0.65rem] font-medium ${BADGE[w.attendance]}`}
@@ -244,7 +243,7 @@ export function Wishes() {
             {visible < wishes.length && (
               <button
                 onClick={() => setVisible((v) => v + 5)}
-                className="mx-auto mt-6 block rounded-full border border-sage/30 px-6 py-2 text-xs text-muted transition hover:border-gold hover:text-gold"
+                className="mx-auto mt-7 block rounded-full border border-gold/30 px-7 py-2.5 text-[0.7rem] font-medium tracking-[0.16em] text-muted uppercase transition duration-300 hover:border-gold hover:text-gold-deep"
               >
                 Lihat ucapan lainnya
               </button>
