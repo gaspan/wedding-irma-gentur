@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { couple } from '../../config/wedding'
 import { BrideIllustration, GroomIllustration, Sprig } from '../illustrations'
 import { Reveal, Section, SectionTitle } from '../ui'
@@ -53,11 +54,13 @@ function PersonCard({
         </p>
 
         {person.instagram && (
-          <a
+          <motion.a
             href={`https://instagram.com/${person.instagram}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-7 inline-flex items-center gap-2 rounded-full border border-gold/45 bg-gold/[0.08] px-6 py-2.5 text-[0.72rem] font-semibold tracking-wider text-gold-deep transition duration-300 hover:border-gold hover:bg-gold hover:text-white hover:shadow-[0_0_20px_rgba(200,167,92,0.5)]"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="mt-7 inline-flex items-center gap-2 rounded-full border border-gold/45 bg-gold/[0.08] px-6 py-2.5 text-[0.72rem] font-semibold tracking-wider text-gold-deep transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-white hover:shadow-[0_0_20px_rgba(200,167,92,0.5)] cursor-pointer"
           >
             <svg
               viewBox="0 0 24 24"
@@ -71,7 +74,7 @@ function PersonCard({
               <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" />
             </svg>
             @{person.instagram}
-          </a>
+          </motion.a>
         )}
       </div>
     </Reveal>

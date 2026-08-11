@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { events } from '../../config/wedding'
 import type { EventDetail } from '../../types'
 import { MosqueIllustration, Sprig } from '../illustrations'
@@ -38,18 +39,20 @@ function EventCard({ ev, delay }: { ev: EventDetail; delay: number }) {
             {ev.address}
           </p>
 
-          <a
+          <motion.a
             href={ev.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2.5 rounded-full bg-linear-to-r from-gold-deep via-gold-light to-gold-deep px-7 py-3 text-[0.78rem] font-bold tracking-[0.12em] text-emerald-night uppercase shadow-[0_8px_24px_-6px_rgba(200,167,92,0.5)] transition duration-300 hover:scale-105 active:scale-95"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            className="mt-8 inline-flex items-center gap-2.5 rounded-full bg-linear-to-r from-gold-deep via-gold-light to-gold-deep px-7 py-3 text-[0.78rem] font-bold tracking-[0.12em] text-emerald-night uppercase shadow-[0_8px_24px_-6px_rgba(200,167,92,0.5)] transition-shadow duration-300 hover:shadow-[0_8px_30px_0px_rgba(200,167,92,0.8)]"
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
               <path d="M12 21s-7-6.3-7-11a7 7 0 1114 0c0 4.7-7 11-7 11z" />
               <circle cx="12" cy="10" r="2.6" />
             </svg>
             Buka Peta Google Maps
-          </a>
+          </motion.a>
         </div>
 
         <div className="h-52 w-full border-t border-gold/20 sm:h-60">

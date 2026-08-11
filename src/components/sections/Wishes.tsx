@@ -109,18 +109,20 @@ export function Wishes() {
           <label className={`mt-6 ${labelClass}`}>Konfirmasi Kehadiran</label>
           <div className="grid grid-cols-3 gap-2.5">
             {OPTIONS.map((o) => (
-              <button
+              <motion.button
                 key={o.value}
                 type="button"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setAttendance(o.value)}
-                className={`rounded-xl border px-2 py-3 text-xs font-bold transition duration-300 active:scale-95 cursor-pointer ${
+                className={`rounded-xl border px-2 py-3 text-xs font-bold transition-colors duration-300 cursor-pointer ${
                   attendance === o.value
                     ? 'border-gold bg-gradient-to-r from-gold-deep via-gold-bright to-gold-deep text-emerald-night shadow-[0_0_20px_rgba(200,167,92,0.5)]'
                     : 'border-gold/30 bg-emerald-void/50 text-gold-light/60 hover:border-gold/60'
                 }`}
               >
                 {o.label}
-              </button>
+              </motion.button>
             ))}
           </div>
 
@@ -134,25 +136,29 @@ export function Wishes() {
               >
                 <label className={`mt-6 ${labelClass}`}>Jumlah Tamu Hadir</label>
                 <div className="flex items-center gap-3.5">
-                  <button
+                  <motion.button
                     type="button"
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.85 }}
                     onClick={() => setGuestCount((c) => Math.max(1, c - 1))}
-                    className="h-11 w-11 rounded-xl border border-gold/40 bg-emerald-void text-xl font-bold text-gold-light transition duration-300 hover:border-gold hover:text-gold-bright active:scale-95 cursor-pointer"
+                    className="h-11 w-11 rounded-xl border border-gold/40 bg-emerald-void text-xl font-bold text-gold-light transition-colors duration-300 hover:border-gold hover:text-gold-bright cursor-pointer"
                     aria-label="Kurangi"
                   >
                     −
-                  </button>
+                  </motion.button>
                   <span className="w-10 text-center font-display text-3xl font-light text-gold-light tabular-nums">
                     {guestCount}
                   </span>
-                  <button
+                  <motion.button
                     type="button"
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.85 }}
                     onClick={() => setGuestCount((c) => Math.min(10, c + 1))}
-                    className="h-11 w-11 rounded-xl border border-gold/40 bg-emerald-void text-xl font-bold text-gold-light transition duration-300 hover:border-gold hover:text-gold-bright active:scale-95 cursor-pointer"
+                    className="h-11 w-11 rounded-xl border border-gold/40 bg-emerald-void text-xl font-bold text-gold-light transition-colors duration-300 hover:border-gold hover:text-gold-bright cursor-pointer"
                     aria-label="Tambah"
                   >
                     +
-                  </button>
+                  </motion.button>
                   <span className="text-xs font-medium text-gold-light/60">Orang</span>
                 </div>
               </motion.div>
@@ -173,16 +179,18 @@ export function Wishes() {
 
           {error && <p className="mt-3 text-center text-xs font-medium text-red-400">{error}</p>}
 
-          <button
+          <motion.button
             type="submit"
             disabled={submitting}
-            className="group animate-glow relative mt-7 w-full overflow-hidden rounded-[1rem] bg-gradient-to-r from-gold-deep via-gold-bright to-gold-deep py-4 text-[0.85rem] font-bold tracking-[0.2em] text-emerald-night uppercase shadow-[0_0_40px_rgba(200,167,92,0.6)] transition duration-500 hover:brightness-[1.1] hover:shadow-[0_0_60px_rgba(200,167,92,0.8)] active:scale-[0.98] disabled:opacity-50 cursor-pointer"
+            whileHover={!submitting ? { scale: 1.05 } : {}}
+            whileTap={!submitting ? { scale: 0.95 } : {}}
+            className="group animate-glow relative mt-7 w-full overflow-hidden rounded-[1rem] bg-gradient-to-r from-gold-deep via-gold-bright to-gold-deep py-4 text-[0.85rem] font-bold tracking-[0.2em] text-emerald-night uppercase shadow-[0_0_40px_rgba(200,167,92,0.6)] transition-shadow duration-500 hover:brightness-[1.1] hover:shadow-[0_0_70px_rgba(200,167,92,0.9)] disabled:opacity-50 cursor-pointer"
           >
             <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 animate-sheen bg-white/50 blur-md" />
             <span className="relative">
               {submitting ? 'Mengirim…' : sent ? 'Terkirim — Jazakumullahu Khairan' : 'Kirim Ucapan & Restu'}
             </span>
-          </button>
+          </motion.button>
 
           {!isSupabaseReady && (
             <p className="mt-4 text-center text-[0.68rem] leading-relaxed text-gold-light/40">
@@ -240,9 +248,12 @@ export function Wishes() {
                             <span className="text-[0.68rem] text-muted/70">
                               {relativeTime(w.created_at)}
                             </span>
-                            <button
+                            <motion.button
                               onClick={() => toggleLike(w.id)}
-                              className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs transition duration-300 ${
+                              whileHover={{ scale: 1.2 }}
+                              whileTap={{ scale: 0.8 }}
+                              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                              className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs transition-colors duration-300 cursor-pointer ${
                                 isLiked ? 'text-red-500 bg-red-50' : 'text-muted/60 hover:text-red-400'
                               }`}
                             >
@@ -250,7 +261,7 @@ export function Wishes() {
                                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                               </svg>
                               <span>{isLiked ? 1 : 0}</span>
-                            </button>
+                            </motion.button>
                           </div>
                         </div>
                       </div>
@@ -261,12 +272,14 @@ export function Wishes() {
             </div>
 
             {visible < wishes.length && (
-              <button
+              <motion.button
                 onClick={() => setVisible((v) => v + 5)}
-                className="mx-auto mt-8 block rounded-full border border-gold/40 px-8 py-3 text-[0.72rem] font-bold tracking-[0.18em] text-muted uppercase transition duration-300 hover:border-gold hover:text-gold-deep cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="mx-auto mt-8 block rounded-full border border-gold/40 px-8 py-3 text-[0.72rem] font-bold tracking-[0.18em] text-muted uppercase transition-colors duration-300 hover:border-gold hover:text-gold-deep cursor-pointer"
               >
                 Lihat Ucapan Lainnya
-              </button>
+              </motion.button>
             )}
           </>
         )}

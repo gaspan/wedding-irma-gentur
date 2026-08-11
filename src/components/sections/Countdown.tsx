@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { mainDate } from '../../config/wedding'
 import { useCountdown } from '../../hooks/useCountdown'
 import { downloadIcs } from '../../lib/utils'
@@ -69,9 +70,11 @@ export function Countdown() {
           </div>
         )}
 
-        <button
+        <motion.button
           onClick={save}
-          className="animate-glow relative mt-14 inline-flex items-center gap-3 overflow-hidden rounded-full bg-linear-to-r from-gold-deep via-gold-light to-gold-deep px-9 py-4 text-[0.8rem] font-bold tracking-[0.14em] text-emerald-night uppercase shadow-[0_0_36px_rgba(200,167,92,0.5)] transition duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
+          className="animate-glow relative mt-14 inline-flex items-center gap-3 overflow-hidden rounded-full bg-linear-to-r from-gold-deep via-gold-light to-gold-deep px-9 py-4 text-[0.8rem] font-bold tracking-[0.14em] text-emerald-night uppercase shadow-[0_0_36px_rgba(200,167,92,0.5)] transition-shadow duration-300 hover:shadow-[0_0_60px_rgba(200,167,92,0.8)] cursor-pointer"
         >
           <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 animate-sheen bg-white/40 blur-md" />
           <svg viewBox="0 0 24 24" className="relative h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -79,7 +82,7 @@ export function Countdown() {
             <path d="M3 10h18M8 3v4M16 3v4" strokeLinecap="round" />
           </svg>
           <span className="relative">Simpan Tanggal</span>
-        </button>
+        </motion.button>
       </Reveal>
     </Section>
   )

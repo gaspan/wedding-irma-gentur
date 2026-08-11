@@ -105,10 +105,13 @@ export function NavBar({ show }: { show: boolean }) {
       <div className="relative mx-auto flex max-w-md items-center justify-around overflow-hidden rounded-[1.6rem] border border-gold/40 bg-emerald-void/90 px-2.5 py-3 shadow-[0_20px_60px_-14px_rgba(2,16,11,.95)] backdrop-blur-2xl">
         <span className="pointer-events-none absolute inset-x-10 top-0 h-px hairline-gold opacity-80" />
         {ITEMS.map((item) => (
-          <button
+          <motion.button
             key={item.id}
             onClick={() => go(item.id)}
-            className="group relative flex flex-1 flex-col items-center gap-1.5 rounded-2xl px-1 py-1.5 text-gold-light/75 transition duration-300 hover:bg-gold/[0.12] hover:text-gold-bright active:scale-90 cursor-pointer"
+            whileHover={{ scale: 1.15, y: -5 }}
+            whileTap={{ scale: 0.85 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            className="group relative flex flex-1 flex-col items-center gap-1.5 rounded-2xl px-1 py-1.5 text-gold-light/75 transition-colors duration-300 hover:bg-gold/[0.12] hover:text-gold-bright cursor-pointer"
             aria-label={item.label}
           >
             <svg
@@ -123,7 +126,7 @@ export function NavBar({ show }: { show: boolean }) {
               {item.icon}
             </svg>
             <span className="text-[0.6rem] font-bold tracking-[0.08em] uppercase">{item.label}</span>
-          </button>
+          </motion.button>
         ))}
       </div>
     </motion.nav>
@@ -145,10 +148,12 @@ export function MusicToggle({
     <motion.button
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 1.2 }}
+      whileHover={{ scale: 1.15, rotate: 10 }}
+      whileTap={{ scale: 0.85, rotate: -10 }}
+      transition={{ delay: 1.2, type: 'spring', stiffness: 300, damping: 15 }}
       onClick={onToggle}
       aria-label={playing ? 'Jeda musik' : 'Putar musik'}
-      className="fixed right-5 bottom-24 z-40 flex h-13 w-13 items-center justify-center rounded-full border-2 border-gold-light/60 bg-linear-to-br from-gold-deep via-gold-light to-gold-deep text-emerald-night shadow-[0_0_35px_rgba(200,167,92,.6)] transition duration-300 hover:scale-110 active:scale-90 cursor-pointer"
+      className="fixed right-5 bottom-24 z-40 flex h-13 w-13 items-center justify-center rounded-full border-2 border-gold-light/60 bg-linear-to-br from-gold-deep via-gold-light to-gold-deep text-emerald-night shadow-[0_0_35px_rgba(200,167,92,.6)] cursor-pointer"
     >
       <motion.span
         animate={playing ? { rotate: 360 } : { rotate: 0 }}

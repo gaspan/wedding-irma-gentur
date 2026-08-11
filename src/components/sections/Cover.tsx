@@ -139,8 +139,10 @@ export function Cover({ open, onOpen }: { open: boolean; onOpen: () => void }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 1 }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
               onClick={onOpen}
-              className="group relative mt-10 inline-flex items-center gap-4 overflow-hidden rounded-full bg-gradient-to-r from-gold-deep via-gold-bright to-gold-deep px-12 py-4.5 text-[0.85rem] font-bold tracking-[0.2em] text-emerald-void uppercase shadow-[0_0_50px_rgba(200,167,92,0.8)] transition duration-500 hover:scale-[1.05] hover:shadow-[0_0_70px_rgba(200,167,92,1)] active:scale-95 cursor-pointer"
+              className="group relative mt-10 inline-flex items-center gap-4 overflow-hidden rounded-full bg-gradient-to-r from-gold-deep via-gold-bright to-gold-deep px-12 py-4.5 text-[0.85rem] font-bold tracking-[0.2em] text-emerald-void uppercase shadow-[0_0_50px_rgba(200,167,92,0.8)] transition-shadow duration-500 hover:shadow-[0_0_80px_rgba(200,167,92,1)] cursor-pointer"
             >
               <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 animate-sheen bg-white/50 blur-md" />
               <svg

@@ -32,16 +32,18 @@ export function Gallery() {
       <div className="relative mt-16 grid grid-cols-2 gap-5 sm:grid-cols-3 sm:gap-6">
         {galleryArt.map((item, i) => (
           <Reveal key={item.title} delay={i * 0.07} className="group">
-            <button
+            <motion.button
               onClick={() => setActive(i)}
-              className="group relative aspect-square w-full overflow-hidden rounded-[2rem] border border-gold/40 bg-emerald-void/80 p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-gold hover:shadow-[0_30px_70px_-20px_rgba(200,167,92,0.5)] active:scale-95 cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative aspect-square w-full overflow-hidden rounded-[2rem] border border-gold/40 bg-emerald-void/80 p-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-gold hover:shadow-[0_30px_70px_-20px_rgba(200,167,92,0.5)] cursor-pointer"
               aria-label={`Lihat ${item.title}`}
             >
               <span className="pointer-events-none absolute inset-x-7 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent opacity-80" />
               <span className="pointer-events-none absolute top-4 left-4 h-5 w-5 border-t-2 border-l-2 border-gold/40" />
               <span className="pointer-events-none absolute right-4 bottom-4 h-5 w-5 border-r-2 border-b-2 border-gold/40" />
               <item.Art className="h-full w-full text-gold-light transition-transform duration-700 group-hover:scale-110 group-hover:text-gold-bright drop-shadow-[0_0_15px_rgba(200,167,92,0.4)]" />
-            </button>
+            </motion.button>
             <p className="mt-4 text-center font-display text-[1.4rem] font-normal text-gold-light transition duration-300 group-hover:text-gold-bright drop-shadow-md">
               {item.title}
             </p>
@@ -76,30 +78,36 @@ export function Gallery() {
               <p className="mt-4 text-[0.9rem] leading-relaxed text-gold-light/80">{current.caption}</p>
 
               <div className="mt-10 flex items-center justify-center gap-4">
-                <button
+                <motion.button
                   onClick={() => setActive((i) => ((i ?? 0) - 1 + galleryArt.length) % galleryArt.length)}
-                  className="rounded-full border border-gold/40 p-4 text-gold-light transition duration-300 hover:border-gold hover:bg-gold hover:text-emerald-night active:scale-90"
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.85 }}
+                  className="rounded-full border border-gold/40 p-4 text-gold-light transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-emerald-night cursor-pointer"
                   aria-label="Sebelumnya"
                 >
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   onClick={() => setActive(null)}
-                  className="inline-flex items-center gap-2 rounded-full border border-gold/45 bg-gold/[0.1] px-8 py-3 text-[0.8rem] font-bold tracking-[0.2em] text-gold-light uppercase transition duration-300 hover:border-gold hover:bg-gold hover:text-emerald-night shadow-[0_0_20px_rgba(200,167,92,0.3)]"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 rounded-full border border-gold/45 bg-gold/[0.1] px-8 py-3 text-[0.8rem] font-bold tracking-[0.2em] text-gold-light uppercase transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-emerald-night shadow-[0_0_20px_rgba(200,167,92,0.3)] cursor-pointer"
                 >
                   Tutup
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   onClick={() => setActive((i) => ((i ?? 0) + 1) % galleryArt.length)}
-                  className="rounded-full border border-gold/40 p-4 text-gold-light transition duration-300 hover:border-gold hover:bg-gold hover:text-emerald-night active:scale-90"
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.85 }}
+                  className="rounded-full border border-gold/40 p-4 text-gold-light transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-emerald-night cursor-pointer"
                   aria-label="Berikutnya"
                 >
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </button>
+                </motion.button>
               </div>
             </motion.div>
           </motion.div>

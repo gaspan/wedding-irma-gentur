@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { closingWords, couple, hashtag, meta } from '../../config/wedding'
 import { shareWhatsApp } from '../../lib/utils'
 import { Aurora, CornerFloral, Divider, Sparkles } from '../illustrations'
@@ -58,9 +59,11 @@ export function Footer() {
             </p>
           )}
 
-          <button
+          <motion.button
             onClick={share}
-            className="animate-glow relative mt-12 inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-linear-to-r from-gold-deep via-gold-light to-gold-deep px-8 py-4 text-[0.8rem] font-bold tracking-[0.14em] text-emerald-night uppercase shadow-[0_0_36px_rgba(200,167,92,0.5)] transition duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            className="animate-glow relative mt-12 inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-linear-to-r from-gold-deep via-gold-light to-gold-deep px-8 py-4 text-[0.8rem] font-bold tracking-[0.14em] text-emerald-night uppercase shadow-[0_0_36px_rgba(200,167,92,0.5)] transition-shadow duration-300 hover:shadow-[0_0_60px_rgba(200,167,92,0.8)] cursor-pointer"
           >
             <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 animate-sheen bg-white/40 blur-md" />
             <svg viewBox="0 0 24 24" className="relative h-4.5 w-4.5" fill="currentColor">
@@ -68,7 +71,7 @@ export function Footer() {
               <path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.2 8.2 0 1113.7-6 8.2 8.2 0 01-6.7 9.8z" />
             </svg>
             <span className="relative">Bagikan Undangan</span>
-          </button>
+          </motion.button>
         </Reveal>
       </Section>
 

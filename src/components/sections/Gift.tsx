@@ -91,17 +91,19 @@ export function Gift() {
 
                   <div className="mt-5 flex items-center justify-center gap-3">
                     {!broken && (
-                      <a
+                      <motion.a
                         href={qrSrc}
                         download
-                        className="animate-glow relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-linear-to-r from-gold-deep via-gold-light to-gold-deep px-6 py-3 text-[0.76rem] font-bold tracking-[0.1em] text-emerald-night uppercase shadow-[0_0_24px_rgba(200,167,92,0.4)] transition duration-300 hover:scale-105 active:scale-95"
+                        whileHover={{ scale: 1.08 }}
+                        whileTap={{ scale: 0.92 }}
+                        className="animate-glow relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-linear-to-r from-gold-deep via-gold-light to-gold-deep px-6 py-3 text-[0.76rem] font-bold tracking-[0.1em] text-emerald-night uppercase shadow-[0_0_24px_rgba(200,167,92,0.4)] transition-shadow duration-300 hover:shadow-[0_0_36px_rgba(200,167,92,0.8)] cursor-pointer"
                       >
                         <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 animate-sheen bg-white/40 blur-md" />
                         <svg viewBox="0 0 24 24" className="relative h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
                           <path d="M12 3v12M7 11l5 5 5-5M4 21h16" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span className="relative">Unduh QRIS</span>
-                      </a>
+                      </motion.a>
                     )}
                   </div>
                 </motion.div>
