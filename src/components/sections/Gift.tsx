@@ -158,6 +158,9 @@ export function Gift() {
                 />
                 {/* segel */}
                 <span className="absolute top-[70%] left-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold-light/70 bg-linear-to-br from-gold-deep via-gold to-gold-light text-emerald-night shadow-[0_4px_16px_-4px_rgba(0,0,0,.6)]">
+                  {!open && (
+                    <span className="pointer-events-none absolute -inset-2 animate-glow-soft rounded-full border border-gold/40" />
+                  )}
                   <span className="font-display text-sm font-medium italic tracking-[0.15em]">
                     {initials}
                   </span>
