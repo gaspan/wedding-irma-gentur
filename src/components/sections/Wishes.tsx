@@ -14,9 +14,9 @@ const OPTIONS: { value: Attendance; label: string }[] = [
 ]
 
 const BADGE: Record<Attendance, string> = {
-  hadir: 'bg-emerald/10 text-emerald',
-  tidak_hadir: 'bg-muted/15 text-muted',
-  ragu: 'bg-gold/15 text-gold-deep',
+  hadir: 'bg-emerald/15 text-emerald-deep font-semibold border border-emerald/30',
+  tidak_hadir: 'bg-muted/15 text-muted font-medium border border-muted/20',
+  ragu: 'bg-gold/20 text-gold-deep font-semibold border border-gold/40',
 }
 
 const BADGE_LABEL: Record<Attendance, string> = {
@@ -35,7 +35,12 @@ export function Wishes() {
   const [guestCount, setGuestCount] = useState(1)
   const [honeypot, setHoneypot] = useState('')
   const [sent, setSent] = useState(false)
-  const [visible, setVisible] = useState(5)
+  const [visible, setVisible] = useState(6)
+  const [likes, setLikes] = useState<Record<string, boolean>>({})
+
+  const toggleLike = (id: string) => {
+    setLikes((prev) => ({ ...prev, [id]: !prev[id] }))
+  }
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -52,35 +57,35 @@ export function Wishes() {
     if (ok) {
       setMessage('')
       setSent(true)
-      setTimeout(() => setSent(false), 4000)
+      setTimeout(() => setSent(false), 4500)
     }
   }
 
   const inputClass =
-    'w-full rounded-[0.9rem] border border-gold/25 bg-white/90 px-4 py-3 text-sm text-ink outline-none transition duration-300 placeholder:text-muted/45 focus:border-gold focus:ring-2 focus:ring-gold/25'
+    'w-full rounded-[1rem] border border-gold/30 bg-white/95 px-4.5 py-3.5 text-sm text-ink outline-none transition duration-300 placeholder:text-muted/45 focus:border-gold focus:ring-2 focus:ring-gold/30 shadow-inner'
 
   const labelClass =
-    'mb-2 block text-[0.68rem] font-semibold tracking-[0.2em] text-gold-deep uppercase'
+    'mb-2 block text-[0.68rem] font-bold tracking-[0.22em] text-gold-deep uppercase'
 
   return (
-    <Section id="rsvp" className="bg-cream-deep">
-      <div className="pointer-events-none absolute inset-0 bg-pattern opacity-[0.1]" />
+    <Section id="rsvp" className="relative bg-emerald-void text-ink">
+      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.05]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-[40vh] w-[40vh] rounded-full bg-gold/5 blur-[100px]" />
 
       <Reveal className="relative">
-        <SectionTitle overline="RSVP" title="Ucapan & Doa" />
-        <p className="mx-auto mt-6 max-w-md text-center text-[0.82rem] leading-loose text-balance text-muted/85">
-          Sampaikan ucapan dan konfirmasi kehadiran Anda. Doa restu Anda sangat berarti
-          bagi kami.
+        <SectionTitle overline="RSVP & Doa Restu" title="Ucapan Bahagia" />
+        <p className="mx-auto mt-6 max-w-md text-center text-[0.85rem] leading-loose text-balance text-gold-light/70">
+          Sampaikan ucapan dan konfirmasi kehadiran Anda. Doa restu Anda merupakan karunia yang sangat berarti bagi kami.
         </p>
       </Reveal>
 
       <Reveal delay={0.08} className="relative">
         <form
           onSubmit={onSubmit}
-          className="relative mx-auto mt-12 max-w-lg overflow-hidden rounded-[1.75rem] border border-gold/25 bg-white/92 p-7 shadow-[0_26px_70px_-30px_rgba(10,49,37,.45)] backdrop-blur-sm sm:p-9"
+          className="relative mx-auto mt-14 max-w-lg overflow-hidden rounded-[2.5rem] border border-gold/40 bg-emerald-night/80 p-8 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl sm:p-10"
         >
-          <span className="pointer-events-none absolute inset-x-12 top-0 h-px hairline-gold" />
-          {/* honeypot anti-bot */}
+          <span className="pointer-events-none absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+          {/* Honeypot anti-bot */}
           <input
             type="text"
             tabIndex={-1}
@@ -91,27 +96,27 @@ export function Wishes() {
             aria-hidden
           />
 
-          <label className={labelClass}>Nama</label>
+          <label className={labelClass}>Nama Lengkap</label>
           <input
             required
             maxLength={60}
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Nama Anda"
-            className={inputClass}
+            placeholder="Tuliskan nama Anda"
+            className={`${inputClass} bg-emerald-void border-gold/30 text-gold-light placeholder:text-gold-light/30 focus:border-gold`}
           />
 
           <label className={`mt-6 ${labelClass}`}>Konfirmasi Kehadiran</label>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-2.5">
             {OPTIONS.map((o) => (
               <button
                 key={o.value}
                 type="button"
                 onClick={() => setAttendance(o.value)}
-                className={`rounded-xl border px-2 py-2.5 text-xs font-semibold transition duration-300 active:scale-95 ${
+                className={`rounded-xl border px-2 py-3 text-xs font-bold transition duration-300 active:scale-95 cursor-pointer ${
                   attendance === o.value
-                    ? 'border-gold bg-linear-to-r from-gold-deep via-gold-light to-gold-deep text-emerald-night shadow-[0_6px_22px_-6px_rgba(200,167,92,.7)]'
-                    : 'border-gold/25 bg-white/70 text-muted hover:border-gold/55'
+                    ? 'border-gold bg-gradient-to-r from-gold-deep via-gold-bright to-gold-deep text-emerald-night shadow-[0_0_20px_rgba(200,167,92,0.5)]'
+                    : 'border-gold/30 bg-emerald-void/50 text-gold-light/60 hover:border-gold/60'
                 }`}
               >
                 {o.label}
@@ -127,125 +132,140 @@ export function Wishes() {
                 exit={{ opacity: 0, height: 0 }}
                 className="overflow-hidden"
               >
-                <label className={`mt-6 ${labelClass}`}>Jumlah Tamu</label>
-                <div className="flex items-center gap-3">
+                <label className={`mt-6 ${labelClass}`}>Jumlah Tamu Hadir</label>
+                <div className="flex items-center gap-3.5">
                   <button
                     type="button"
                     onClick={() => setGuestCount((c) => Math.max(1, c - 1))}
-                    className="h-10 w-10 rounded-xl border border-gold/25 text-lg text-muted transition duration-300 hover:border-gold hover:text-gold-deep active:scale-95"
+                    className="h-11 w-11 rounded-xl border border-gold/40 bg-emerald-void text-xl font-bold text-gold-light transition duration-300 hover:border-gold hover:text-gold-bright active:scale-95 cursor-pointer"
                     aria-label="Kurangi"
                   >
                     −
                   </button>
-                  <span className="w-10 text-center font-display text-2xl text-ink tabular-nums">
+                  <span className="w-10 text-center font-display text-3xl font-light text-gold-light tabular-nums">
                     {guestCount}
                   </span>
                   <button
                     type="button"
                     onClick={() => setGuestCount((c) => Math.min(10, c + 1))}
-                    className="h-10 w-10 rounded-xl border border-gold/25 text-lg text-muted transition duration-300 hover:border-gold hover:text-gold-deep active:scale-95"
+                    className="h-11 w-11 rounded-xl border border-gold/40 bg-emerald-void text-xl font-bold text-gold-light transition duration-300 hover:border-gold hover:text-gold-bright active:scale-95 cursor-pointer"
                     aria-label="Tambah"
                   >
                     +
                   </button>
-                  <span className="text-xs text-muted">orang</span>
+                  <span className="text-xs font-medium text-gold-light/60">Orang</span>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <label className={`mt-6 ${labelClass}`}>Ucapan &amp; Doa</label>
+          <label className={`mt-6 ${labelClass}`}>Ucapan &amp; Doa Restu</label>
           <textarea
             required
             rows={4}
             maxLength={500}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Tuliskan ucapan dan doa terbaik Anda…"
-            className={`${inputClass} resize-none`}
+            placeholder="Tuliskan ucapan serta doa restu Anda untuk kedua mempelai…"
+            className={`${inputClass} resize-none bg-emerald-void border-gold/30 text-gold-light placeholder:text-gold-light/30 focus:border-gold`}
           />
-          <p className="mt-1 text-right text-[0.65rem] text-muted">{message.length}/500</p>
+          <p className="mt-1 text-right text-[0.68rem] text-gold-light/50">{message.length}/500</p>
 
-          {error && <p className="mt-3 text-center text-xs text-red-600">{error}</p>}
+          {error && <p className="mt-3 text-center text-xs font-medium text-red-400">{error}</p>}
 
           <button
             type="submit"
             disabled={submitting}
-            className="relative mt-6 w-full overflow-hidden rounded-[0.9rem] bg-linear-to-r from-gold-deep via-gold-light to-gold-deep py-3.5 text-[0.78rem] font-semibold tracking-[0.14em] text-emerald-night uppercase shadow-[0_12px_36px_-10px_rgba(200,167,92,.75)] transition duration-300 hover:brightness-[1.06] active:scale-[0.98] disabled:opacity-50"
+            className="group animate-glow relative mt-7 w-full overflow-hidden rounded-[1rem] bg-gradient-to-r from-gold-deep via-gold-bright to-gold-deep py-4 text-[0.85rem] font-bold tracking-[0.2em] text-emerald-night uppercase shadow-[0_0_40px_rgba(200,167,92,0.6)] transition duration-500 hover:brightness-[1.1] hover:shadow-[0_0_60px_rgba(200,167,92,0.8)] active:scale-[0.98] disabled:opacity-50 cursor-pointer"
           >
-            <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 animate-sheen bg-white/30 blur-md" />
+            <span className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 animate-sheen bg-white/50 blur-md" />
             <span className="relative">
-              {submitting ? 'Mengirim…' : sent ? 'Terkirim — Jazakallahu khairan' : 'Kirim Ucapan'}
+              {submitting ? 'Mengirim…' : sent ? 'Terkirim — Jazakumullahu Khairan' : 'Kirim Ucapan & Restu'}
             </span>
           </button>
 
           {!isSupabaseReady && (
-            <p className="mt-3 text-center text-[0.65rem] leading-relaxed text-muted">
-              Mode lokal aktif — ucapan hanya tersimpan di perangkat ini. Hubungkan
-              Supabase agar tersimpan permanen.
+            <p className="mt-4 text-center text-[0.68rem] leading-relaxed text-gold-light/40">
+              Mode lokal aktif — ucapan tersimpan di browser ini. Hubungkan Supabase untuk simpan permanen.
             </p>
           )}
         </form>
       </Reveal>
 
-      <div className="relative mx-auto mt-12 max-w-lg">
+      <div className="relative mx-auto mt-16 max-w-lg">
         {loading ? (
-          <p className="text-center text-sm text-muted">Memuat ucapan…</p>
+          <p className="text-center text-sm text-gold-light/60">Memuat ucapan…</p>
         ) : wishes.length === 0 ? (
-          <p className="text-center text-sm text-muted italic">
-            Belum ada ucapan. Jadilah yang pertama.
+          <p className="text-center text-sm text-gold-light/60 italic">
+            Belum ada ucapan. Jadilah yang pertama memberikan doa restu.
           </p>
         ) : (
           <>
-            <p className="mb-6 text-center text-[0.68rem] font-semibold tracking-[0.28em] text-gold-deep uppercase">
-              {wishes.length} Ucapan
+            <p className="mb-8 text-center text-[0.75rem] font-bold tracking-[0.3em] text-gold-light uppercase">
+              {wishes.length} Ucapan &amp; Doa Restu
             </p>
 
-            <div className="space-y-3.5">
+            <div className="space-y-6">
               <AnimatePresence initial={false}>
-                {wishes.slice(0, visible).map((w) => (
-                  <motion.article
-                    key={w.id}
-                    layout
-                    initial={{ opacity: 0, y: 20, scale: 0.97 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ type: 'spring', stiffness: 260, damping: 24 }}
-                    className="rounded-[1.25rem] border border-gold/20 bg-white/92 px-6 py-5 shadow-[0_14px_44px_-24px_rgba(10,49,37,.4)] backdrop-blur-sm transition duration-500 hover:border-gold/45 hover:shadow-[0_20px_54px_-24px_rgba(157,122,51,.45)]"
-                  >
-                    <div className="flex items-start gap-3.5">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-gold-deep via-gold-light to-gold-deep font-display text-base font-medium text-emerald-night shadow-[0_5px_16px_-4px_rgba(200,167,92,.7)]">
-                        {(w.name.trim()[0] ?? '?').toUpperCase()}
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center justify-between gap-2">
-                          <h4 className="font-display text-xl font-normal text-ink">{w.name}</h4>
-                          {w.attendance && (
-                            <span
-                              className={`rounded-full px-2.5 py-0.5 text-[0.65rem] font-medium ${BADGE[w.attendance]}`}
-                            >
-                              {BADGE_LABEL[w.attendance]}
+                {wishes.slice(0, visible).map((w) => {
+                  const isLiked = likes[w.id]
+                  return (
+                    <motion.article
+                      key={w.id}
+                      layout
+                      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+                      className="rounded-[2rem] border border-gold/30 bg-emerald-night/60 px-7 py-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl transition duration-500 hover:border-gold hover:shadow-[0_20px_60px_-20px_rgba(200,167,92,0.4)]"
+                    >
+                      <div className="flex items-start gap-5">
+                        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-deep via-gold-bright to-gold-deep font-display text-xl font-bold text-emerald-night shadow-[0_0_20px_rgba(200,167,92,0.6)]">
+                          {(w.name.trim()[0] ?? '?').toUpperCase()}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center justify-between gap-2">
+                            <h4 className="font-display text-2xl font-normal text-gold-light">{w.name}</h4>
+                            {w.attendance && (
+                              <span
+                                className={`rounded-full px-3 py-0.5 text-[0.65rem] ${BADGE[w.attendance]}`}
+                              >
+                                {BADGE_LABEL[w.attendance]}
+                              </span>
+                            )}
+                          </div>
+                          <p className="mt-3 text-[0.88rem] leading-relaxed break-words whitespace-pre-line text-gold-light/80">
+                            {w.message}
+                          </p>
+                          <div className="mt-3 flex items-center justify-between">
+                            <span className="text-[0.68rem] text-muted/70">
+                              {relativeTime(w.created_at)}
                             </span>
-                          )}
+                            <button
+                              onClick={() => toggleLike(w.id)}
+                              className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs transition duration-300 ${
+                                isLiked ? 'text-red-500 bg-red-50' : 'text-muted/60 hover:text-red-400'
+                              }`}
+                            >
+                              <svg viewBox="0 0 24 24" className="h-4 w-4" fill={isLiked ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.6">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                              </svg>
+                              <span>{isLiked ? 1 : 0}</span>
+                            </button>
+                          </div>
                         </div>
-                        <p className="mt-2 text-sm leading-relaxed break-words whitespace-pre-line text-muted">
-                          {w.message}
-                        </p>
-                        <p className="mt-2.5 text-[0.65rem] text-muted/70">
-                          {relativeTime(w.created_at)}
-                        </p>
                       </div>
-                    </div>
-                  </motion.article>
-                ))}
+                    </motion.article>
+                  )
+                })}
               </AnimatePresence>
             </div>
 
             {visible < wishes.length && (
               <button
                 onClick={() => setVisible((v) => v + 5)}
-                className="mx-auto mt-7 block rounded-full border border-gold/30 px-7 py-2.5 text-[0.7rem] font-medium tracking-[0.16em] text-muted uppercase transition duration-300 hover:border-gold hover:text-gold-deep"
+                className="mx-auto mt-8 block rounded-full border border-gold/40 px-8 py-3 text-[0.72rem] font-bold tracking-[0.18em] text-muted uppercase transition duration-300 hover:border-gold hover:text-gold-deep cursor-pointer"
               >
-                Lihat ucapan lainnya
+                Lihat Ucapan Lainnya
               </button>
             )}
           </>
@@ -254,3 +274,4 @@ export function Wishes() {
     </Section>
   )
 }
+

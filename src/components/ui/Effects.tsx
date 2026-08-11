@@ -2,17 +2,18 @@ import { useMemo } from 'react'
 import type { CSSProperties } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-/** Partikel emas naik perlahan */
-export function Particles({ className = '', count = 16 }: { className?: string; count?: number }) {
+/** Debu Emas Melayang Melingkar & Naik */
+export function Particles({ className = '', count = 22 }: { className?: string; count?: number }) {
   const p = useMemo(
     () =>
       Array.from({ length: count }, () => ({
         left: Math.random() * 100,
-        size: 3 + Math.random() * 5,
-        delay: Math.random() * 10,
-        dur: 7 + Math.random() * 8,
-        dx: (Math.random() - 0.5) * 140,
-        op: 0.25 + Math.random() * 0.65,
+        size: 2 + Math.random() * 6,
+        delay: Math.random() * 12,
+        dur: 6 + Math.random() * 9,
+        dx: (Math.random() - 0.5) * 160,
+        op: 0.3 + Math.random() * 0.65,
+        blur: Math.random() > 0.6 ? '1px' : '0px',
       })),
     [count],
   )
@@ -22,7 +23,7 @@ export function Particles({ className = '', count = 16 }: { className?: string; 
       {p.map((s, i) => (
         <span
           key={i}
-          className="absolute -bottom-5 animate-rise rounded-full bg-gold"
+          className="absolute -bottom-6 animate-rise rounded-full bg-linear-to-tr from-gold-deep via-gold-bright to-white shadow-[0_0_8px_rgba(246,229,184,0.8)]"
           style={
             {
               left: `${s.left}%`,
@@ -30,6 +31,7 @@ export function Particles({ className = '', count = 16 }: { className?: string; 
               height: s.size,
               animationDelay: `${s.delay}s`,
               animationDuration: `${s.dur}s`,
+              filter: `blur(${s.blur})`,
               '--dx': `${s.dx}px`,
               '--p-op': s.op,
             } as CSSProperties
@@ -40,20 +42,30 @@ export function Particles({ className = '', count = 16 }: { className?: string; 
   )
 }
 
-const CONFETTI_COLORS = ['#c8a75c', '#f6e5b8', '#efdcb4', '#176243', '#e3cd96', '#ffffff']
+const CONFETTI_COLORS = [
+  '#c8a75c',
+  '#f6e5b8',
+  '#efdcb4',
+  '#176243',
+  '#e3cd96',
+  '#ffffff',
+  '#9d7a33',
+  '#0a3125',
+]
 
-/** Confetti jatuh, dipakai sesaat setelah undangan dibuka */
+/** Confetti Emas & Emerald Jatuh saat Undangan dibuka */
 export function Confetti() {
   const pieces = useMemo(
     () =>
-      Array.from({ length: 60 }, (_, i) => ({
+      Array.from({ length: 75 }, (_, i) => ({
         left: Math.random() * 100,
-        delay: Math.random() * 0.8,
-        dur: 2.6 + Math.random() * 2,
+        delay: Math.random() * 1.2,
+        dur: 2.8 + Math.random() * 2.4,
         color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
-        w: 6 + Math.random() * 6,
-        h: 9 + Math.random() * 8,
-        rot: 240 + Math.random() * 480,
+        w: 5 + Math.random() * 8,
+        h: 8 + Math.random() * 10,
+        rot: 360 + Math.random() * 720,
+        rounded: i % 3 === 0 ? '999px' : i % 2 === 0 ? '2px' : '0px',
       })),
     [],
   )
@@ -63,13 +75,14 @@ export function Confetti() {
       {pieces.map((p, i) => (
         <span
           key={i}
-          className="absolute -top-10 animate-confetti rounded-[2px]"
+          className="absolute -top-10 animate-confetti shadow-[0_0_6px_rgba(200,167,92,0.4)]"
           style={
             {
               left: `${p.left}%`,
               width: p.w,
               height: p.h,
               background: p.color,
+              borderRadius: p.rounded,
               animationDelay: `${p.delay}s`,
               animationDuration: `${p.dur}s`,
               '--rot': `${p.rot}deg`,
@@ -81,15 +94,15 @@ export function Confetti() {
   )
 }
 
-/** Teks melingkar berputar */
+/** Teks Melingkar Berputar Halus */
 export function CircularText({ text, className = '' }: { text: string; className?: string }) {
   return (
     <div className={`animate-spin-slow ${className}`}>
-      <svg viewBox="0 0 120 120" className="h-full w-full">
+      <svg viewBox="0 0 120 120" className="h-full w-full drop-shadow-[0_0_10px_rgba(200,167,92,0.3)]">
         <defs>
           <path id="circ-path" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" fill="none" />
         </defs>
-        <text fontSize="11" letterSpacing="2.6" fill="currentColor" className="font-body font-semibold">
+        <text fontSize="10.5" letterSpacing="2.8" fill="currentColor" className="font-body font-semibold">
           <textPath href="#circ-path">{text}</textPath>
         </text>
       </svg>
@@ -97,19 +110,19 @@ export function CircularText({ text, className = '' }: { text: string; className
   )
 }
 
-/** Ticker berjalan tanpa henti */
+/** Ticker Berjalan Tanpa Henti dengan Ornamen Mewah */
 export function Ticker({ items, className = '' }: { items: string[]; className?: string }) {
-  const row = items.join('  ✦  ')
+  const row = items.join('   ❀   ')
   return (
-    <div className={`relative overflow-hidden border-y border-gold/20 bg-emerald-void py-4 ${className}`}>
-      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.08]" />
+    <div className={`relative overflow-hidden border-y border-gold/30 bg-emerald-void/95 py-3.5 ${className}`}>
+      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.1]" />
       <div className="flex animate-marquee whitespace-nowrap">
         {[0, 1].map((k) => (
           <span
             key={k}
-            className="inline-block shrink-0 pr-10 font-display text-[1.1rem] font-light tracking-[0.3em] text-gold-gradient text-gold-shimmer"
+            className="inline-block shrink-0 pr-12 font-display text-[1.15rem] font-light tracking-[0.32em] text-gold-gradient text-gold-shimmer"
           >
-            {row} ✦
+            {row}   ⚜   
           </span>
         ))}
       </div>
@@ -117,7 +130,7 @@ export function Ticker({ items, className = '' }: { items: string[]; className?:
   )
 }
 
-/** Pembatas antar section. `top` = warna section di atas, `bottom` = bg section di bawah */
+/** Pembatas Antar Section (Wave / Mountain / Tilt / Ornate) */
 export function WaveSep({
   top,
   bottom,
@@ -147,19 +160,19 @@ export function WaveSep({
   )
 }
 
-/** Kelopak bunga berjatuhan dengan ayunan lembut */
-const LEAF_COLORS = ['#8a9a7b', '#c8a75c', '#e3cd96', '#a9b79c']
+/** Kelopak Bunga Berjatuhan dengan Ayunan 3D */
+const LEAF_COLORS = ['#c8a75c', '#e3cd96', '#8a9a7b', '#a9b79c', '#f6e5b8']
 
-export function Petals({ className = '', count = 14 }: { className?: string; count?: number }) {
+export function Petals({ className = '', count = 18 }: { className?: string; count?: number }) {
   const p = useMemo(
     () =>
       Array.from({ length: count }, () => ({
         left: Math.random() * 100,
-        size: 7 + Math.random() * 10,
-        delay: Math.random() * 16,
-        dur: 12 + Math.random() * 12,
-        sway: (Math.random() - 0.5) * 90,
-        op: 0.18 + Math.random() * 0.5,
+        size: 8 + Math.random() * 12,
+        delay: Math.random() * 18,
+        dur: 12 + Math.random() * 14,
+        sway: (Math.random() - 0.5) * 110,
+        op: 0.25 + Math.random() * 0.55,
         color: LEAF_COLORS[Math.floor(Math.random() * LEAF_COLORS.length)],
         flip: Math.random() > 0.5 ? -1 : 1,
       })),
@@ -189,14 +202,15 @@ export function Petals({ className = '', count = 14 }: { className?: string; cou
             width={s.size}
             height={s.size}
             style={{ transform: `scaleX(${s.flip})`, color: s.color }}
+            className="drop-shadow-[0_2px_8px_rgba(200,167,92,0.3)]"
             aria-hidden
           >
             <path
               d="M12 2C7 7 4 11 4 15c0 5 4 7 8 7s8-2 8-7c0-4-3-8-8-13z"
               fill="currentColor"
-              opacity="0.75"
+              opacity="0.85"
             />
-            <path d="M12 8v14" stroke="white" strokeWidth="0.8" opacity="0.4" fill="none" />
+            <path d="M12 8v14" stroke="white" strokeWidth="0.7" opacity="0.5" fill="none" />
           </svg>
         </span>
       ))}
@@ -204,17 +218,17 @@ export function Petals({ className = '', count = 14 }: { className?: string; cou
   )
 }
 
-/** Angka countdown dengan animasi flip setiap berubah */
+/** Angka Countdown dengan Flip 3D & Blur Fade */
 export function FlipDigit({ value, className = '' }: { value: number; className?: string }) {
   return (
     <span className="relative inline-flex h-[1.05em] items-center justify-center overflow-hidden">
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
           key={value}
-          initial={{ y: '-60%', opacity: 0, filter: 'blur(4px)' }}
-          animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
-          exit={{ y: '60%', opacity: 0, filter: 'blur(4px)' }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ y: '-70%', opacity: 0, rotateX: -60, filter: 'blur(6px)' }}
+          animate={{ y: '0%', opacity: 1, rotateX: 0, filter: 'blur(0px)' }}
+          exit={{ y: '70%', opacity: 0, rotateX: 60, filter: 'blur(6px)' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className={className}
         >
           {String(value).padStart(2, '0')}
@@ -223,3 +237,4 @@ export function FlipDigit({ value, className = '' }: { value: number; className?
     </span>
   )
 }
+

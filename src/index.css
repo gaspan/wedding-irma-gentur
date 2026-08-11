@@ -1,33 +1,33 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Ivory hangat, sedikit lebih halus dari cream lama */
-  --color-cream: #fbf9f4;
-  --color-cream-deep: #f2ece0;
+  /* Black/Onyx for extreme luxury contrast */
+  --color-cream: #080a09;
+  --color-cream-deep: #050606;
   --color-sage: #8a9a7b;
   --color-sage-light: #a9b79c;
-  --color-sage-deep: #5f6d53;
+  --color-sage-deep: #2a3528;
 
   /* Gold foil: lebih kaya, ada champagne & antique */
-  --color-gold: #c8a75c;
-  --color-gold-light: #e3cd96;
-  --color-gold-bright: #f6e5b8;
-  --color-gold-deep: #9d7a33;
-  --color-gold-antique: #7d5f24;
+  --color-gold: #d4af37;
+  --color-gold-light: #f3e5ab;
+  --color-gold-bright: #fffdd0;
+  --color-gold-deep: #aa8628;
+  --color-gold-antique: #8b6914;
   --color-champagne: #efdcb4;
 
-  /* Emerald lebih dalam & pekat, kesan velvet */
-  --color-emerald: #176243;
-  --color-emerald-mid: #0f4732;
-  --color-emerald-deep: #0a3125;
-  --color-emerald-night: #051a13;
-  --color-emerald-void: #02100b;
-  --color-ink: #0c1c15;
-  --color-muted: #59685f;
+  /* Emerald lebih dalam & pekat, kesan velvet onyx */
+  --color-emerald: #0b2217;
+  --color-emerald-mid: #06140d;
+  --color-emerald-deep: #030a07;
+  --color-emerald-night: #020604;
+  --color-emerald-void: #010302;
+  --color-ink: #fbf9f4; /* Ink is now light for dark mode */
+  --color-muted: #8b9990;
 
-  --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
-  --font-script: 'Pinyon Script', 'Cormorant Garamond', cursive;
-  --font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Cinzel', ui-serif, Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-body: 'Cormorant Garamond', ui-serif, Georgia, serif;
   --font-arabic: 'Amiri', 'Times New Roman', serif;
 
   --animate-float: float 6s ease-in-out infinite;
@@ -140,10 +140,10 @@
   }
 
   body {
-    background-color: #fbf9f4;
+    background-color: #020604;
     background-image:
-      radial-gradient(120% 60% at 50% 0%, rgba(200, 167, 92, 0.1), transparent 60%),
-      linear-gradient(180deg, #fbf9f4, #f2ece0);
+      radial-gradient(120% 60% at 50% 0%, rgba(212, 175, 55, 0.15), transparent 60%),
+      linear-gradient(180deg, #020604, #010302);
     background-attachment: fixed;
     color: var(--color-ink);
     font-family: var(--font-body);

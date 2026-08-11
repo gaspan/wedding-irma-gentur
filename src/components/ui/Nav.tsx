@@ -102,27 +102,27 @@ export function NavBar({ show }: { show: boolean }) {
       transition={{ delay: 1, duration: 0.6 }}
       className="fixed inset-x-0 bottom-0 z-40 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))]"
     >
-      <div className="relative mx-auto flex max-w-md items-center justify-around overflow-hidden rounded-[1.5rem] border border-gold/25 bg-emerald-void/85 px-2 py-2.5 shadow-[0_18px_56px_-14px_rgba(2,16,11,.8)] backdrop-blur-xl">
-        <span className="pointer-events-none absolute inset-x-10 top-0 h-px hairline-gold opacity-60" />
+      <div className="relative mx-auto flex max-w-md items-center justify-around overflow-hidden rounded-[1.6rem] border border-gold/40 bg-emerald-void/90 px-2.5 py-3 shadow-[0_20px_60px_-14px_rgba(2,16,11,.95)] backdrop-blur-2xl">
+        <span className="pointer-events-none absolute inset-x-10 top-0 h-px hairline-gold opacity-80" />
         {ITEMS.map((item) => (
           <button
             key={item.id}
             onClick={() => go(item.id)}
-            className="group relative flex flex-1 flex-col items-center gap-1.5 rounded-2xl px-1 py-1.5 text-gold-light/70 transition duration-300 hover:bg-gold/[0.08] hover:text-gold-bright active:scale-90"
+            className="group relative flex flex-1 flex-col items-center gap-1.5 rounded-2xl px-1 py-1.5 text-gold-light/75 transition duration-300 hover:bg-gold/[0.12] hover:text-gold-bright active:scale-90 cursor-pointer"
             aria-label={item.label}
           >
             <svg
               viewBox="0 0 24 24"
-              className="h-[18px] w-[18px] transition-transform duration-300 group-hover:-translate-y-0.5"
+              className="h-[20px] w-[20px] transition-transform duration-300 group-hover:-translate-y-0.5"
               fill="none"
               stroke="currentColor"
-              strokeWidth="1.4"
+              strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             >
               {item.icon}
             </svg>
-            <span className="text-[0.58rem] font-medium tracking-[0.06em]">{item.label}</span>
+            <span className="text-[0.6rem] font-bold tracking-[0.08em] uppercase">{item.label}</span>
           </button>
         ))}
       </div>
@@ -148,27 +148,27 @@ export function MusicToggle({
       transition={{ delay: 1.2 }}
       onClick={onToggle}
       aria-label={playing ? 'Jeda musik' : 'Putar musik'}
-      className="fixed right-4 bottom-24 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-gold-light/40 bg-linear-to-br from-gold-deep via-gold-light to-gold-deep text-emerald-night shadow-[0_0_28px_rgba(200,167,92,.5)] transition duration-300 hover:scale-105 active:scale-90"
+      className="fixed right-5 bottom-24 z-40 flex h-13 w-13 items-center justify-center rounded-full border-2 border-gold-light/60 bg-linear-to-br from-gold-deep via-gold-light to-gold-deep text-emerald-night shadow-[0_0_35px_rgba(200,167,92,.6)] transition duration-300 hover:scale-110 active:scale-90 cursor-pointer"
     >
       <motion.span
         animate={playing ? { rotate: 360 } : { rotate: 0 }}
         transition={
-          playing ? { duration: 6, repeat: Infinity, ease: 'linear' } : { duration: 0.3 }
+          playing ? { duration: 5, repeat: Infinity, ease: 'linear' } : { duration: 0.3 }
         }
         className="flex items-center justify-center"
       >
         {playing ? (
-          <span className="flex h-4 w-5 items-end justify-center gap-[3px]">
+          <span className="flex h-4.5 w-5.5 items-end justify-center gap-[3.5px]">
             {[0, 0.15, 0.3].map((d) => (
               <span
                 key={d}
-                className="animate-eq w-[3px] rounded-full bg-current"
+                className="animate-eq w-[3.5px] rounded-full bg-emerald-night"
                 style={{ height: '100%', animationDelay: `${d}s` }}
               />
             ))}
           </span>
         ) : (
-          <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round">
             <path d="M9 18V5l10-2v13" />
             <circle cx="6" cy="18" r="3" />
             <circle cx="16" cy="16" r="3" />
@@ -179,3 +179,4 @@ export function MusicToggle({
     </motion.button>
   )
 }
+
