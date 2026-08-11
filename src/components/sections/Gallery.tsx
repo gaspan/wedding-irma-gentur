@@ -41,7 +41,7 @@ export function Gallery() {
               <span className="pointer-events-none absolute right-3 bottom-3 h-4 w-4 border-r border-b border-gold/30" />
               <item.Art className="h-full w-full text-gold-deep transition-transform duration-700 group-hover:scale-110 group-hover:text-gold" />
             </button>
-            <p className="mt-3 text-center font-display text-lg font-normal text-ink transition duration-300 group-hover:text-gold-deep">
+            <p className="mt-3 text-center font-display text-lg font-normal italic text-ink transition duration-300 group-hover:text-gold-deep">
               {item.title}
             </p>
           </Reveal>
@@ -69,7 +69,7 @@ export function Gallery() {
             >
               <span className="pointer-events-none absolute inset-5 rounded-[1.5rem] border border-gold/10" />
               <current.Art className="mx-auto h-52 w-52 text-gold" />
-              <h3 className="mt-7 font-display text-3xl font-light text-gold-gradient text-gold-shimmer text-glow">
+              <h3 className="mt-7 font-display text-3xl font-light italic text-gold-gradient text-gold-shimmer text-glow">
                 {current.title}
               </h3>
               <p className="mt-2 text-[0.8rem] text-muted/85">{current.caption}</p>

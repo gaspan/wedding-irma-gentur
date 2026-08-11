@@ -1,6 +1,7 @@
 import { motion, type Variants } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { cn } from '../../lib/utils'
+import { OrnateDivider } from '../illustrations'
 
 const variants: Variants = {
   hidden: { opacity: 0, y: 32, filter: 'blur(6px)' },
@@ -72,27 +73,29 @@ export function SectionTitle({
       {overline && (
         <p
           className={cn(
-            'mb-4 text-[0.6rem] font-semibold tracking-[0.45em] uppercase',
+            'mb-5 flex items-center justify-center gap-3 text-[0.6rem] font-semibold tracking-[0.5em] uppercase',
             dark ? 'text-gold-light/70' : 'text-gold-deep/80',
           )}
         >
+          <span className={cn('h-px w-8', dark ? 'bg-gold/60' : 'bg-gold/70')} />
           {overline}
+          <span className={cn('h-px w-8', dark ? 'bg-gold/60' : 'bg-gold/70')} />
         </p>
       )}
       <h2
         className={cn(
-          'font-display text-[2.6rem] leading-[1.08] font-light sm:text-6xl',
+          'font-display text-5xl leading-[1.05] font-light italic sm:text-6xl',
           dark ? 'text-gold-gradient text-gold-shimmer text-glow' : 'text-ink',
         )}
       >
         {title}
       </h2>
-      {/* ornamen hairline di bawah judul */}
-      <span className="mx-auto mt-6 flex items-center justify-center gap-3">
-        <span className={cn('h-px w-12 hairline-gold', dark ? 'opacity-80' : 'opacity-60')} />
-        <span className={cn('h-1 w-1 rotate-45', dark ? 'bg-gold-bright' : 'bg-gold')} />
-        <span className={cn('h-px w-12 hairline-gold', dark ? 'opacity-80' : 'opacity-60')} />
-      </span>
+      <OrnateDivider
+        className={cn(
+          'mx-auto mt-7 w-64 text-gold sm:w-72',
+          dark ? 'text-gold-bright' : 'text-gold-deep/90',
+        )}
+      />
     </div>
   )
 }

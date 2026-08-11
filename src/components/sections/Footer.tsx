@@ -14,9 +14,11 @@ export function Footer() {
     <>
       <Section className="relative bg-emerald-night pb-36">
         <Aurora />
-        <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.09]" />
+        <div className="pointer-events-none absolute inset-0 bg-damask opacity-[0.07]" />
+        <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.07]" />
         <Sparkles className="text-gold-bright" />
         <div className="pointer-events-none absolute inset-0 vignette" />
+        <div className="pointer-events-none absolute bottom-0 left-1/2 h-72 w-[36rem] max-w-full -translate-x-1/2 rounded-full bg-gold/10 blur-[110px]" />
         <CornerFloral className="pointer-events-none absolute -top-2 -left-2 w-28 rotate-180 text-gold-bright/35 sm:w-40" />
         <CornerFloral className="pointer-events-none absolute -right-2 bottom-24 w-28 text-gold-bright/35 sm:w-40" />
 
@@ -40,7 +42,7 @@ export function Footer() {
           <p className="mt-9 text-[0.68rem] font-semibold tracking-[0.34em] text-gold-light/70 uppercase">
             Kami yang berbahagia
           </p>
-          <h2 className="mt-5 font-display text-[3.1rem] leading-[1.05] font-normal text-gold-gradient text-gold-shimmer sm:text-[3.9rem]">
+          <h2 className="mt-5 font-display text-[3.1rem] leading-[1.05] font-light italic text-gold-gradient text-gold-shimmer sm:text-[3.9rem]">
             {couple.bride.nickname}
             <span
               className="mx-3 font-script text-[0.85em] text-gold-bright"

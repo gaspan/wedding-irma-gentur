@@ -37,14 +37,15 @@ export function Story() {
                 </span>
 
                 <div
-                  className={`rounded-[1.5rem] border border-gold/20 bg-white/95 p-7 shadow-[0_18px_50px_-26px_rgba(10,49,37,.4)] backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:border-gold/45 hover:shadow-[0_28px_66px_-26px_rgba(157,122,51,.45)] ${
+                  className={`relative rounded-[1.5rem] border border-gold/20 bg-white/95 p-7 shadow-[0_18px_50px_-26px_rgba(10,49,37,.4)] backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:border-gold/45 hover:shadow-[0_28px_66px_-26px_rgba(157,122,51,.45)] ${
                     right ? '' : 'sm:text-right'
                   }`}
                 >
+                  <span className="pointer-events-none absolute inset-x-8 top-0 h-px hairline-gold opacity-60" />
                   <p className="text-[0.62rem] font-semibold tracking-[0.32em] text-gold-deep/85 uppercase">
                     {item.date}
                   </p>
-                  <h3 className="mt-2 font-display text-[1.75rem] leading-tight font-normal text-ink sm:text-3xl">
+                  <h3 className="mt-2 font-display text-[1.75rem] leading-tight font-light italic text-ink sm:text-3xl">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-[0.82rem] leading-loose text-balance text-muted/85">

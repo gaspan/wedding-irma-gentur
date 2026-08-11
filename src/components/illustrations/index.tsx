@@ -291,3 +291,90 @@ export function Sparkles({ className = '' }: { className?: string }) {
     </div>
   )
 }
+
+/** Ornamen sudut filigree mewah (bentuk L). Putar dengan rotate-90/180/-90 */
+export function CornerOrnate({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 140 140" fill="none" className={className} aria-hidden>
+      <path d="M4 136V84c0-44 36-80 80-80h52" stroke="currentColor" strokeWidth="1.1" />
+      <path d="M4 136v-24c0-58 50-108 108-108h24" stroke="currentColor" strokeWidth="0.5" opacity="0.5" />
+      {/* sulur */}
+      <path
+        d="M4 62c16 0 24-7 28-20M4 48c20 0 32-9 38-26"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        opacity="0.7"
+      />
+      <path
+        d="M62 4c0 16 7 24 20 28M48 4c0 20 9 32 26 38"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        opacity="0.7"
+      />
+      <circle cx="30" cy="30" r="2.2" fill="currentColor" opacity="0.65" />
+      <circle cx="6" cy="110" r="1.6" fill="currentColor" opacity="0.5" />
+      <circle cx="110" cy="6" r="1.6" fill="currentColor" opacity="0.5" />
+      <path d="M4 124c8 0 12-4 14-10M124 4c0 8 4 12 10 14" stroke="currentColor" strokeWidth="0.6" opacity="0.6" />
+    </svg>
+  )
+}
+
+/** Pembatas mewah: belah ketupat + sulur simetris */
+export function OrnateDivider({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 320 36" fill="none" className={className} aria-hidden>
+      <path d="M0 18h118" stroke="currentColor" strokeWidth="0.7" opacity="0.55" />
+      <path d="M202 18h118" stroke="currentColor" strokeWidth="0.7" opacity="0.55" />
+      {/* sulur kiri-kanan */}
+      <path d="M118 18c-8 0-11-7-11-13M118 18c-8 0-11 7-11 13M202 18c8 0 11-7 11-13M202 18c8 0 11 7 11 13" stroke="currentColor" strokeWidth="0.6" opacity="0.7" />
+      {/* belah ketupat kecil */}
+      <path d="M136 6l8 12-8 12-8-12 8-12z" stroke="currentColor" strokeWidth="0.7" />
+      <path d="M184 6l8 12-8 12-8-12 8-12z" stroke="currentColor" strokeWidth="0.7" />
+      {/* ketupat utama */}
+      <path d="M160 2l9 16-9 16-9-16 9-16z" stroke="currentColor" strokeWidth="0.9" />
+      <path d="M160 8l6 10-6 10-6-10 6-10z" stroke="currentColor" strokeWidth="0.5" opacity="0.6" />
+      <circle cx="160" cy="18" r="1.8" fill="currentColor" />
+      <path d="M150 18l10 8M170 18l-10 8" stroke="currentColor" strokeWidth="0.6" opacity="0.7" />
+    </svg>
+  )
+}
+
+/** Mandala lingkaran — latar belakang nama/nomor mewah */
+export function Mandala({ className = '' }: { className?: string }) {
+  const petals = Array.from({ length: 24 })
+  const dots = Array.from({ length: 12 })
+  return (
+    <svg viewBox="0 0 400 400" fill="none" className={className} aria-hidden>
+      <circle cx="200" cy="200" r="192" stroke="currentColor" strokeWidth="0.6" opacity="0.5" />
+      <circle cx="200" cy="200" r="172" stroke="currentColor" strokeWidth="0.3" opacity="0.35" />
+      {petals.map((_, i) => {
+        const a = (i * 15 * Math.PI) / 180
+        const x1 = 200 + Math.cos(a) * 158
+        const y1 = 200 + Math.sin(a) * 158
+        const x2 = 200 + Math.cos(a + 0.05) * 138
+        const y2 = 200 + Math.sin(a + 0.05) * 138
+        const x3 = 200 + Math.cos(a - 0.05) * 138
+        const y3 = 200 + Math.sin(a - 0.05) * 138
+        return (
+          <path
+            key={i}
+            d={`M${x1.toFixed(1)} ${y1.toFixed(1)}L${x2.toFixed(1)} ${y2.toFixed(1)}L${x3.toFixed(1)} ${y3.toFixed(1)}Z`}
+            stroke="currentColor"
+            strokeWidth="0.4"
+            opacity="0.45"
+          />
+        )
+      })}
+      <circle cx="200" cy="200" r="112" stroke="currentColor" strokeWidth="0.4" opacity="0.4" />
+      {dots.map((_, i) => {
+        const a = (i * 30 * Math.PI) / 180
+        const r = 96
+        return (
+          <circle key={i} cx={200 + Math.cos(a) * r} cy={200 + Math.sin(a) * r} r="2.4" fill="currentColor" opacity="0.5" />
+        )
+      })}
+      <circle cx="200" cy="200" r="34" stroke="currentColor" strokeWidth="0.4" opacity="0.45" />
+      <circle cx="200" cy="200" r="5" fill="currentColor" opacity="0.6" />
+    </svg>
+  )
+}

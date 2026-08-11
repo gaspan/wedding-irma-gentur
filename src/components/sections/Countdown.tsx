@@ -41,9 +41,11 @@ export function Countdown() {
   return (
     <Section className="bg-emerald-night">
       <Aurora />
-      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.09]" />
+      <div className="pointer-events-none absolute inset-0 bg-damask opacity-[0.07]" />
+      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.07]" />
       <Sparkles className="text-gold-bright" />
       <div className="pointer-events-none absolute inset-0 vignette" />
+      <div className="pointer-events-none absolute top-0 left-1/2 h-80 w-[38rem] max-w-full -translate-x-1/2 rounded-full bg-gold/10 blur-[110px]" />
 
       <Reveal className="relative text-center">
         <CalendarIllustration className="mx-auto h-14 w-14 animate-float text-gold-bright" />

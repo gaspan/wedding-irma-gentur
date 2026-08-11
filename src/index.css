@@ -32,7 +32,7 @@
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out infinite;
-  --animate-shimmer: shimmer 5s linear infinite;
+  --animate-shimmer: shimmer 4s linear infinite;
   --animate-shimmer-slow: shimmer 8s linear infinite;
   --animate-aurora: aurora 16s ease-in-out infinite;
   --animate-aurora-slow: aurora 24s ease-in-out infinite;
@@ -220,6 +220,22 @@
     radial-gradient(rgba(200, 167, 92, 0.15) 0.8px, transparent 0.8px);
   background-size: 24px 24px, 36px 36px;
   background-position: 0 0, 12px 12px;
+}
+
+/* Damask — motif bintang-jalin khas undangan mewah */
+@utility bg-damask {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23c8a75c' stroke-width='0.6'%3E%3Cpath d='M40 4l36 36-36 36L4 40z' opacity='0.55'/%3E%3Cpath d='M40 20l20 20-20 20-20-20z' opacity='0.35'/%3E%3Ccircle cx='40' cy='40' r='3' opacity='0.5'/%3E%3Cpath d='M0 0l10 10M80 0L70 10M0 80l10-10M80 80L70 70' opacity='0.35'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+
+/* Glow emas radial untuk section gelap */
+@utility bg-radial-gold {
+  background: radial-gradient(
+    60% 50% at 50% 32%,
+    rgba(200, 167, 92, 0.22),
+    rgba(200, 167, 92, 0.08) 55%,
+    transparent 75%
+  );
 }
 
 /* Frame bingkai foil — conic berputar yang lebih halus & mewah */

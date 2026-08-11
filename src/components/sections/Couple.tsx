@@ -19,22 +19,19 @@ function PersonCard({
         {/* hairline atas berlapis */}
         <span className="pointer-events-none absolute inset-x-10 top-0 h-px hairline-gold" />
         <span className="pointer-events-none absolute inset-x-16 top-[3px] h-px hairline-gold opacity-40" />
-
-        {/* sudut ornamen */}
-        <span className="pointer-events-none absolute top-4 left-4 h-5 w-5 border-t border-l border-gold/35" />
-        <span className="pointer-events-none absolute top-4 right-4 h-5 w-5 border-t border-r border-gold/35" />
-        <span className="pointer-events-none absolute bottom-4 left-4 h-5 w-5 border-b border-l border-gold/35" />
-        <span className="pointer-events-none absolute right-4 bottom-4 h-5 w-5 border-r border-b border-gold/35" />
+        {/* bingkai dalam */}
+        <span className="pointer-events-none absolute inset-3 rounded-[1.35rem] border border-gold/15" />
 
         {/* medali ilustrasi */}
-        <div className="relative mx-auto flex h-32 w-32 items-center justify-center">
+        <div className="relative mx-auto flex h-36 w-36 items-center justify-center">
           <span className="absolute inset-0 rounded-full bg-linear-to-br from-gold/15 via-transparent to-emerald/10" />
-          <span className="absolute inset-0 rounded-full border border-gold/30" />
-          <span className="absolute inset-[0.35rem] rounded-full border border-gold/15" />
-          <Art className="relative h-[5.5rem] w-[5.5rem] text-gold-deep transition-transform duration-700 group-hover:scale-110" />
+          <span className="absolute inset-0 rounded-full border border-gold/40" />
+          <span className="absolute inset-[0.35rem] rounded-full border border-gold/20" />
+          <span className="absolute inset-[0.7rem] rounded-full border border-gold/10" />
+          <Art className="relative h-[6rem] w-[6rem] text-gold-deep transition-transform duration-700 group-hover:scale-110" />
         </div>
 
-        <h3 className="mt-7 font-display text-[1.9rem] leading-tight font-normal text-ink sm:text-4xl">
+        <h3 className="mt-7 font-display text-[2rem] leading-tight font-light italic text-ink sm:text-4xl">
           {person.name}
         </h3>
 
@@ -94,11 +91,15 @@ export function Couple() {
         <PersonCard person={couple.bride} Art={BrideIllustration} delay={0.05} />
 
         <div className="flex items-center justify-center sm:px-2">
-          <span
-            className="font-script text-5xl text-gold sm:text-6xl"
-            style={{ textShadow: '0 0 26px rgba(200,167,92,.45)' }}
-          >
-            &amp;
+          <span className="relative flex h-24 w-24 items-center justify-center">
+            <span className="absolute inset-0 rounded-full border border-gold/40" />
+            <span className="absolute inset-[0.4rem] rounded-full border border-gold/15" />
+            <span
+              className="font-script text-5xl text-gold sm:text-6xl"
+              style={{ textShadow: '0 0 26px rgba(200,167,92,.45)' }}
+            >
+              &amp;
+            </span>
           </span>
         </div>
 

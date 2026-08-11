@@ -8,7 +8,8 @@ function EventCard({ ev, delay }: { ev: EventDetail; delay: number }) {
     <Reveal delay={delay} className="h-full">
       <article className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-gold/25 bg-white/90 shadow-[0_20px_60px_-28px_rgba(10,49,37,.35)] backdrop-blur transition duration-500 hover:-translate-y-1.5 hover:border-gold/55 hover:shadow-[0_32px_80px_-28px_rgba(157,122,51,.45)]">
         <div className="relative overflow-hidden bg-emerald-night px-7 py-9 text-center">
-          <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.09]" />
+          <div className="pointer-events-none absolute inset-0 bg-damask opacity-[0.08]" />
+          <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.07]" />
           <div className="pointer-events-none absolute -top-16 left-1/2 h-40 w-72 -translate-x-1/2 rounded-full bg-gold/15 blur-[70px]" />
           <span className="pointer-events-none absolute inset-x-8 top-4 h-px hairline-gold opacity-60" />
 

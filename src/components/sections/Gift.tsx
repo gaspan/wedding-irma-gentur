@@ -12,7 +12,8 @@ export function Gift() {
   return (
     <Section id="gift" className="bg-emerald-night">
       <Aurora />
-      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.09]" />
+      <div className="pointer-events-none absolute inset-0 bg-damask opacity-[0.07]" />
+      <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.07]" />
       <Sparkles className="text-gold-bright" />
       <div className="pointer-events-none absolute inset-0 vignette" />
 
