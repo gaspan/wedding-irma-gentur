@@ -52,7 +52,7 @@ export function Gift() {
                   initial={{ y: 70, opacity: 0, scale: 0.96 }}
                   animate={{ y: 0, opacity: 1, scale: 1 }}
                   exit={{ y: 70, opacity: 0, scale: 0.96 }}
-                  transition={{ type: 'spring', stiffness: 220, damping: 26 }}
+                  transition={{ type: 'spring', stiffness: 130, damping: 22, delay: 0.55 }}
                   className="relative z-10 pb-6"
                 >
                   <div className="relative overflow-hidden rounded-[1.25rem] border border-gold/40 bg-white p-3.5 shadow-[0_18px_50px_-20px_rgba(0,0,0,.55),inset_0_0_34px_rgba(200,167,92,.18)]">
@@ -127,7 +127,7 @@ export function Gift() {
               <motion.span
                 aria-hidden
                 animate={{ rotateX: open ? -180 : 0 }}
-                transition={{ duration: 0.7, ease: EASE }}
+                transition={{ duration: 1.4, ease: EASE }}
                 style={{ transformOrigin: 'top', backfaceVisibility: 'hidden', perspective: 1000 }}
                 className="absolute inset-x-0 top-0 z-20 block h-[62%]"
               >
