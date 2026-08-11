@@ -262,6 +262,22 @@
   animation: eq 0.65s ease-in-out infinite;
 }
 
+/* Konten section muncul halus saat menu bawah diklik */
+@keyframes nav-jump {
+  from {
+    opacity: 0.3;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section.nav-jump > * {
+  animation: nav-jump 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* Teks outline dekoratif */
 @utility text-stroke-gold {
   -webkit-text-stroke: 1.5px rgba(201, 169, 97, 0.5);

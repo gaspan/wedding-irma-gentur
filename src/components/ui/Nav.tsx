@@ -65,11 +65,35 @@ const ITEMS = [
   },
 ]
 
+const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2)
+
+const smoothScrollTo = (targetY: number, duration = 800) => {
+  const startY = window.scrollY
+  const delta = targetY - startY
+  if (Math.abs(delta) < 2) return
+  const start = performance.now()
+  const step = (now: number) => {
+    const p = Math.min(1, (now - start) / duration)
+    window.scrollTo({ top: startY + delta * easeInOutCubic(p), behavior: 'instant' })
+    if (p < 1) requestAnimationFrame(step)
+  }
+  requestAnimationFrame(step)
+}
+
 export function NavBar({ show }: { show: boolean }) {
   if (!show) return null
 
-  const go = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const go = (id: string) => {
+    const el = document.getElementById(id)
+    if (!el) return
+    smoothScrollTo(el.getBoundingClientRect().top + window.scrollY)
+    el.classList.remove('nav-jump')
+    void el.offsetWidth
+    el.classList.add('nav-jump')
+    el.addEventListener('animationend', () => el.classList.remove('nav-jump'), {
+      once: true,
+    })
+  }
 
   return (
     <motion.nav
