@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { events } from '../../config/wedding'
 import type { EventDetail } from '../../types'
 import { MosqueIllustration, Sprig } from '../illustrations'
+import { Parallax } from '../ui/Effects'
 import { Reveal, Section, SectionTitle } from '../ui'
 
 function EventCard({ ev, delay }: { ev: EventDetail; delay: number }) {
@@ -75,7 +76,9 @@ export function Events() {
   return (
     <Section id="acara" className="relative bg-emerald-night text-ink">
       <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.05]" />
-      <Sprig className="pointer-events-none absolute top-16 -right-10 h-60 -scale-x-100 text-gold opacity-25" />
+      <Parallax speed={-0.22} className="pointer-events-none absolute top-16 -right-10">
+        <Sprig className="h-60 -scale-x-100 text-gold opacity-25" />
+      </Parallax>
       <div className="pointer-events-none absolute top-0 left-1/2 h-[40vh] w-full -translate-x-1/2 bg-radial-gold blur-[100px]" />
 
       <Reveal>

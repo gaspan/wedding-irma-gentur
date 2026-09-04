@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { couple } from '../../config/wedding'
 import { BrideIllustration, GroomIllustration, Sprig } from '../illustrations'
+import { Parallax } from '../ui/Effects'
 import { Reveal, Section, SectionTitle } from '../ui'
 
 type Person = typeof couple.bride | typeof couple.groom
@@ -85,8 +86,12 @@ export function Couple() {
   return (
     <Section id="mempelai" className="relative bg-cream-deep text-ink">
       <div className="pointer-events-none absolute inset-0 bg-pattern-gold opacity-[0.05]" />
-      <Sprig className="pointer-events-none absolute top-10 -left-10 h-64 text-gold opacity-[0.15]" />
-      <Sprig className="pointer-events-none absolute -right-10 bottom-10 h-64 -scale-x-100 text-gold opacity-[0.15]" />
+      <Parallax speed={0.2} className="pointer-events-none absolute top-10 -left-10">
+        <Sprig className="h-64 text-gold opacity-[0.15]" />
+      </Parallax>
+      <Parallax speed={-0.18} className="pointer-events-none absolute -right-10 bottom-10">
+        <Sprig className="h-64 -scale-x-100 text-gold opacity-[0.15]" />
+      </Parallax>
       <div className="pointer-events-none absolute top-0 left-1/2 h-64 w-full -translate-x-1/2 bg-radial-gold blur-[100px]" />
 
       <Reveal className="relative">

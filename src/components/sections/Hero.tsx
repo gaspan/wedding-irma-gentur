@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { couple, events, hashtag } from '../../config/wedding'
 import { Arch, Aurora, CornerOrnate, Mandala, Sparkles } from '../illustrations'
-import { CircularText, Particles } from '../ui/Effects'
+import { CircularText, Parallax, Particles } from '../ui/Effects'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -16,15 +16,19 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 vignette" />
       <div className="pointer-events-none absolute top-1/2 left-1/2 h-[90vh] w-[90vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/15 blur-[140px]" />
 
-      <Arch className="pointer-events-none absolute h-[82vh] max-h-[660px] w-auto opacity-70 drop-shadow-[0_0_20px_rgba(200,167,92,0.3)]" />
-      
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 200, repeat: Infinity, ease: 'linear' }}
-        className="pointer-events-none absolute top-1/2 left-1/2 h-[75vh] w-[75vh] max-w-none -translate-x-1/2 -translate-y-1/2 text-gold opacity-[0.15]"
-      >
-        <Mandala className="h-full w-full" />
-      </motion.div>
+      <Parallax speed={0.06} className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <Arch className="h-[82vh] max-h-[660px] w-auto opacity-70 drop-shadow-[0_0_20px_rgba(200,167,92,0.3)]" />
+      </Parallax>
+
+      <Parallax speed={0.14} className="pointer-events-none absolute inset-0">
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 200, repeat: Infinity, ease: 'linear' }}
+          className="absolute top-1/2 left-1/2 h-[75vh] w-[75vh] max-w-none -translate-x-1/2 -translate-y-1/2 text-gold opacity-[0.15]"
+        >
+          <Mandala className="h-full w-full" />
+        </motion.div>
+      </Parallax>
 
       <CornerOrnate className="pointer-events-none absolute top-4 left-4 w-20 text-gold-bright/70 sm:w-32 drop-shadow" />
       <CornerOrnate className="pointer-events-none absolute top-4 right-4 w-20 rotate-90 text-gold-bright/70 sm:w-32 drop-shadow" />
@@ -32,12 +36,14 @@ export function Hero() {
       <CornerOrnate className="pointer-events-none absolute bottom-4 left-4 w-20 -rotate-90 text-gold-bright/70 sm:w-32 drop-shadow" />
 
       {/* Angka tahun outline raksasa */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[42vw] leading-none font-light text-stroke-gold opacity-[0.14] sm:text-[26vw]"
-      >
-        2027
-      </span>
+      <Parallax speed={-0.3} className="pointer-events-none absolute inset-0">
+        <span
+          aria-hidden
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-[42vw] leading-none font-light text-stroke-gold opacity-[0.14] sm:text-[26vw]"
+        >
+          2027
+        </span>
+      </Parallax>
 
       <div className="relative z-10 text-center">
         <motion.p

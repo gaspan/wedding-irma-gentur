@@ -1,6 +1,46 @@
-import { useMemo } from 'react'
-import type { CSSProperties } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useMemo, useRef } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from 'framer-motion'
+
+/**
+ * Parallax berbasis scroll — hanya menganimasikan transform (GPU compositing),
+ * tidak menyentuh layout. Dinonaktifkan otomatis saat prefers-reduced-motion.
+ */
+export function Parallax({
+  children,
+  speed = 0.15,
+  className = '',
+}: {
+  children: ReactNode
+  /** Kecepatan relatif tinggi elemen; negatif = bergerak berlawanan arah scroll */
+  speed?: number
+  className?: string
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const reduced = useReducedMotion()
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  })
+  const y = useTransform(scrollYProgress, [0, 1], [`${speed * 100}%`, `${-speed * 100}%`])
+
+  return (
+    <motion.div
+      ref={ref}
+      aria-hidden
+      className={className}
+      style={reduced ? undefined : { y, willChange: 'transform' }}
+    >
+      {children}
+    </motion.div>
+  )
+}
 
 /** Debu Emas Melayang Melingkar & Naik */
 export function Particles({ className = '', count = 22 }: { className?: string; count?: number }) {

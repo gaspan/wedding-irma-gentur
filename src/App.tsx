@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { motion, useScroll } from 'framer-motion'
+import { MotionConfig, motion, useScroll } from 'framer-motion'
 import { hashtag, music } from './config/wedding'
 import { useAudio } from './hooks/useAudio'
 import { asset } from './lib/utils'
@@ -42,7 +42,7 @@ export default function App() {
   }, [play])
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Cover open={open} onOpen={handleOpen} />
 
       <main aria-hidden={!open}>
@@ -84,6 +84,6 @@ export default function App() {
       />
 
       {confetti && open && <Confetti />}
-    </>
+    </MotionConfig>
   )
 }
