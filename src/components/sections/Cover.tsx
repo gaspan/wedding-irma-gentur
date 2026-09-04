@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { couple, events } from '../../config/wedding'
+import { couple, coverPhoto, events } from '../../config/wedding'
 import { useGuestName } from '../../hooks/useGuestName'
+import { asset } from '../../lib/utils'
 import { Aurora, CornerOrnate, Mandala, Sparkles } from '../illustrations'
 import { Particles } from '../ui/Effects'
 
@@ -9,6 +11,8 @@ const EASE = [0.22, 1, 0.36, 1] as const
 export function Cover({ open, onOpen }: { open: boolean; onOpen: () => void }) {
   const guest = useGuestName()
   const initials = `${couple.bride.nickname[0]}${couple.groom.nickname[0]}`.toUpperCase()
+  const [photoBroken, setPhotoBroken] = useState(false)
+  const showPhoto = Boolean(coverPhoto) && !photoBroken
 
   return (
     <AnimatePresence>
@@ -22,6 +26,18 @@ export function Cover({ open, onOpen }: { open: boolean; onOpen: () => void }) {
             className="absolute inset-y-0 left-0 w-1/2 bg-emerald-void border-r-2 border-gold/40 shadow-[10px_0_30px_rgba(0,0,0,0.8)] z-0 overflow-hidden"
             exit={{ x: '-100%', transition: { duration: 1.2, ease: EASE } }}
           >
+            {showPhoto && (
+              <>
+                <img
+                  src={asset(coverPhoto)}
+                  alt=""
+                  onError={() => setPhotoBroken(true)}
+                  className="absolute inset-y-0 left-0 h-full w-[200vw] max-w-none object-cover"
+                />
+                <div className="absolute inset-0 bg-emerald-void/60" />
+                <div className="absolute inset-0 bg-linear-to-b from-emerald-void/40 via-transparent to-emerald-void/80" />
+              </>
+            )}
             <div className="absolute inset-0 bg-damask opacity-[0.1]" />
             <div className="absolute inset-0 bg-pattern-gold opacity-[0.1]" />
             <CornerOrnate className="absolute top-5 left-5 w-32 text-gold-bright/60" />
@@ -34,6 +50,18 @@ export function Cover({ open, onOpen }: { open: boolean; onOpen: () => void }) {
             className="absolute inset-y-0 right-0 w-1/2 bg-emerald-void border-l-2 border-gold/40 shadow-[-10px_0_30px_rgba(0,0,0,0.8)] z-0 overflow-hidden"
             exit={{ x: '100%', transition: { duration: 1.2, ease: EASE } }}
           >
+            {showPhoto && (
+              <>
+                <img
+                  src={asset(coverPhoto)}
+                  alt=""
+                  onError={() => setPhotoBroken(true)}
+                  className="absolute inset-y-0 right-0 h-full w-[200vw] max-w-none object-cover"
+                />
+                <div className="absolute inset-0 bg-emerald-void/60" />
+                <div className="absolute inset-0 bg-linear-to-b from-emerald-void/40 via-transparent to-emerald-void/80" />
+              </>
+            )}
             <div className="absolute inset-0 bg-damask opacity-[0.1]" />
             <div className="absolute inset-0 bg-pattern-gold opacity-[0.1]" />
             <CornerOrnate className="absolute top-5 right-5 w-32 rotate-90 text-gold-bright/60" />

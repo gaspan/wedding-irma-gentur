@@ -8,6 +8,55 @@ import { Reveal, Section, SectionTitle } from '../ui'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
+function BankCard({ bank, number, holder }: { bank: string; number: string; holder: string }) {
+  const [copied, setCopied] = useState(false)
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(number)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2500)
+    } catch {
+      /* clipboard tidak tersedia — abaikan */
+    }
+  }
+
+  return (
+    <div className="group relative overflow-hidden rounded-[2rem] border border-gold/40 bg-emerald-void/80 p-7 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-gold hover:shadow-[0_30px_70px_-20px_rgba(200,167,92,0.5)]">
+      <span className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+      <div className="flex items-center justify-between">
+        <span className="font-display text-2xl font-bold tracking-wide text-gold-gradient text-glow">
+          {bank}
+        </span>
+        <svg viewBox="0 0 24 24" className="h-6 w-6 text-gold-light/70" fill="none" stroke="currentColor" strokeWidth="1.4">
+          <path d="M3 9.5L12 4l9 5.5M5 9.5V19h14V9.5M9.5 19v-6h5v6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+      <p className="mt-6 font-display text-[1.55rem] leading-snug tracking-[0.06em] text-gold-light tabular-nums break-all drop-shadow-sm">
+        {number}
+      </p>
+      <p className="mt-2.5 text-[0.68rem] font-bold tracking-[0.25em] text-gold-light/60 uppercase">
+        {holder}
+      </p>
+      <button
+        type="button"
+        onClick={copy}
+        className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full border py-3 text-[0.72rem] font-bold tracking-[0.2em] uppercase transition-all duration-300 cursor-pointer ${
+          copied
+            ? 'border-gold bg-gradient-to-r from-gold-deep via-gold-bright to-gold-deep text-emerald-night shadow-[0_0_24px_rgba(200,167,92,0.6)]'
+            : 'border-gold/40 bg-gold/[0.08] text-gold-light hover:border-gold hover:bg-gold hover:text-emerald-night'
+        }`}
+      >
+        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.7">
+          <rect x="9" y="9" width="12" height="12" rx="2" />
+          <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" strokeLinecap="round" />
+        </svg>
+        {copied ? 'Nomor Tersalin' : 'Salin Nomor Rekening'}
+      </button>
+    </div>
+  )
+}
+
 export function Gift() {
   const [broken, setBroken] = useState(false)
   const qrSrc = asset(gift.qrisImage)
@@ -160,6 +209,16 @@ export function Gift() {
           </p>
         </div>
       </Reveal>
+
+      {gift.banks.length > 0 && (
+        <Reveal delay={0.2} className="relative">
+          <div className="mx-auto mt-14 grid max-w-2xl gap-6 sm:grid-cols-2">
+            {gift.banks.map((b) => (
+              <BankCard key={b.bank + b.number} bank={b.bank} number={b.number} holder={b.holder} />
+            ))}
+          </div>
+        </Reveal>
+      )}
     </Section>
   )
 }

@@ -61,12 +61,20 @@ export const quran = {
     'Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir.',
 }
 
-/** Gift — QRIS statis. Taruh gambar QR di public/qris/ */
+/** Gift — QRIS statis + transfer bank. Taruh gambar QR di public/qris/ */
 export const gift = {
   qrisImage: 'qris/qris-irma-gentur.png', // [GANTI] tanpa slash di depan
   qrisLabel: 'QRIS — Irma & Gentur',
   note: 'Kehadiran dan doa Anda adalah hadiah terindah bagi kami. Namun jika ingin memberi tanda kasih, silakan pindai QRIS berikut.',
+  /** Rekening untuk transfer langsung — kosongkan [] jika tidak diperlukan. [GANTI] */
+  banks: [
+    { bank: 'BRI', number: '000000000000000', holder: 'IRMA SRI WAHYUNI' }, // [GANTI]
+    { bank: 'BCA', number: '0000000000', holder: 'GENTUR ARIYADI SIDDIQ' }, // [GANTI]
+  ],
 }
+
+/** Foto cover (opsional). Taruh di public/ — kosongkan '' untuk tampilan ornamen bawaan. [GANTI] */
+export const coverPhoto = '' // contoh: 'cover/foto-cover.jpg'
 
 export const music = {
   src: 'music/backsound.mp3', // [GANTI] tanpa slash di depan
