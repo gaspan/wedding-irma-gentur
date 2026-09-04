@@ -77,7 +77,7 @@ export const gift = {
 export const coverPhoto = '' // contoh: 'cover/foto-cover.jpg'
 
 export const music = {
-  src: 'music/backsound.mp3', // [GANTI] tanpa slash di depan
+  src: 'music/If I Had You.mp3', // [GANTI] tanpa slash di depan
   volume: 0.35,
 }
 
