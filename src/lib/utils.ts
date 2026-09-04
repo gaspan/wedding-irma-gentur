@@ -45,7 +45,7 @@ export function shareWhatsApp(text: string, url: string) {
 
 /** Resolusi path aset agar tetap benar di GitHub Pages subfolder */
 export function asset(path: string) {
-  return `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+  return `${import.meta.env.BASE_URL}${encodeURI(path.replace(/^\//, ''))}`
 }
 
 export function cn(...classes: (string | false | null | undefined)[]) {
