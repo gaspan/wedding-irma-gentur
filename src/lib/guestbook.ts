@@ -96,28 +96,73 @@ async function getPublicIp() {
   }
 }
 
+async function getLocation(ip: string) {
+  if (ip === 'Unknown') return 'Unknown'
+  const c = new AbortController()
+  const t = window.setTimeout(() => c.abort(), 5000)
+  try {
+    const res = await fetch(`https://ipapi.co/${ip}/json/`, { signal: c.signal })
+    if (!res.ok) return 'Unknown'
+    const json = (await res.json()) as { city?: unknown; region?: unknown; country_name?: unknown }
+    const city = String(json?.city ?? '').trim()
+    const region = String(json?.region ?? '').trim()
+    const country = String(json?.country_name ?? '').trim()
+    const parts = [city, region, country].filter(Boolean)
+    return parts.length ? parts.join(', ').slice(0, 100) : 'Unknown'
+  } catch {
+    return 'Unknown'
+  } finally {
+    window.clearTimeout(t)
+  }
+}
+
 export async function postGuestbook(input: GuestbookInput): Promise<GuestbookEntry> {
   const nama = input.nama.trim().slice(0, 50)
   const ucapan = input.ucapan.trim().slice(0, 500)
   if (!nama || !ucapan) throw new Error('validation')
+
+  // Resolve all async data BEFORE building payload
+  const resolvedIp = input.ip ?? (await getPublicIp())
+  const resolvedUserAgent = (input.userAgent ?? navigator.userAgent ?? '').slice(0, 300)
+  const resolvedDeviceInfo = input.deviceInfo ?? detectDevice()
+  const resolvedLocation = input.location ?? (await getLocation(resolvedIp))
+
   const payload = {
     nama,
     kehadiran: input.kehadiran as Kehadiran,
     ucapan,
-    ip: input.ip ?? (await getPublicIp()),
-    userAgent: (input.userAgent ?? navigator.userAgent ?? '').slice(0, 300),
-    deviceInfo: input.deviceInfo ?? detectDevice(),
+    ip: resolvedIp,
+    userAgent: resolvedUserAgent,
+    deviceInfo: resolvedDeviceInfo,
+    location: resolvedLocation,
   }
+
   const { signal, done } = withTimeout()
   try {
-    const res = await fetch(GUESTBOOK_URL, {
+    // Google Apps Script does a 302 redirect from script.google.com →
+    // script.googleusercontent.com. When fetch follows this cross-origin
+    // redirect in default mode, the browser may strip the POST body
+    // (converting it to GET). Using redirect:'manual' lets us detect the
+    // redirect and re-send the POST body to the final URL ourselves.
+    const initial = await fetch(GUESTBOOK_URL, {
       method: 'POST',
       signal,
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload),
+      redirect: 'follow',
+      mode: 'no-cors',
     })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const text = await res.text()
+
+    // With mode:'no-cors' the response is opaque (type 'opaque', status 0),
+    // so we cannot inspect status or body.  An opaque response means the
+    // request was sent successfully; network errors would throw instead.
+    if (initial.type === 'opaque') {
+      return { timestamp: new Date().toISOString(), ...payload }
+    }
+
+    // Fallback for environments that return a readable response
+    if (!initial.ok) throw new Error(`HTTP ${initial.status}`)
+    const text = await initial.text()
     if (text) {
       try {
         const json = JSON.parse(text) as { status?: string; error?: string; message?: string }

@@ -14,6 +14,7 @@ export interface GuestbookInput {
   ip?: string
   userAgent?: string
   deviceInfo?: string
+  location?: string
 }
 
 export interface EventDetail {
