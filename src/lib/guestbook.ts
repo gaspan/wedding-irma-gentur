@@ -25,7 +25,7 @@ function normalizeKehadiran(v: unknown): string {
 }
 
 function normalizeEntry(r: Record<string, unknown>): GuestbookEntry | null {
-  const nama = clean(r.nama ?? r.name, 60)
+  const nama = clean(r.nama ?? r.name, 50)
   const ucapan = clean(r.ucapan ?? r.message, 500)
   if (!nama || !ucapan) return null
   return {
@@ -73,13 +73,41 @@ export async function fetchGuestbook(): Promise<GuestbookEntry[]> {
   }
 }
 
-export async function postGuestbook(input: GuestbookInput): Promise<GuestbookEntry> {
-  const payload = {
-    nama: input.nama.trim().slice(0, 60),
-    kehadiran: input.kehadiran as Kehadiran,
-    ucapan: input.ucapan.trim().slice(0, 500),
+export function detectDevice() {
+  const ua = navigator.userAgent || ''
+  if (/tablet|ipad|playbook|silk/i.test(ua)) return 'Tablet'
+  if (/mobi|android|iphone|ipod|phone/i.test(ua)) return 'Mobile'
+  return window.innerWidth < 768 ? 'Mobile' : 'Desktop'
+}
+
+async function getPublicIp() {
+  const c = new AbortController()
+  const t = window.setTimeout(() => c.abort(), 4000)
+  try {
+    const res = await fetch('https://api.ipify.org?format=json', { signal: c.signal })
+    if (!res.ok) return 'Unknown'
+    const json = (await res.json()) as { ip?: unknown }
+    const ip = String(json?.ip ?? '').trim()
+    return /^[0-9a-fA-F.:]{3,45}$/.test(ip) ? ip : 'Unknown'
+  } catch {
+    return 'Unknown'
+  } finally {
+    window.clearTimeout(t)
   }
-  if (!payload.nama || !payload.ucapan) throw new Error('validation')
+}
+
+export async function postGuestbook(input: GuestbookInput): Promise<GuestbookEntry> {
+  const nama = input.nama.trim().slice(0, 50)
+  const ucapan = input.ucapan.trim().slice(0, 500)
+  if (!nama || !ucapan) throw new Error('validation')
+  const payload = {
+    nama,
+    kehadiran: input.kehadiran as Kehadiran,
+    ucapan,
+    ip: input.ip ?? (await getPublicIp()),
+    userAgent: (input.userAgent ?? navigator.userAgent ?? '').slice(0, 300),
+    device: input.device ?? detectDevice(),
+  }
   const { signal, done } = withTimeout()
   try {
     const res = await fetch(GUESTBOOK_URL, {

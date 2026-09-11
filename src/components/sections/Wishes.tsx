@@ -38,12 +38,13 @@ function Skeleton() {
 
 export function Wishes() {
   const guest = useGuestName()
-  const { wishes, loading, submitting, error, submit, reload } = useWishes()
+  const { wishes, loading, submitting, error, submit, reload, cooldown } = useWishes()
   const [name, setName] = useState(guest ?? '')
   const [message, setMessage] = useState('')
   const [attendance, setAttendance] = useState<Kehadiran>('Hadir')
   const [visible, setVisible] = useState(6)
   const [toast, setToast] = useState<string | null>(null)
+  const [formError, setFormError] = useState<string | null>(null)
   const toastTimer = useRef(0)
 
   const notify = (msg: string) => {
@@ -54,9 +55,14 @@ export function Wishes() {
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    if (!name.trim() || !message.trim() || submitting) return
+    if (submitting || cooldown > 0) return
+    if (!name.trim() || !message.trim()) {
+      setFormError('Nama dan ucapan tidak boleh kosong.')
+      return
+    }
+    setFormError(null)
     const ok = await submit({
-      nama: name.trim().slice(0, 60),
+      nama: name.trim().slice(0, 50),
       kehadiran: attendance,
       ucapan: message.trim().slice(0, 500),
     })
@@ -88,7 +94,7 @@ export function Wishes() {
           <input
             id="wish-nama"
             required
-            maxLength={60}
+            maxLength={50}
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Tuliskan nama Anda"
@@ -131,16 +137,31 @@ export function Wishes() {
             placeholder="Tuliskan ucapan serta doa terbaik Anda…"
             className={`${input} resize-none`}
           />
+          <p className="mt-1.5 text-right font-body text-[0.68rem] tabular-nums text-muted">
+            {message.length}/500
+          </p>
 
-          {error && <p className="mt-3 text-center font-body text-[0.78rem] text-red-500">{error}</p>}
+          {(formError || error) && (
+            <p className="mt-3 text-center font-body text-[0.78rem] text-red-500">{formError ?? error}</p>
+          )}
 
           <button
             type="submit"
-            disabled={submitting}
-            className="btn-fluid mt-5 w-full rounded-full bg-sage-deep py-4 font-body text-[0.78rem] font-bold uppercase tracking-[0.2em] text-white hover:bg-ink disabled:cursor-not-allowed disabled:opacity-60"
+            disabled={submitting || cooldown > 0}
+            className="btn-fluid mt-5 flex w-full items-center justify-center gap-2.5 rounded-full bg-sage-deep py-4 font-body text-[0.78rem] font-bold uppercase tracking-[0.2em] text-white hover:bg-ink disabled:cursor-not-allowed disabled:opacity-60"
           >
+            {submitting && (
+              <svg viewBox="0 0 24 24" className="h-4 w-4 animate-spin" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>
+                <path d="M12 3a9 9 0 019 9" strokeLinecap="round" />
+              </svg>
+            )}
             {submitting ? 'Mengirim...' : 'Kirim Ucapan'}
           </button>
+          {cooldown > 0 && !submitting && (
+            <p className="mt-3 text-center font-body text-[0.74rem] text-muted">
+              Anda dapat mengirim ucapan lagi dalam {cooldown} detik
+            </p>
+          )}
         </form>
       </Reveal>
 

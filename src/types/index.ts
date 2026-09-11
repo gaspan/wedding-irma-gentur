@@ -11,6 +11,9 @@ export interface GuestbookInput {
   nama: string
   kehadiran: Kehadiran
   ucapan: string
+  ip?: string
+  userAgent?: string
+  device?: string
 }
 
 export interface EventDetail {
