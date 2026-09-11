@@ -2,7 +2,7 @@ import type { GuestbookEntry, GuestbookInput, Kehadiran } from '../types'
 import { relativeTime } from './utils'
 
 export const GUESTBOOK_URL =
-  'https://script.google.com/macros/s/AKfycbw1t-xc_8QRr3pxmniTJ1Xr-OfHdAypzeenofGD4vjrbKPxLwTUMf3Bapyj2zYaoPWK/exec'
+  'https://script.google.com/macros/s/AKfycbxaWuFGcLiPXzgF7Lihftz3d-ZV5w279gxZsjz-jWAknCAP_Eozgm51Vpfj8RjY1y0/exec'
 
 const TIMEOUT_MS = 15000
 
@@ -120,8 +120,10 @@ export async function postGuestbook(input: GuestbookInput): Promise<GuestbookEnt
     const text = await res.text()
     if (text) {
       try {
-        const json = JSON.parse(text) as { result?: string; error?: string }
-        if (json && json.error) throw new Error(json.error)
+        const json = JSON.parse(text) as { status?: string; error?: string; message?: string }
+        if (json && (json.error || json.status === 'error')) {
+          throw new Error(json.error || json.message || 'Server menolak permintaan.')
+        }
       } catch (e) {
         if (!(e instanceof SyntaxError)) throw e
       }
