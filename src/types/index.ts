@@ -1,19 +1,16 @@
-export type Attendance = 'hadir' | 'tidak_hadir' | 'ragu'
+export type Kehadiran = 'Hadir' | 'Tidak Hadir' | 'Ragu-ragu'
 
-export interface Wish {
-  id: string
-  name: string
-  message: string
-  attendance: Attendance | null
-  guest_count: number
-  created_at: string
+export interface GuestbookEntry {
+  timestamp: string
+  nama: string
+  kehadiran: string
+  ucapan: string
 }
 
-export interface WishInput {
-  name: string
-  message: string
-  attendance: Attendance
-  guest_count: number
+export interface GuestbookInput {
+  nama: string
+  kehadiran: Kehadiran
+  ucapan: string
 }
 
 export interface EventDetail {
