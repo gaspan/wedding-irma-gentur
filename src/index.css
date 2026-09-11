@@ -1,136 +1,59 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Black/Onyx for extreme luxury contrast */
-  --color-cream: #080a09;
-  --color-cream-deep: #050606;
-  --color-sage: #8a9a7b;
-  --color-sage-light: #a9b79c;
-  --color-sage-deep: #2a3528;
-
-  /* Gold foil: lebih kaya, ada champagne & antique */
-  --color-gold: #d4af37;
-  --color-gold-light: #f3e5ab;
-  --color-gold-bright: #fffdd0;
-  --color-gold-deep: #aa8628;
-  --color-gold-antique: #8b6914;
+  --color-ivory: #fdfbf7;
+  --color-cream: #fdfbf7;
+  --color-cream-deep: #f4ecdd;
+  --color-sand: #ece1cb;
+  --color-ink: #2c2c2c;
+  --color-muted: #8a8378;
+  --color-gold: #b89a5a;
+  --color-gold-light: #d9c49a;
+  --color-gold-bright: #c9a86a;
+  --color-gold-deep: #8c7340;
   --color-champagne: #efdcb4;
+  --color-sage: #9caf88;
+  --color-sage-light: #d4ddc8;
+  --color-sage-deep: #5f7351;
+  --color-emerald: #5f7351;
+  --color-emerald-mid: #ece1cb;
+  --color-emerald-deep: #2c2c2c;
+  --color-emerald-night: #fdfbf7;
+  --color-emerald-void: #f8f3e8;
 
-  /* Emerald lebih dalam & pekat, kesan velvet onyx */
-  --color-emerald: #0b2217;
-  --color-emerald-mid: #06140d;
-  --color-emerald-deep: #030a07;
-  --color-emerald-night: #020604;
-  --color-emerald-void: #010302;
-  --color-ink: #fbf9f4; /* Ink is now light for dark mode */
-  --color-muted: #8b9990;
-
-  --font-display: 'Cinzel', ui-serif, Georgia, serif;
+  --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
   --font-script: 'Great Vibes', cursive;
-  --font-body: 'Cormorant Garamond', ui-serif, Georgia, serif;
-  --font-arabic: 'Amiri', 'Times New Roman', serif;
+  --font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: 'Amiri', serif;
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-float-slow: float 9s ease-in-out infinite;
-  --animate-shimmer: shimmer 4s linear infinite;
-  --animate-shimmer-slow: shimmer 8s linear infinite;
-  --animate-aurora: aurora 16s ease-in-out infinite;
-  --animate-aurora-slow: aurora 24s ease-in-out infinite;
-  --animate-twinkle: twinkle 3s ease-in-out infinite;
-  --animate-glow: glow 2.6s ease-in-out infinite;
-  --animate-glow-soft: glow-soft 4s ease-in-out infinite;
-  --animate-spin-slow: spin 16s linear infinite;
-  --animate-bounce-soft: bounce-soft 2.2s ease-in-out infinite;
-  --animate-sheen: sheen 6s ease-in-out infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-breathe: breathe 4.5s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
+@keyframes breathe {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
 }
 
-@keyframes aurora {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  33% {
-    transform: translate3d(6%, -5%, 0) scale(1.12);
-  }
-  66% {
-    transform: translate3d(-5%, 4%, 0) scale(0.94);
-  }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 0.1;
-    transform: scale(0.6);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
+@keyframes spin-vinyl {
+  to { transform: rotate(360deg); }
 }
 
-@keyframes glow {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 1px rgba(246, 229, 184, 0.25),
-      0 10px 30px -8px rgba(157, 122, 51, 0.5);
-  }
-  50% {
-    box-shadow:
-      0 0 0 1px rgba(246, 229, 184, 0.5),
-      0 16px 46px -8px rgba(246, 229, 184, 0.6);
-  }
-}
-
-@keyframes glow-soft {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-  50% {
-    opacity: 0.75;
-  }
-}
-
-@keyframes sheen {
-  0%,
-  100% {
-    transform: translateX(-120%) skewX(-18deg);
-  }
-  55%,
-  100% {
-    transform: translateX(220%) skewX(-18deg);
-  }
-}
-
-@keyframes bounce-soft {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(7px);
-  }
+@keyframes rise-soft {
+  0% { transform: translate3d(0, 0, 0); opacity: 0; }
+  10% { opacity: 0.7; }
+  100% { transform: translate3d(20px, -105vh, 0); opacity: 0; }
 }
 
 @layer base {
@@ -140,41 +63,34 @@
   }
 
   body {
-    background-color: #020604;
-    background-image:
-      radial-gradient(120% 60% at 50% 0%, rgba(212, 175, 55, 0.15), transparent 60%),
-      linear-gradient(180deg, #020604, #010302);
-    background-attachment: fixed;
+    background-color: var(--color-ivory);
     color: var(--color-ink);
     font-family: var(--font-body);
-    font-feature-settings: 'ss01', 'cv01';
+    line-height: 1.75;
+    letter-spacing: 0.01em;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
-  h1,
-  h2,
-  h3 {
-    font-kerning: normal;
-    font-variant-ligatures: common-ligatures discretionary-ligatures;
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
   }
 
-  /* Dikunci saat cover belum dibuka */
   body[data-locked='true'] {
     overflow: hidden;
     height: 100dvh;
   }
 
   ::selection {
-    background-color: var(--color-gold-light);
+    background: var(--color-sage-light);
     color: var(--color-ink);
   }
 
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--color-cream-deep);
-  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--color-cream-deep); }
   ::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, var(--color-gold-light), var(--color-gold-deep));
     border-radius: 999px;
@@ -185,239 +101,73 @@
   text-wrap: balance;
 }
 
-/* Teks gradien emas foil — lebih kaya & kompleks */
-@utility text-gold-gradient {
-  background-image: linear-gradient(
-    135deg,
-    #7d5f24 0%,
-    #c8a75c 18%,
-    #f6e5b8 33%,
-    #e3cd96 44%,
-    #9d7a33 56%,
-    #f6e5b8 72%,
-    #c8a75c 88%,
-    #7d5f24
-  );
-  background-size: 260% auto;
+@utility glass {
+  background: color-mix(in srgb, #ffffff 62%, transparent);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  border: 1px solid color-mix(in srgb, var(--color-gold) 22%, transparent);
+  box-shadow: 0 20px 50px -24px rgb(44 44 44 / 0.18);
+}
+
+@utility glass-strong {
+  background: color-mix(in srgb, #ffffff 82%, transparent);
+  backdrop-filter: blur(24px) saturate(1.3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  border: 1px solid color-mix(in srgb, var(--color-gold) 28%, transparent);
+  box-shadow: 0 24px 60px -24px rgb(140 115 64 / 0.28);
+}
+
+@utility arch {
+  border-radius: 999px 999px 2rem 2rem;
+}
+
+@utility arch-sm {
+  border-radius: 999px 999px 1.4rem 1.4rem;
+}
+
+@utility btn-fluid {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+@utility bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+@utility bg-dots-soft {
+  background-image: radial-gradient(rgb(184 154 90 / 0.16) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@utility text-gold-soft {
+  background-image: linear-gradient(120deg, #8c7340, #b89a5a 45%, #d9c49a);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 }
 
-@utility text-gold-shimmer {
-  animation: shimmer 5s linear infinite;
-}
-
-/* Pattern damask emas — lebih elegan dari dot polos */
-@utility bg-pattern {
-  background-image: radial-gradient(var(--color-sage) 0.5px, transparent 0.5px);
-  background-size: 22px 22px;
-}
-
-@utility bg-pattern-gold {
-  background-image:
-    radial-gradient(rgba(200, 167, 92, 0.35) 0.5px, transparent 0.5px),
-    radial-gradient(rgba(200, 167, 92, 0.15) 0.8px, transparent 0.8px);
-  background-size: 24px 24px, 36px 36px;
-  background-position: 0 0, 12px 12px;
-}
-
-/* Damask — motif bintang-jalin khas undangan mewah */
-@utility bg-damask {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23c8a75c' stroke-width='0.6'%3E%3Cpath d='M40 4l36 36-36 36L4 40z' opacity='0.55'/%3E%3Cpath d='M40 20l20 20-20 20-20-20z' opacity='0.35'/%3E%3Ccircle cx='40' cy='40' r='3' opacity='0.5'/%3E%3Cpath d='M0 0l10 10M80 0L70 10M0 80l10-10M80 80L70 70' opacity='0.35'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 80px 80px;
-}
-
-/* Glow emas radial untuk section gelap */
-@utility bg-radial-gold {
-  background: radial-gradient(
-    60% 50% at 50% 32%,
-    rgba(200, 167, 92, 0.22),
-    rgba(200, 167, 92, 0.08) 55%,
-    transparent 75%
-  );
-}
-
-/* Frame bingkai foil — conic berputar yang lebih halus & mewah */
-@property --border-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes border-rotate {
-  to {
-    --border-angle: 360deg;
-  }
-}
-
-@utility card-conic {
-  border: 1px solid transparent;
-  background:
-    linear-gradient(var(--card-bg, #ffffff), var(--card-bg, #ffffff)) padding-box,
-    conic-gradient(
-        from var(--border-angle),
-        #9d7a33,
-        #f6e5b8 15%,
-        #c8a75c 30%,
-        #0a3125 50%,
-        #e3cd96 70%,
-        #9d7a33 85%,
-        #9d7a33
-      )
-      border-box;
-  animation: border-rotate 10s linear infinite;
-}
-
-/* Frame foil statis — lebih elegan, tidak berputar */
-@utility card-foil {
-  border: 1px solid rgba(200, 167, 92, 0.3);
-  background: linear-gradient(
-    135deg,
-    rgba(246, 229, 184, 0.1),
-    rgba(255, 255, 255, 0.95),
-    rgba(200, 167, 92, 0.08)
-  );
-  box-shadow:
-    0 1px 0 0 rgba(200, 167, 92, 0.3),
-    0 20px 50px -16px rgba(10, 49, 37, 0.35);
-}
-
-/* Sheen — efek kilau emas bergerak */
-@utility animate-sheen {
-  animation: sheen 6s ease-in-out infinite;
-}
-
-@utility animate-glow-soft {
-  animation: glow-soft 4s ease-in-out infinite;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @utility animate-marquee {
-  animation: marquee 26s linear infinite;
+  animation: marquee 28s linear infinite;
 }
 
-@keyframes rise {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0;
-  }
-  8% {
-    opacity: var(--p-op, 0.8);
-  }
-  100% {
-    transform: translate3d(var(--dx, 20px), -110vh, 0) scale(0.55);
-    opacity: 0;
-  }
+@utility animate-vinyl {
+  animation: spin-vinyl 6s linear infinite;
 }
 
-@utility animate-rise {
-  animation: rise var(--dur, 9s) linear infinite;
-}
-
-@keyframes confetti-fall {
-  0% {
-    transform: translateY(-5vh) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(115vh) rotate(var(--rot, 360deg));
-    opacity: 0.15;
-  }
-}
-
-@utility animate-confetti {
-  animation: confetti-fall var(--cdur, 3s) ease-in forwards;
-}
-
-@keyframes eq {
-  0%,
-  100% {
-    transform: scaleY(0.3);
-  }
-  50% {
-    transform: scaleY(1);
-  }
-}
-
-@utility animate-eq {
-  transform-origin: bottom;
-  animation: eq 0.65s ease-in-out infinite;
-}
-
-/* Konten section muncul halus saat menu bawah diklik */
-@keyframes nav-jump {
-  from {
-    opacity: 0.3;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@utility animate-rise-soft {
+  animation: rise-soft 11s linear infinite;
 }
 
 section.nav-jump > * {
-  animation: nav-jump 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: nav-jump 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Teks outline dekoratif */
-@utility text-stroke-gold {
-  -webkit-text-stroke: 1.5px rgba(201, 169, 97, 0.5);
-  color: transparent;
-}
-
-/* Glow untuk teks gradien */
-@utility text-glow {
-  filter: drop-shadow(0 0 18px rgba(246, 229, 184, 0.4));
-}
-
-/* Hairline emas — pemisah tipis presisi */
-@utility hairline-gold {
-  background-image: linear-gradient(
-    to right,
-    transparent,
-    rgba(200, 167, 92, 0.7) 25%,
-    rgba(246, 229, 184, 0.9) 50%,
-    rgba(200, 167, 92, 0.7) 75%,
-    transparent
-  );
-}
-
-/* Vignette untuk section gelap — fokus ke tengah */
-@utility vignette {
-  background: radial-gradient(120% 80% at 50% 40%, transparent 35%, rgba(2, 16, 11, 0.75) 100%);
-}
-
-/* Kelopak daun berjatuhan + berayun */
-@keyframes petal {
-  0% {
-    transform: translateY(-12vh) translateX(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(50vh) translateX(var(--sway, 24px)) rotate(180deg);
-  }
-  100% {
-    transform: translateY(112vh) translateX(calc(var(--sway, 24px) * -1)) rotate(360deg);
-  }
-}
-
-@utility animate-petal {
-  animation: petal var(--pdur, 16s) linear infinite;
+@keyframes nav-jump {
+  from { opacity: 0.4; transform: translateY(26px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

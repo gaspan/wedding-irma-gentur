@@ -1,21 +1,8 @@
-import { motion, type Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { cn } from '../../lib/utils'
-import { OrnateDivider } from '../illustrations'
 
-const variants: Variants = {
-  hidden: { opacity: 0, y: 60, scale: 0.9, filter: 'blur(10px)' },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    filter: 'blur(0px)',
-    transition: { 
-      duration: 1.2, 
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-}
+const EASE = [0.22, 1, 0.36, 1] as const
 
 export function Reveal({
   children,
@@ -29,11 +16,10 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      variants={variants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ delay }}
+      initial={{ opacity: 0, y: 36 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.9, delay, ease: EASE }}
     >
       {children}
     </motion.div>
@@ -52,54 +38,67 @@ export function Section({
   containerClass?: string
 }) {
   return (
-    <section
-      id={id}
-      className={cn('relative overflow-hidden px-5 py-24 sm:px-8 sm:py-36', className)}
-    >
-      <div className={cn('mx-auto w-full max-w-3xl', containerClass)}>{children}</div>
+    <section id={id} className={cn('relative overflow-hidden px-6 py-24 sm:px-8 sm:py-36', className)}>
+      <div className={cn('mx-auto w-full max-w-2xl', containerClass)}>{children}</div>
     </section>
+  )
+}
+
+export function Eyebrow({ children }: { children: ReactNode }) {
+  return (
+    <p className="mb-4 text-center font-body text-[0.68rem] font-semibold uppercase tracking-[0.42em] text-gold-deep">
+      {children}
+    </p>
   )
 }
 
 export function SectionTitle({
   overline,
   title,
-  dark = false,
+  desc,
   className = '',
 }: {
   overline?: string
   title: string
-  dark?: boolean
+  desc?: string
   className?: string
 }) {
   return (
     <div className={cn('text-center', className)}>
-      {overline && (
-        <p
-          className={cn(
-            'mb-5 flex items-center justify-center gap-3 text-[0.6rem] font-semibold tracking-[0.5em] uppercase',
-            dark ? 'text-gold-light/70' : 'text-gold-deep/80',
-          )}
-        >
-          <span className={cn('h-px w-8', dark ? 'bg-gold/60' : 'bg-gold/70')} />
-          {overline}
-          <span className={cn('h-px w-8', dark ? 'bg-gold/60' : 'bg-gold/70')} />
-        </p>
-      )}
-      <h2
-        className={cn(
-          'font-display text-5xl leading-[1.05] font-light italic sm:text-6xl',
-          dark ? 'text-gold-gradient text-gold-shimmer text-glow' : 'text-ink',
-        )}
-      >
+      {overline && <Eyebrow>{overline}</Eyebrow>}
+      <h2 className="font-display text-4xl font-medium leading-tight text-ink sm:text-5xl text-balance">
         {title}
       </h2>
-      <OrnateDivider
-        className={cn(
-          'mx-auto mt-7 w-64 text-gold sm:w-72',
-          dark ? 'text-gold-bright' : 'text-gold-deep/90',
-        )}
-      />
+      <div className="mx-auto mt-6 flex items-center justify-center gap-3 text-gold" aria-hidden>
+        <span className="h-px w-12 bg-gradient-to-r from-transparent to-gold/70" />
+        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor">
+          <path d="M12 2c1 4 4 6 8 7-4 1-7 3-8 7-1-4-4-6-8-7 4-1 7-3 8-7z" opacity="0.9" />
+        </svg>
+        <span className="h-px w-12 bg-gradient-to-l from-transparent to-gold/70" />
+      </div>
+      {desc && (
+        <p className="mx-auto mt-6 max-w-md font-body text-[0.92rem] font-light leading-relaxed tracking-wide text-muted">
+          {desc}
+        </p>
+      )}
     </div>
+  )
+}
+
+export function PillButton({
+  children,
+  className = '',
+  ...rest
+}: React.ButtonHTMLAttributes<HTMLButtonElement> & { children: ReactNode }) {
+  return (
+    <button
+      {...rest}
+      className={cn(
+        'btn-fluid inline-flex cursor-pointer items-center justify-center gap-2.5 rounded-full px-8 py-3.5 font-body text-[0.8rem] font-semibold uppercase tracking-[0.18em] active:scale-[0.97]',
+        className,
+      )}
+    >
+      {children}
+    </button>
   )
 }

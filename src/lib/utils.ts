@@ -38,6 +38,46 @@ export function downloadIcs(opts: {
   URL.revokeObjectURL(a.href)
 }
 
+export function googleCalendarUrl(opts: {
+  title: string
+  description: string
+  location: string
+  start: Date
+  durationHours?: number
+}) {
+  const { title, description, location, start, durationHours = 2 } = opts
+  const end = new Date(start.getTime() + durationHours * 3600_000)
+  const fmt = (d: Date) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
+  const p = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: title,
+    dates: `${fmt(start)}/${fmt(end)}`,
+    details: description,
+    location,
+  })
+  return `https://calendar.google.com/calendar/render?${p.toString()}`
+}
+
+export async function copyText(text: string) {
+  try {
+    await navigator.clipboard.writeText(text)
+    return true
+  } catch {
+    const ta = document.createElement('textarea')
+    ta.value = text
+    document.body.appendChild(ta)
+    ta.select()
+    try {
+      document.execCommand('copy')
+      return true
+    } catch {
+      return false
+    } finally {
+      ta.remove()
+    }
+  }
+}
+
 export function shareWhatsApp(text: string, url: string) {
   const msg = encodeURIComponent(`${text}\n\n${url}`)
   window.open(`https://wa.me/?text=${msg}`, '_blank', 'noopener')
