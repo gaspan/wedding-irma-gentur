@@ -2,7 +2,7 @@ import type { GuestbookEntry, GuestbookInput, Kehadiran } from '../types'
 import { relativeTime } from './utils'
 
 export const GUESTBOOK_URL =
-  'https://script.google.com/macros/s/AKfycbxaWuFGcLiPXzgF7Lihftz3d-ZV5w279gxZsjz-jWAknCAP_Eozgm51Vpfj8RjY1y0/exec'
+  'https://script.google.com/macros/s/AKfycby_yFXg9auH-2gHMMybIRjD8bskHr-axWQTo86U7i0-v_kXiou_ErpPnZXJsKSS7KmE/exec'
 
 const TIMEOUT_MS = 15000
 
