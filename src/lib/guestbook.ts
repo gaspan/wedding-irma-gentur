@@ -106,7 +106,7 @@ export async function postGuestbook(input: GuestbookInput): Promise<GuestbookEnt
     ucapan,
     ip: input.ip ?? (await getPublicIp()),
     userAgent: (input.userAgent ?? navigator.userAgent ?? '').slice(0, 300),
-    device: input.device ?? detectDevice(),
+    deviceInfo: input.deviceInfo ?? detectDevice(),
   }
   const { signal, done } = withTimeout()
   try {

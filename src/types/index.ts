@@ -13,7 +13,7 @@ export interface GuestbookInput {
   ucapan: string
   ip?: string
   userAgent?: string
-  device?: string
+  deviceInfo?: string
 }
 
 export interface EventDetail {
