@@ -14,7 +14,6 @@ import { Countdown } from './components/sections/Countdown'
 import { Events } from './components/sections/Events'
 import { Gallery } from './components/sections/Gallery'
 import { Gift } from './components/sections/Gift'
-import { Wishes } from './components/sections/Wishes'
 import { Footer } from './components/sections/Footer'
 
 const NOISE =
@@ -62,8 +61,6 @@ export default function App() {
           items={[hashtag.toUpperCase(), `IRMA ✦ GENTUR`, `SAKINAH MAWADDAH WARAHMAH`, `JAZAKUMULLAHU KHAIRAN`]}
         />
         <Gift />
-        <WaveSep top="text-emerald-night" bottom="bg-cream-deep" />        <Wishes />
-        <WaveSep top="text-cream-deep" bottom="bg-emerald-night" />
         <Footer />
       </main>
 
