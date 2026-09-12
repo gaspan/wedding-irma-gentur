@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useWishes } from '../../hooks/useWishes'
 import { useGuestName } from '../../hooks/useGuestName'
 import { formatGuestTime } from '../../lib/guestbook'
+import { censorText } from '../../lib/profanity'
 import type { Kehadiran } from '../../types'
 import { Grain, Toast } from '../ui/Effects'
 import { Reveal, Section, SectionTitle } from '../ui'
@@ -202,14 +203,14 @@ export function Wishes() {
                   </span>
                   <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md border border-ink/8 bg-white/85 px-4 py-3 shadow-[0_10px_30px_-18px_rgb(44_44_44/0.25)] backdrop-blur-md">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <p className="font-body text-[0.84rem] font-bold text-ink">{w.nama}</p>
+                      <p className="font-body text-[0.84rem] font-bold text-ink">{censorText(w.nama)}</p>
                       <span className="font-body text-[0.66rem] text-muted">{formatGuestTime(w.timestamp)}</span>
                     </div>
                     <span className={`mt-2 inline-block rounded-full border px-2.5 py-0.5 font-body text-[0.64rem] font-semibold ${badgeClass(w.kehadiran)}`}>
                       {w.kehadiran}
                     </span>
                     <p className="mt-1.5 font-body text-[0.88rem] font-light leading-relaxed text-ink/80 whitespace-pre-line break-words">
-                      {w.ucapan}
+                      {censorText(w.ucapan)}
                     </p>
                   </div>
                 </motion.div>
