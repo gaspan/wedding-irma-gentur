@@ -5,6 +5,7 @@ export interface GuestbookEntry {
   nama: string
   kehadiran: string
   ucapan: string
+  is_hidden?: string
 }
 
 export interface GuestbookInput {

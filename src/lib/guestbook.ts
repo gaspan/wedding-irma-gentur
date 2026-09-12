@@ -24,7 +24,15 @@ function normalizeKehadiran(v: unknown): string {
   return clean(v, 20) || '-'
 }
 
+function isHiddenRow(r: Record<string, unknown>): boolean {
+  const raw = r.is_hidden ?? r.isHidden ?? r.hidden
+  if (raw == null || String(raw).trim() === '') return false
+  const v = String(raw).trim().toLowerCase()
+  return v === 'y' || v === 'yes' || v === 'ya' || v === 'true' || v === '1'
+}
+
 function normalizeEntry(r: Record<string, unknown>): GuestbookEntry | null {
+  if (isHiddenRow(r)) return null
   const nama = clean(r.nama ?? r.name, 50)
   const ucapan = clean(r.ucapan ?? r.message, 500)
   if (!nama || !ucapan) return null
