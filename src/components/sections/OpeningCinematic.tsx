@@ -29,9 +29,9 @@ export function OpeningCinematic({ active, onDone }: { active: boolean; onDone: 
     <>
       {/* Preload images to prevent delay on click */}
       <div style={{ display: 'none' }} aria-hidden="true">
-        <img src={`${import.meta.env.BASE_URL}castle_bg.jpg`} alt="" />
-        <img src={`${import.meta.env.BASE_URL}sakura_left.png`} alt="" />
-        <img src={`${import.meta.env.BASE_URL}sakura_right.png`} alt="" />
+        <img src={`${import.meta.env.BASE_URL}castle_bg.webp`} alt="" />
+        <img src={`${import.meta.env.BASE_URL}sakura_left.webp`} alt="" />
+        <img src={`${import.meta.env.BASE_URL}sakura_right.webp`} alt="" />
       </div>
 
       <AnimatePresence>
@@ -61,7 +61,7 @@ export function OpeningCinematic({ active, onDone }: { active: boolean; onDone: 
               animate={{ filter: 'blur(0px)', opacity: 1 }}
               transition={{ delay: 2.2, duration: 2.4, ease: EASE }}
             >
-              <img src={`${import.meta.env.BASE_URL}castle_bg.jpg`} alt="Heavenly Castle Background" className="h-full w-full object-cover object-center" />
+              <img src={`${import.meta.env.BASE_URL}castle_bg.webp`} alt="Heavenly Castle Background" className="h-full w-full object-cover object-center" />
             </motion.div>
             
             {/* degradasi akhir ke ivory agar nyambung ke Hero (tetap dipertahankan untuk transisi halus) */}
@@ -81,7 +81,7 @@ export function OpeningCinematic({ active, onDone }: { active: boolean; onDone: 
             transition={{ duration: DURATION * 0.62, ease: 'easeInOut', delay: 0.35 }}
             style={{ transformOrigin: '0% 50%', filter: 'drop-shadow(0 20px 40px rgba(20,8,12,0.5))' }}
           >
-            <img src={`${import.meta.env.BASE_URL}sakura_left.png`} alt="Sakura Branch Left" className="h-full w-auto max-w-none" />
+            <img src={`${import.meta.env.BASE_URL}sakura_left.webp`} alt="Sakura Branch Left" className="h-full w-auto max-w-none" />
           </motion.div>
           
           <motion.div
@@ -91,7 +91,7 @@ export function OpeningCinematic({ active, onDone }: { active: boolean; onDone: 
             transition={{ duration: DURATION * 0.62, ease: 'easeInOut', delay: 0.35 }}
             style={{ transformOrigin: '100% 50%', filter: 'drop-shadow(0 20px 40px rgba(20,8,12,0.5))' }}
           >
-            <img src={`${import.meta.env.BASE_URL}sakura_right.png`} alt="Sakura Branch Right" className="h-full w-auto max-w-none" />
+            <img src={`${import.meta.env.BASE_URL}sakura_right.webp`} alt="Sakura Branch Right" className="h-full w-auto max-w-none" />
           </motion.div>
 
           {/* bokeh depan tambahan */}
