@@ -26,8 +26,16 @@ export function OpeningCinematic({ active, onDone }: { active: boolean; onDone: 
   }, [active, onDone])
 
   return (
-    <AnimatePresence>
-      {active && (
+    <>
+      {/* Preload images to prevent delay on click */}
+      <div style={{ display: 'none' }} aria-hidden="true">
+        <img src={`${import.meta.env.BASE_URL}castle_bg.jpg`} alt="" />
+        <img src={`${import.meta.env.BASE_URL}sakura_left.png`} alt="" />
+        <img src={`${import.meta.env.BASE_URL}sakura_right.png`} alt="" />
+      </div>
+
+      <AnimatePresence>
+        {active && (
         <motion.div
           className="fixed inset-0 z-[70] cursor-pointer overflow-hidden bg-ivory"
           initial={{ opacity: 0 }}
@@ -181,6 +189,7 @@ export function OpeningCinematic({ active, onDone }: { active: boolean; onDone: 
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+      </AnimatePresence>
+    </>
   )
 }
