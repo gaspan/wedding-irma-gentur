@@ -6,6 +6,7 @@ import { asset } from './lib/utils'
 import { MusicToggle, NavBar } from './components/ui/Nav'
 import { OrganicDivider, Ticker } from './components/ui/Effects'
 import { Cover } from './components/sections/Cover'
+import { OpeningCinematic } from './components/sections/OpeningCinematic'
 import { Hero } from './components/sections/Hero'
 import { QuranVerse } from './components/sections/QuranVerse'
 import { Couple } from './components/sections/Couple'
@@ -22,6 +23,7 @@ const NOISE =
 
 export default function App() {
   const [open, setOpen] = useState(false)
+  const [cinematic, setCinematic] = useState(false)
   const { playing, play, toggle } = useAudio(asset(music.src), music.volume)
   const { scrollYProgress } = useScroll()
 
@@ -30,14 +32,20 @@ export default function App() {
   }, [open])
 
   const handleOpen = useCallback(() => {
-    setOpen(true)
+    setCinematic(true)
     window.scrollTo({ top: 0 })
     play()
   }, [play])
 
+  const handleCinematicDone = useCallback(() => {
+    setCinematic(false)
+    setOpen(true)
+  }, [])
+
   return (
     <MotionConfig reducedMotion="user">
       <Cover open={open} onOpen={handleOpen} />
+      <OpeningCinematic active={cinematic} onDone={handleCinematicDone} />
 
       <main aria-hidden={!open} className="bg-ivory text-ink">
         <Hero />

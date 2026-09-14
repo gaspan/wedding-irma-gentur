@@ -166,6 +166,42 @@ section.nav-jump > * {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ===== Opening Cinematic: sakura → taman surga ===== */
+@keyframes cin-petal-fall {
+  0% { transform: translate3d(0, -5vh, 0) rotate(0deg); opacity: 0; }
+  12% { opacity: 0.95; }
+  100% { transform: translate3d(var(--drift, 20px), 108vh, 0) rotate(340deg); opacity: 0; }
+}
+@keyframes cin-twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.7); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+@keyframes cin-shimmer-sweep {
+  0% { transform: translateX(-130%) skewX(-14deg); opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: translateX(420%) skewX(-14deg); opacity: 0; }
+}
+@keyframes cin-cloud-drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(14vw); }
+}
+@keyframes cin-rays-spin {
+  to { transform: translateX(-50%) rotate(360deg); }
+}
+
+.cin-petal {
+  background: radial-gradient(ellipse at 30% 30%, #ffeef4 0%, #ffc9da 45%, #f59fb8 100%);
+  border-radius: 62% 8% 62% 8%;
+  box-shadow: 0 2px 8px rgb(180 90 120 / 0.35);
+  animation: cin-petal-fall linear infinite;
+  will-change: transform, opacity;
+}
+.cin-twinkle { animation: cin-twinkle 2.4s ease-in-out infinite; }
+.cin-shimmer { animation: cin-shimmer-sweep 2.8s ease-in-out 3.4s 2 both; }
+.cin-cloud { animation: cin-cloud-drift 9s ease-in-out infinite alternate; }
+.cin-cloud2 { animation: cin-cloud-drift 11s ease-in-out infinite alternate-reverse; }
+.cin-rays { animation: cin-rays-spin 36s linear infinite; transform-origin: 50% 50%; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

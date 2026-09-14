@@ -47,9 +47,12 @@ export function Footer() {
           </div>
         </Reveal>
       </Section>
-      <footer className="border-t border-ink/10 bg-ivory py-7 text-center">
+      <footer className="border-t border-ink/10 bg-ivory pt-7 pb-28 text-center">
         <p className="font-body text-[0.7rem] tracking-wider text-muted">
-          {couple.bride.nickname} & {couple.groom.nickname} © {new Date().getFullYear()}
+          {couple.bride.nickname} & {couple.groom.nickname}
+        </p>
+        <p className="mt-2 font-body text-[0.55rem] uppercase tracking-widest text-muted/70">
+          © {new Date().getFullYear()} Gentur Ariyadi Siddiq Permana Yakti
         </p>
       </footer>
     </>
